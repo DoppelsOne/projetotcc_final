@@ -1,14 +1,21 @@
 import styled from 'styled-components/native'
 import { Dimensions } from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient'
+import {StatusBar} from 'expo-status-bar'
 
 const screenWidth = Dimensions.get('window').width;
 
-export const Container = styled.View`
+export const Container = styled(LinearGradient).attrs({
+    colors: ['#008040', '#00d736'],
+    start: { x: 0, y: 0 },
+    end: { x: 1, y: 1 },
+})`
 flex: 1;
-background-color: green;
 justify-content: center;
 align-items: center;
 `;
+
+
 
 export const Title = styled.Text`
 `;
@@ -25,8 +32,9 @@ padding: 10px;
 border-radius: 5px;
 width: 100px;
 justify-content: center;
+background-color: #93ffff;
 align-items: center;
-border-radius: 8px;
+border-radius: 5px;
 `;
 
 export const InputText = styled.TextInput`
