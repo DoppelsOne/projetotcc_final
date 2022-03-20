@@ -1,15 +1,27 @@
-export default function SignIn() {
+import { InputText } from "../../components/InputText";
+import { Container, Content, Text, Title } from "./styles";
+
+export default function SignUp() {
   return (
     <Container>
+      <Title>SIGNUP</Title> 
 
-      <Title>teste</Title>
-      <InputText />
-      <InputText />
-      <Form>
-      <Input><Text>Login</Text></Input>
-      <Input><Text>Cadastrar</Text></Input>
-      </Form>
-      <Link/>
+      <InputText 
+        iconName="user"
+        value='Nome'
+      />   
+      {/* <Content>
+        <Text>Nome completo</Text>
+        <InputText />
+        <Text>Email</Text>
+        <InputText />
+        <Text>Telefone celular</Text>
+        <InputText />
+        <Text>Senha</Text>
+        <InputText />
+        <Text>Confirmar senha</Text>
+        <InputText />
+      </Content> */}
     </Container>
   )
 }
