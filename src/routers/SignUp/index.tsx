@@ -2,7 +2,7 @@ export default function SignUp() {
   return (
     <CredentialsContainer>
 
-      <Title>teste</Title>
+      <Title>SIGNUP</Title>
       <InputText />
       <InputText />
       <Form>
