@@ -5,7 +5,7 @@ const screenWidth = Dimensions.get('window').width;
 
 export const Container = styled.View`
 flex: 1;
-background-color: #8080c0;
+background-color: #0080c0;
 justify-content: center;
 align-items: center;
 `;
