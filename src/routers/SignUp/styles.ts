@@ -1,33 +1,27 @@
 import styled from 'styled-components/native'
 import { Dimensions } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient'
 
 const screenWidth = Dimensions.get('window').width;
 
-export const Container = styled.View`
+export const Container = styled(LinearGradient).attrs({
+  colors: ['#008040', '#00d736'],
+  start: { x: 0, y: 0 },
+  end: { x: 1, y: 1 },
+})`
 flex: 1;
-background-color: #00ff00;
 justify-content: center;
 align-items: center;
 `;
 
 export const Title = styled.Text`
+  font-size: 32px;
+  margin-bottom: 10px;
 `;
 
-export const Form = styled.View`
-flex-direction: row;
-justify-content: space-around;
-width: ${screenWidth/2}px;
-`;
-
-export const Input = styled.TouchableOpacity`
-background-color: white;
-padding: 10px;
-border-radius: 5px;
-width: 100px;
-justify-content: center;
-align-items: center;
-border-radius: 8px;
-`;
+export const Content = styled.View`
+  
+`
 
 export const InputText = styled.TextInput`
 background-color: white;
@@ -37,7 +31,25 @@ width: ${screenWidth/1.5}px;
 margin: 10px;
 `;
 
-export const Link = styled.Text`
+export const Text = styled.Text`
+  font-size: 16px;
+  padding-left: 10px;
 
-
+  
 `;
+
+// export const Form = styled.View`
+// flex-direction: row;
+// justify-content: space-around;
+// width: ${screenWidth/2}px;
+// `;
+
+// export const Button = styled.TouchableOpacity`
+// background-color: white;
+// padding: 10px;
+// border-radius: 5px;
+// width: 100px;
+// justify-content: center;
+// align-items: center;
+// border-radius: 8px;
+// `;
