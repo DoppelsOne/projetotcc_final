@@ -1,7 +1,6 @@
 import styled from 'styled-components/native'
 import { Dimensions } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient'
-import {StatusBar} from 'expo-status-bar'
 
 const screenWidth = Dimensions.get('window').width;
 
