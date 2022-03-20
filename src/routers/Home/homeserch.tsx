@@ -4,16 +4,22 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-const Tab = createBottomTabNavigator();
-
-function Login() {
 
 
+export default function Login() {
+  const Tab = createBottomTabNavigator();
+  
     function HomeScreen() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <><TextInput
+          style={sty}
+          placeholder="Digite algo"
+           />
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>Home!</Text>
           </View>
+          </>
+          
         );
       }
       
@@ -30,9 +36,9 @@ function Login() {
         return (
 <NavigationContainer>
 <Tab.Navigator>
-  {/* <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+   <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
   <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }}/>
-  <Tab.Screen name="login" component={login} options={{ headerShown: false }}/> */}
+  
 </Tab.Navigator>
 </NavigationContainer>
         );
@@ -40,12 +46,12 @@ function Login() {
 
 
 
-const styles = StyleSheet.create({
+  const sty = StyleSheet.create({
+     container:{ 
+       flex: 1, 
+       justifyContent:'center', 
+       alignItems:'center',
+       backgroundColor:'#F5FCFF',
+     }
 
-sas:{
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
-}
-
-})
+  })
