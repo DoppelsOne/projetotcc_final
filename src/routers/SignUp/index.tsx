@@ -5,6 +5,8 @@ export default function SignUp() {
       <Title>SIGNUP</Title>
       <InputText />
       <InputText />
+      <InputText />
+      <InputText />
       <Form>
       </Form>
       <Link/>
