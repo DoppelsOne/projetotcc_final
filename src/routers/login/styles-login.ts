@@ -62,6 +62,7 @@ text-transform: uppercase;
 
 export const InputText = styled.TextInput.attrs({
 placeholderTextColor: '#999',
+
 })`
 background-color: white;
 padding: 5px;

@@ -1,6 +1,6 @@
 import { registerRootComponent } from 'expo';
 
-import App from './src/routers/SignUp/index';
+import App from './src/routers/login/login.tsx';
 
 // registerRootComponent calls AppRegistry.registerComponent('main', () => App);
 // It also ensures that whether you load the app in Expo Go or in a native build,
