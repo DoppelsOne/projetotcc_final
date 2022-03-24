@@ -16,7 +16,7 @@ export const Container = styled(LinearGradient).attrs({
     start: { x: 0, y: 0 },
     end: { x: 1, y: 1 },
 })`
-padding-top: ${30 + getStatusBarHeight(true)}px;
+padding-top: ${40 + getStatusBarHeight(true)}px;
 flex: 1;
 justify-content: center;
 align-items: center;

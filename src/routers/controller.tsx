@@ -1,9 +1,9 @@
-import login from './login/login'
+import Login from './login/login'
 import SignUp from './SignUp/index'
 
 export {
     
-    login,
+    Login,
     SignUp
 
 };

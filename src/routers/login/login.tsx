@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Animated, StyleSheet, Keyboard,KeyboardType, Button, TouchableOpacity, Alert, TextInput} from "react-native";
+import { Animated, StyleSheet, Keyboard,KeyboardType, Button, TouchableOpacity, Alert, TextInput, View} from "react-native";
 import {
   Container,
   Input,
@@ -10,12 +10,10 @@ import {
   Image,
 } from "./styles-login";
 import { StatusBar } from "expo-status-bar";
-// import {SafeAreaView} from 'react-native-safe-area-context'
 import logo from "../../../assets/Login/clara.jpg";
-import {NavigationContainer} from '@react-navigation/native'
-
+import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {SignUp} from '../controller'
-export default function Login() {
+export default function Login({navigation}) {
   
   // const [cont, setcont] = useState(new Animated.Value(0));
 
@@ -24,7 +22,7 @@ export default function Login() {
   // const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
+
     <Container>
       <StatusBar backgroundColor="transparent" style="light" translucent />
       <Image source={logo} />
@@ -34,13 +32,32 @@ export default function Login() {
         <Input onPress={Keyboard.dismiss} accessible={false} >
           <TextBtn>Login</TextBtn>
         </Input>
-        <Input accessible={false}>
+        <Input accessible={false} onPress={() => navigation.navigate('Cadastrar')}>
           <TextBtn>Cadastrar</TextBtn>
         </Input>
       </Form>
+      <View style={styles.form_icon}>
+      <Icon style={styles.icones} name='social-facebook'  color='#00ce00'/>
+      <Icon style={styles.icones} name='social-instagram'  color='#00ce00'/>
+      <Icon style={styles.icones} name='social-twitter'  color='#00ce00'/>
+      </View>
       <Link>Esqueceu sua senha?</Link>
     </Container>
-    </NavigationContainer>
   );
 }
+ const styles = StyleSheet.create({
+    icones: {
+        backgroundColor:'white',
+        borderRadius:10,
+        padding:5,
+        margin:10,
+        fontSize:40,
+    },
+    form_icon: {
+      flexDirection:'row',
+      justifyContent:'center',
+      marginTop:20,
+      
+    }
 
+ })
