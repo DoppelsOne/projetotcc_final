@@ -1,4 +1,4 @@
-import { Login, SignUp} from './src/routers/controller';
+import { Login, SignUp, UserPlant} from './src/routers/controller';
 import { NavigationContainer } from '@react-navigation/native';
 // import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -14,6 +14,7 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen name = "Login" component={Login} options={{headerShown:false}}/>
           <Stack.Screen name = "Cadastrar" component={SignUp} options={{headerTransparent: true}}/>
+          <Stack.Screen name = "UserPlant" component={UserPlant} options={{headerTransparent: true}}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
