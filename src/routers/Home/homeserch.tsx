@@ -1,57 +1,39 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import {TextInput,Container,} from "./styles";
 
-
-
-
-export default function Login() {
-  const Tab = createBottomTabNavigator();
+export default function Home() {
+  // const Tab = createBottomTabNavigator();
   
-    function HomeScreen() {
+    // function HomeScreen() {
         return (
-          <><TextInput
-          style={sty}
-          placeholder="Digite algo"
-           />
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Home!</Text>
-          </View>
-          </>
-          
-        );
-      }
+        <Container>
+           <Text>pesquise algo</Text>
+           <TextInput placeholder= 'digite'
+              style={{borderWidth:2, borderColor:'#000'}}
+             />   
+        </Container>
+      );
       
-      function SettingsScreen() {
-        return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      // function SettingsScreen() {
+      //   return (
+      //       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 
-            <Text>asdasd</Text>
-          <Text>asdasd</Text>
-          </View>
-        );
-      }
+      //       <Text>asdasd</Text>
+      //     <Text>asdasd</Text>
+      //     </View>
+      //   );
+      // }
     
-        return (
-<NavigationContainer>
-<Tab.Navigator>
-   <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-  <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }}/>
+//         return (
+// <NavigationContainer>
+// <Tab.Navigator>
+//    <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+//   <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }}/>
   
-</Tab.Navigator>
-</NavigationContainer>
-        );
-      }
-
-
-
-  const sty = StyleSheet.create({
-     container:{ 
-       flex: 1, 
-       justifyContent:'center', 
-       alignItems:'center',
-       backgroundColor:'#F5FCFF',
-     }
-
-  })
+// </Tab.Navigator>
+// </NavigationContainer>
+//         );
+    }
