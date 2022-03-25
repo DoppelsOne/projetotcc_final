@@ -60,7 +60,6 @@ export default function Login({navigation}) {
       flexDirection:'row',
       justifyContent:'center',
       marginTop:20,
-      
     }
 
  })

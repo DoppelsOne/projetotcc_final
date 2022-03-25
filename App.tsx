@@ -1,24 +1,14 @@
-<<<<<<< HEAD
 import { Login, SignUp } from "./src/routers/controller";
 import { NavigationContainer} from "@react-navigation/native";
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import { StyleSheet, Text, View } from "react-native";
-=======
-import { Login, SignUp} from './src/routers/controller';
-import { NavigationContainer } from '@react-navigation/native';
-// import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
->>>>>>> fd1caec660d3bef251ee686d5d3068cb977c326e
 
 // const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-<<<<<<< HEAD
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
@@ -27,12 +17,10 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen name="Cadastrar" component={SignUp} options={{ headerShown: false }}/>
-=======
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name = "Login" component={Login} options={{headerShown:false}}/>
           <Stack.Screen name = "Cadastrar" component={SignUp} options={{headerTransparent: true}}/>
->>>>>>> fd1caec660d3bef251ee686d5d3068cb977c326e
       </Stack.Navigator>
     </NavigationContainer>
   );
