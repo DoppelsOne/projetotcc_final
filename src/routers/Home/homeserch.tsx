@@ -3,6 +3,7 @@ import { StyleSheet, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import {TextInput,Container,} from "./styles";
+import Icon from 'react-native-vector-icons/AntDesign';
 
 export default function Home() {
   // const Tab = createBottomTabNavigator();
@@ -10,9 +11,10 @@ export default function Home() {
     // function HomeScreen() {
         return (
         <Container>
-           <Text>pesquise algo</Text>
-           <TextInput placeholder= 'digite'
-              style={{borderWidth:2, borderColor:'#000'}}
+           <Text></Text>
+           <Icon name="menufold" size={60} color="#900" />
+           <TextInput placeholder= 'Qual a planta em mente'
+              style={{borderWidth:2, borderColor:'#AA0'}}
              />   
         </Container>
       );
