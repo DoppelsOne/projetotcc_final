@@ -15,28 +15,38 @@ export const Container = styled(LinearGradient).attrs({
   align-items: center;
 `
 
+export const Image = styled.Image.attrs({
+  resizeMode: 'stretch',
+})`
+  width: 35%;
+  height: 115px;
+`;
+
 export const Content = styled.View`
   width: ${screenWidth/1.2}px;
   align-items: center;  
 `
 
 export const Title = styled.Text`
-  font-size: 44px;
+  font-size: 40px;
   font-weight: bold;
   color: ${theme.color.white}
+  text-align: left;
   margin-bottom: 10px;
+`
+
+export const Subtitle = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: ${theme.color.white}
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 `
 
 export const Form = styled.View`
    
 `
 
-export const Text = styled.Text`
-  font-size: 16px;
-  color: ${theme.color.white};
-`
 
 export const Button = styled.TouchableOpacity`
   background-color: ${theme.color.greenDark};
@@ -47,3 +57,24 @@ export const Button = styled.TouchableOpacity`
   border-style: solid; 
   margin-top: 16px;
 `;
+
+export const ButtonTitle = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.white};
+  font-weight: bold;
+`
+
+export const ContainerFooter = styled.View`
+  flex-direction: row;
+  margin-top: 16px;
+`
+
+export const TextFooter = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.white}
+  text-align: center;
+`
+
+export const ButtonFooter = styled.TouchableOpacity`  
+  text-align: center;
+`
