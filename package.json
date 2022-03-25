@@ -11,8 +11,9 @@
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native-stack": "^6.5.2",
     "expo": "~44.0.0",
-    "expo-linear-gradient": "^11.0.3",
+    "expo-linear-gradient": "~11.0.3",
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
     "react": "17.0.1",
@@ -24,6 +25,7 @@
     "react-native-status-bar-height": "^2.6.0",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
+    "realm": "^10.14.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

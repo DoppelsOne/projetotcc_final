@@ -13,6 +13,8 @@ import { StatusBar } from "expo-status-bar";
 import logo from "../../../assets/Login/clara.jpg";
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
 import {SignUp} from '../controller'
+import {theme} from '../../global/theme';
+
 export default function Login({navigation}) {
   
   // const [cont, setcont] = useState(new Animated.Value(0));
@@ -37,9 +39,9 @@ export default function Login({navigation}) {
         </Input>
       </Form>
       <View style={styles.form_icon}>
-      <Icon style={styles.icones} name='social-facebook'  color='#00ce00'/>
-      <Icon style={styles.icones} name='social-instagram'  color='#00ce00'/>
-      <Icon style={styles.icones} name='social-twitter'  color='#00ce00'/>
+      <Icon style={styles.icones} name='social-facebook' />
+      <Icon style={styles.icones} name='social-instagram'  />
+      <Icon style={styles.icones} name='social-twitter' />
       </View>
       <Link>Esqueceu sua senha?</Link>
     </Container>
@@ -52,6 +54,7 @@ export default function Login({navigation}) {
         padding:5,
         margin:10,
         fontSize:40,
+        color: theme.color.greenDark,
     },
     form_icon: {
       flexDirection:'row',
