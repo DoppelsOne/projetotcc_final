@@ -1,6 +1,20 @@
 import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import logo from "../../../assets/Login/clara.jpg";
 import { Input } from "../../components/Input";
-import { Button, Container, Content, Form, Title, Text } from "./styles";
+import { 
+  Button, 
+  Container, 
+  Content, 
+  Form, 
+  Title, 
+  ButtonTitle, 
+  Image, 
+  Subtitle, 
+  TextFooter, 
+  ContainerFooter, 
+  ButtonFooter 
+} from "./styles";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -8,10 +22,16 @@ export default function SignUp() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigation = useNavigation();
+
   return (
     <Container>
       <Content>
-        <Title>CADASTRO</Title>
+        <Image source={logo} />
+
+        <Title>Crie sua conta</Title>
+
+        <Subtitle>Preencha os campos abaixo {`\n`}para efetuar o cadastro</Subtitle>
 
         <Form>
           <Input
@@ -45,24 +65,16 @@ export default function SignUp() {
         </Form>
 
         <Button>
-          <Text>Cadastrar</Text>
+          <ButtonTitle>Cadastrar</ButtonTitle>
         </Button>
 
+        <ContainerFooter>
+          <TextFooter>Você já possui uma conta? </TextFooter>
+          <ButtonFooter onPress={() => navigation.navigate('Login')}>
+            <ButtonTitle>Login</ButtonTitle>
+          </ButtonFooter>
+        </ContainerFooter>       
       </Content>
-
-
-      {/* <Content>
-        <Text>Nome completo</Text>
-        <InputText />
-        <Text>Email</Text>
-        <InputText />
-        <Text>Telefone celular</Text>
-        <InputText />
-        <Text>Senha</Text>
-        <InputText />
-        <Text>Confirmar senha</Text>
-        <InputText />
-      </Content> */}
     </Container>
   )
 }
