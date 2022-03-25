@@ -1,14 +1,10 @@
 import styled from 'styled-components/native'
 import { Dimensions, Animated} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient'
+import {theme} from '../../global/theme'
 import {getStatusBarHeight} from 'react-native-status-bar-height'
 
 const screenWidth = Dimensions.get('window').width;
-
-
-
-
-
 
 
 export const Container = styled(LinearGradient).attrs({
@@ -16,7 +12,7 @@ export const Container = styled(LinearGradient).attrs({
     start: { x: 0, y: 0 },
     end: { x: 1, y: 1 },
 })`
-padding-top: ${30 + getStatusBarHeight(true)}px;
+padding-top: ${40 + getStatusBarHeight(true)}px;
 flex: 1;
 justify-content: center;
 align-items: center;
@@ -43,7 +39,7 @@ margin: 10px;
 `;
 
 export const Input = styled.TouchableOpacity`
-background-color: #a5f1ef;
+background-color:${theme.color.greenDark};
 padding: 12px;
 border-radius: 5px;
 width: 40%;
@@ -56,6 +52,7 @@ export const TextBtn = styled.Text`
 font-size: 16px;
 text-decoration: none;
 text-transform: uppercase;
+color: white;
 `;
 
 
