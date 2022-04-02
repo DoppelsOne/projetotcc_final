@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 5,
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: theme.color.greenDark
+    // borderWidth: 2,
+    // borderColor: theme.color.greenDark
   },
 
   searchIcon: {

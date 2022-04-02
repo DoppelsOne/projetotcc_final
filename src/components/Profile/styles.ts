@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
   greeting: {
     fontSize: 17,
     color: theme.color.whiteHeading,
-    marginTop: 5,
   },
   
   userName: {
@@ -23,9 +22,15 @@ export const styles = StyleSheet.create({
     marginTop: -7,
   },
 
-  icon: {
+  iconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 80
+    marginLeft: 52
+  },
+
+  icon: {
+    backgroundColor: theme.color.overlay, 
+    padding: 10, 
+    borderRadius: 30
   }
 })

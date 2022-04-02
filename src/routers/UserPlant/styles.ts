@@ -8,37 +8,33 @@ const screenWidth = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 30,
+    // paddingHorizontal: 30,
     // width: `${screenWidth/1.2}px`
   },
 
   header: {
     width: '100%',
     flexDirection: 'row',
-    marginTop: getStatusBarHeight() + 26,
+    marginTop: getStatusBarHeight() + 10,
     marginBottom: 42,
   },
 
   content: {
-    paddingVertical: 26
+    paddingVertical: 15,
+    paddingLeft: 30,
   },
 
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: theme.color.white
+    color: theme.color.white,
+    marginBottom: 10,
+    paddingLeft: 3
   }, 
 
   flatlist: {
     fontSize: 18,
     fontWeight: 'bold',
     color: theme.color.greenDark
-  }, 
-  
-  enviromentList: {
-    height: 40,
-    justifyContent: 'center',
-    paddingBottom: 5,       
-    marginVertical: 32,
   },
 })

@@ -8,7 +8,7 @@ export const theme = {
     black: '#000',
     gray: '#A9A9A9',    
     
-    overlay: 'rgba(0,0,0,0.7)',
+    overlay: 'rgba(0,0,0,0.2)',
     attention: '#B60000',
   },
 
