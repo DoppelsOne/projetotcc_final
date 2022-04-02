@@ -1,9 +1,11 @@
 import React from 'react'
-import { StyleSheet, Text } from 'react-native'
+import { View,FlatList, StyleSheet, Text,StatusBar,SafeAreaView } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import {TextInput,Container,} from "./styles";
+import {TextInput,Container} from "./styles";
 import Icon from 'react-native-vector-icons/AntDesign';
+
+
 
 export default function Home() {
   // const Tab = createBottomTabNavigator();
@@ -11,14 +13,15 @@ export default function Home() {
     // function HomeScreen() {
         return (
         <Container>
-           <Text></Text>
-           <Icon name="menufold" size={60} color="#900" />
-           <TextInput placeholder= 'Qual a planta em mente'
+           <TextInput placeholder= 'Digite a planta em mente'
               style={{borderWidth:2, borderColor:'#AA0'}}
-             />   
+             /> 
         </Container>
       );
-      
+
+        }
+
+
       // function SettingsScreen() {
       //   return (
       //       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -38,4 +41,4 @@ export default function Home() {
 // </Tab.Navigator>
 // </NavigationContainer>
 //         );
-    }
+ // }
