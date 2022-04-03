@@ -15,7 +15,7 @@ const plants = [
   { id: 4, title: 'Zamioculca', status: 'troca', price: '66.00', image: Zamioculca},
 ]
 
-export function PlantToSell() {
+export function MyPlants() {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   
@@ -30,10 +30,7 @@ export function PlantToSell() {
 
   const Item = ({ title, price, image, status }: any) => (
     <TouchableOpacity activeOpacity={0.7}>
-      <View
-        style={styles.background}
-        // colors={[purple, purpleDark]}
-      >
+      <View style={styles.background}>
         <View style={styles.container}>
           <Image source={image} style={styles.image}/>
   
@@ -65,7 +62,6 @@ export function PlantToSell() {
   return (
     <FlatList
       style={{ paddingRight: 20}}
-      horizontal
       showsHorizontalScrollIndicator={false}
       // contentContainerStyle={{ paddingRight: 30 }}
       onEndReachedThreshold={0.1}

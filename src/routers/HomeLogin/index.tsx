@@ -1,12 +1,11 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View, ScrollView } from "react-native";
 import { Background } from "../../components/Background";
-import { MyPlants } from "../../components/MyPlants";
 import { PlantToSell } from "../../components/PlantToSell";
 import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
 import { styles } from "./styles";
 
-export default function UserPlant() {  
+export default function HomeLogin() {  
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>      
       <Background>
@@ -24,10 +23,19 @@ export default function UserPlant() {
           >
             <View style={styles.content}>
               <Text style={styles.title}>
-                Minhas Plantas
+                Populares
               </Text> 
+              <PlantToSell />
 
-              <MyPlants /> 
+              <Text style={styles.title}>
+                Mais vendidas
+              </Text>                      
+              <PlantToSell />
+
+              <Text style={styles.title}>
+                Raras
+              </Text>                      
+              <PlantToSell /> 
             </View>
           </ScrollView>
       </Background>

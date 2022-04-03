@@ -9,14 +9,13 @@ export const styles = StyleSheet.create({
   container: {
     // paddingHorizontal: 30,
     // width: `${screenWidth/1.2}px`
-    
   },
 
   header: {
     width: '100%',
     flexDirection: 'row',
     marginTop: getStatusBarHeight() + 10,
-    marginBottom: 20,
+    marginVertical: 20,
   },
 
   content: {
@@ -24,7 +23,7 @@ export const styles = StyleSheet.create({
     paddingTop: 25,
     paddingBottom: 40,
     paddingLeft: 30,
-    backgroundColor: theme.color.white,    
+    backgroundColor: theme.color.white,
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
   },
@@ -32,9 +31,9 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: theme.color.purpleDark,
-    fontFamily: theme.fonts.poppins_700bold,
     marginBottom: 12,
-    paddingLeft: 3
+    paddingLeft: 3,
+    fontFamily: theme.fonts.poppins_700bold
   }, 
 
   // flatlist: {

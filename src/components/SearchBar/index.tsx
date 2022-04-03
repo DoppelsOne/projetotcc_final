@@ -11,7 +11,7 @@ export function SearchBar() {
         <Feather 
           name='search'
           size={22}
-          color={theme.color.greenDark}
+          color={theme.color.gray}
         />
       </View>
       <TextInput

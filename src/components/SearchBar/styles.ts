@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: theme.color.whiteHeading,
     borderRadius: 8,
     flexDirection: 'row',
-    paddingVertical: 10,
+    paddingVertical: 8,
     paddingHorizontal: 5,
     alignItems: 'center',
     // borderWidth: 2,
@@ -18,7 +18,9 @@ export const styles = StyleSheet.create({
   },
 
   textInput: {
-    fontSize: 16,
+    fontSize: 14,
     width: 280,
+    fontFamily: theme.fonts.poppins_400,
+    paddingTop: 2
   },
 })

@@ -28,28 +28,28 @@ export const Content = styled.View`
 `
 
 export const Title = styled.Text`
-  font-size: 40px;
-  font-weight: bold;
-  color: ${theme.color.white}
+  font-size: 36px;
+  color: ${theme.color.purpleDark}
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
+  font-family: ${theme.fonts.poppins_700bold};
 `
 
 export const Subtitle = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 16px;
   color: ${theme.color.white}
   text-align: center;
   margin-bottom: 30px;
+  font-family: ${theme.fonts.poppins_400};
+
 `
 
 export const Form = styled.View`
    
 `
 
-
 export const Button = styled.TouchableOpacity`
-  background-color: ${theme.color.greenDark};
+  background-color: ${theme.color.purpleDark};
   padding: 12px;
   border-radius: 8px;
   width: 100%;
@@ -61,7 +61,8 @@ export const Button = styled.TouchableOpacity`
 export const ButtonTitle = styled.Text`
   font-size: 16px;
   color: ${theme.color.white};
-  font-weight: bold;
+  font-family: ${theme.fonts.poppins_700bold};
+
 `
 
 export const ContainerFooter = styled.View`
@@ -71,8 +72,10 @@ export const ContainerFooter = styled.View`
 
 export const TextFooter = styled.Text`
   font-size: 16px;
-  color: ${theme.color.white}
+  color: ${theme.color.purpleDark}
   text-align: center;
+  font-family: ${theme.fonts.poppins_400};
+
 `
 
 export const ButtonFooter = styled.TouchableOpacity`  

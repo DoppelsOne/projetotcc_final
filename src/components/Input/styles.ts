@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     color: theme.color.white,
-    backgroundColor: theme.color.greenDark,
+    backgroundColor: theme.color.purpleDark,
     paddingHorizontal: 10,
     paddingTop: 13,
     marginRight: 3
@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     borderBottomRightRadius: 8,
     padding: 8,
     marginBottom: 1,
+    fontFamily: theme.fonts.poppins_400
     
   },
 })

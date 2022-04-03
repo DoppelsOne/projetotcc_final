@@ -3,34 +3,42 @@ import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   user: {
     flexDirection: 'row',
+    marginLeft: -90,
+    paddingTop: 3,
   },
 
   greeting: {
-    fontSize: 17,
+    fontSize: 16,
     color: theme.color.whiteHeading,
+    fontFamily: theme.fonts.poppins_400,
   },
   
   userName: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: theme.color.greenDark,
-    marginTop: -7,
+    fontSize: 28,
+    fontFamily: theme.fonts.poppins_700bold,
+    color: theme.color.purpleDark,
+    marginTop: -10,
   },
 
   iconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 52
+    width: 'auto',
+    // marginLeft: 52,
+    // paddingLeft: 50,
   },
 
   icon: {
-    backgroundColor: theme.color.overlay, 
-    padding: 10, 
-    borderRadius: 30
-  }
+    backgroundColor: theme.color.purpleDark, 
+    padding: 14, 
+    borderRadius: 15,
+    marginRight: -5
+  },
 })

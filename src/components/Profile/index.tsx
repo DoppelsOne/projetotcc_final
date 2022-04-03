@@ -26,15 +26,7 @@ export function Profile() {
       <View style={styles.iconContainer}>
         <TouchableOpacity activeOpacity={0.7} style={{marginRight: 5}}>
           <Feather 
-            name='bell'
-            size={28}
-            color={theme.color.white}
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.7}>
-          <Feather 
-            name='settings'
+            name='plus'
             size={28}
             color={theme.color.white}
             style={styles.icon}
