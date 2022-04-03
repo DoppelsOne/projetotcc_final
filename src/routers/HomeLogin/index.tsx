@@ -1,6 +1,6 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View, ScrollView } from "react-native";
 import { Background } from "../../components/Background";
-import { PlantToSell } from "../../components/PlantToSell";
+import { PlantCardPrimary } from "../../components/PlantCardPrimary";
 import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
 import { styles } from "./styles";
@@ -25,17 +25,17 @@ export default function HomeLogin() {
               <Text style={styles.title}>
                 Populares
               </Text> 
-              <PlantToSell />
+              <PlantCardPrimary />
 
               <Text style={styles.title}>
                 Mais vendidas
               </Text>                      
-              <PlantToSell />
+              <PlantCardPrimary />
 
               <Text style={styles.title}>
                 Raras
               </Text>                      
-              <PlantToSell /> 
+              <PlantCardPrimary /> 
             </View>
           </ScrollView>
       </Background>

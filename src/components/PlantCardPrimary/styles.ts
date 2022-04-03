@@ -30,13 +30,12 @@ export const styles = StyleSheet.create({
   },
   
   image: {
-    width: '100%',
-    height: 250,
+    width: 200,
+    height: 150,
     borderRadius: 8,
   },
 
-  information: {
-    paddingBottom: 10,
+  information: { 
     paddingHorizontal: 5
   },
 
@@ -47,28 +46,29 @@ export const styles = StyleSheet.create({
 
   title: {
     textAlign: 'left',
-    fontSize: 25,
+    fontSize: 18,
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_700bold,
-    paddingVertical: 10,
+    marginBottom: -10,
   },
 
   text: {
-    fontSize: 16,
     color: theme.color.gray,
     fontFamily: theme.fonts.poppins_400,
+    paddingTop: 10,
+    marginBottom: -5
   },
 
   price: {
-    fontSize: 20,
+    fontSize: 18,
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_500,
   },
 
   status: {
-    fontSize: 16,
     color: theme.color.gray,
-    marginBottom: -10,
+    marginBottom: -12,
+    marginTop: 10,
     fontFamily: theme.fonts.poppins_400,
   },
 

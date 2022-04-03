@@ -1,7 +1,6 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View, ScrollView } from "react-native";
 import { Background } from "../../components/Background";
-import { MyPlants } from "../../components/MyPlants";
-import { PlantToSell } from "../../components/PlantToSell";
+import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
 import { styles } from "./styles";
@@ -27,7 +26,7 @@ export default function UserPlant() {
                 Minhas Plantas
               </Text> 
 
-              <MyPlants /> 
+              <PlantCardSecundary /> 
             </View>
           </ScrollView>
       </Background>

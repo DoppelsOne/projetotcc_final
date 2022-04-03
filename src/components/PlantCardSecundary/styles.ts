@@ -30,13 +30,12 @@ export const styles = StyleSheet.create({
   },
   
   image: {
-    width: 200,
-    height: 150,
+    width: '100%',
+    height: 250,
     borderRadius: 8,
   },
 
   information: { 
-    paddingBottom: 10,
     paddingHorizontal: 5
   },
 
@@ -50,12 +49,14 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_700bold,
-    paddingVertical: 10,
+    marginBottom: -10,
   },
 
   text: {
     color: theme.color.gray,
     fontFamily: theme.fonts.poppins_400,
+    paddingTop: 10,
+    marginBottom: -5
   },
 
   price: {
@@ -66,7 +67,8 @@ export const styles = StyleSheet.create({
 
   status: {
     color: theme.color.gray,
-    marginBottom: -10,
+    marginBottom: -12,
+    marginTop: 10,
     fontFamily: theme.fonts.poppins_400,
   },
 
