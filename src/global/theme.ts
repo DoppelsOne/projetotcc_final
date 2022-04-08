@@ -15,7 +15,6 @@ export const theme = {
     orangeDark: '#d15e53',
     orangeWeak: '#f7cbb9',
     red: 'red',
-    purple: '#1D1B22',
     purpleDark: '#1D1B27',
     black: '#000',
     

@@ -18,26 +18,26 @@ export default function HomeLogin() {
             <SearchBar />
           </View>
         </View>  
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-          >
-            <View style={styles.content}>
-              <Text style={styles.title}>
-                Populares
-              </Text> 
-              <PlantCardPrimary />
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.content}>
+            <Text style={styles.title}>
+              Populares
+            </Text> 
+            <PlantCardPrimary />
 
-              <Text style={styles.title}>
-                Mais vendidas
-              </Text>                      
-              <PlantCardPrimary />
+            <Text style={styles.title}>
+              Mais vendidas
+            </Text>                      
+            <PlantCardPrimary />
 
-              <Text style={styles.title}>
-                Raras
-              </Text>                      
-              <PlantCardPrimary /> 
-            </View>
-          </ScrollView>
+            <Text style={styles.title}>
+              Raras
+            </Text>                      
+            <PlantCardPrimary /> 
+          </View>
+        </ScrollView>
       </Background>
     </TouchableWithoutFeedback>
   )
