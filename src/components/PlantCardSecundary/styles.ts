@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   background: {
     marginRight: 8,
     borderRadius: 8,
-    marginBottom: 15
+    // marginBottom: 10
   },
 
   container: {
@@ -20,23 +20,22 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.5,
-    elevation: 5
-  }, 
-  
-  content: {
-    // marginRight: 15,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
+    elevation: 5,
+    flexDirection: 'row',
+  },    
   
   image: {
-    width: '100%',
-    height: 250,
+    width: 130,
+    height: 130,
     borderRadius: 8,
   },
 
   information: { 
-    paddingHorizontal: 5
+    paddingHorizontal: 20,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    maxHeight: 130,
+    maxWidth: 180
   },
 
   contentText: {
@@ -50,6 +49,7 @@ export const styles = StyleSheet.create({
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_700bold,
     marginBottom: -10,
+    maxWidth: 150
   },
 
   text: {
@@ -63,13 +63,5 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: theme.color.green,
     fontFamily: theme.fonts.poppins_700bold,
-  },
-
-  status: {
-    color: theme.color.gray,
-    marginBottom: -12,
-    marginTop: 10,
-    fontFamily: theme.fonts.poppins_400,
-  },
-
+  }, 
 })

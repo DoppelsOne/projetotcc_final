@@ -11,9 +11,9 @@ import { useNavigation } from '@react-navigation/native'
 
 const plants = [
   { id: 1, title: 'Samambaia', category: 'Interior', status: `Troca`, price: '29.90', image: Samambaia},
-  { id: 2, title: 'Bico de Papagaio', category: 'Exterior', status: 'Troca', price: '50.00', image: BicoPapagaio},
+  { id: 2, title: 'Zamioculca', category: 'Interior', status: 'Troca', price: '66.00', image: Zamioculca},
   { id: 3, title: 'Espada de São jorge', category: 'Interior', status: 'Troca', price: '45.90', image: EspadaSaoJorge},
-  { id: 4, title: 'Zamioculca', category: 'Interior', status: 'Troca', price: '66.00', image: Zamioculca},
+  { id: 4, title: 'Bico de Papagaio', category: 'Exterior', status: 'Troca', price: '50.00', image: BicoPapagaio},
 ]
 
 export function PlantCardPrimary() {

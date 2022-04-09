@@ -1,6 +1,7 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View, ScrollView, TouchableOpacityBase, TouchableOpacity } from "react-native";
 import { Background } from "../../components/Background";
 import { PlantCardPrimary } from "../../components/PlantCardPrimary";
+import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
 import { styles } from "./styles";
@@ -45,7 +46,7 @@ export default function Home() {
                 </Text>                
               </TouchableOpacity>
             </View>                     
-            <PlantCardPrimary />
+            <PlantCardSecundary horizontal/>
 
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <Text style={styles.title}>
@@ -57,7 +58,8 @@ export default function Home() {
                 </Text>
               </TouchableOpacity>
             </View>                      
-            <PlantCardPrimary /> 
+            <PlantCardSecundary horizontal/>
+
           </ScrollView>
         </View>
       </Background>

@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_700bold,
-    marginBottom: 12,
+    marginBottom: 8,
     paddingLeft: 3
   }, 
 

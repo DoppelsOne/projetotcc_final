@@ -9,13 +9,13 @@ import Samambaia from '../../../assets/plants/samambaia.jpg'
 import Zamioculca from '../../../assets/plants/zamioculca.jpg'
 
 const plants = [
-  { id: 1, title: 'Samambaia', category: 'Interior', status: `Troca`, price: '29.90', image: Samambaia},
-  { id: 2, title: 'Bico de Papagaio', category: 'Exterior', status: 'Troca', price: '50.00', image: BicoPapagaio},
-  { id: 3, title: 'Espada de São jorge', category: 'Interior', status: 'Troca', price: '45.90', image: EspadaSaoJorge},
-  { id: 4, title: 'Zamioculca', category: 'Interior', status: 'Troca', price: '66.00', image: Zamioculca},
+  { id: 1, title: 'Espada de São jorge', category: 'Interior', status: 'Troca', price: '45.90', image: EspadaSaoJorge},
+  { id: 2, title: 'Zamioculca', category: 'Interior', status: 'Troca', price: '66.00', image: Zamioculca},
+  { id: 3, title: 'Samambaia', category: 'Interior', status: `Troca`, price: '29.90', image: Samambaia},
+  { id: 4, title: 'Bico de Papagaio', category: 'Exterior', status: 'Troca', price: '50.00', image: BicoPapagaio},
 ]
 
-export function PlantCardSecundary() {
+export function PlantCardSecundary({...rest}) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   
@@ -43,17 +43,7 @@ export function PlantCardSecundary() {
               <View>
                 <Text style={styles.text}>Valor</Text>
                 <Text style={styles.price}>R$ {price}</Text>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <Text style={styles.status}>{status}</Text>
-                <Switch
-                  trackColor={{ false: "#767577", true: theme.color.green }}
-                  thumbColor={isEnabled ? theme.color.greenWeak : "#f4f3f4"}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
-                />
-              </View>
+              </View>              
             </View>
           </View>
         </View>
@@ -70,6 +60,7 @@ export function PlantCardSecundary() {
       data={plants}
       renderItem={renderItem}
       keyExtractor={(item) => String(item.id)}
+      {...rest}
     />
   )
 }

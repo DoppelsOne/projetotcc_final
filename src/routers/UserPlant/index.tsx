@@ -18,17 +18,17 @@ export default function UserPlant() {
             <SearchBar />
           </View>
         </View>  
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.content}>
+        <View style={styles.content}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+          >
             <Text style={styles.title}>
               Minhas Plantas
             </Text> 
 
             <PlantCardSecundary /> 
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </Background>
     </TouchableWithoutFeedback>
   )

@@ -16,6 +16,7 @@ export const theme = {
     orangeWeak: '#f7cbb9',
     red: 'red',
     purpleDark: '#1D1B27',
+    text: '#595475',
     black: '#000',
     
     overlay: 'rgba(0,0,0,0.2)',
