@@ -31,7 +31,7 @@ export default function Login({navigation}) {
       <InputText placeholder='Usuário' />
       <InputText placeholder="Senha" secureTextEntry={true}/>
       <Form>
-        <Input onPress={() => navigation.navigate('HomeLogin')} accessible={false} >
+        <Input onPress={() => navigation.navigate('Home')} accessible={false} >
           <TextBtn>Login</TextBtn>
         </Input>
         <Input accessible={false} onPress={() => navigation.navigate('Cadastrar')}>

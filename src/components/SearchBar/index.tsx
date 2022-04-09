@@ -11,13 +11,14 @@ export function SearchBar() {
         <Feather 
           name='search'
           size={22}
-          color={theme.color.gray}
+          color={theme.color.whiteHeading}
         />
       </View>
       <TextInput
         style={styles.textInput}
         placeholder='Pesquisar planta'
-        selectionColor={theme.color.greenDark}
+        selectionColor={theme.color.whiteHeading}
+        placeholderTextColor={theme.color.white}
       />
     </View>
   )

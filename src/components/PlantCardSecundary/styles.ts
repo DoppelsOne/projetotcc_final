@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: theme.color.whiteHeading,
     borderRadius: 10,
-    shadowColor: '#008040',
+    shadowColor: theme.color.purpleDark,
     shadowOffset: {
       width: 0,
       height: 10,
@@ -61,8 +61,8 @@ export const styles = StyleSheet.create({
 
   price: {
     fontSize: 18,
-    color: theme.color.purpleDark,
-    fontFamily: theme.fonts.poppins_500,
+    color: theme.color.green,
+    fontFamily: theme.fonts.poppins_700bold,
   },
 
   status: {

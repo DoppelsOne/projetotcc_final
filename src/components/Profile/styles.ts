@@ -10,35 +10,40 @@ export const styles = StyleSheet.create({
 
   user: {
     flexDirection: 'row',
-    marginLeft: -90,
-    paddingTop: 3,
   },
 
   greeting: {
-    fontSize: 16,
-    color: theme.color.whiteHeading,
-    fontFamily: theme.fonts.poppins_400,
+    fontSize: 20,
+    color: theme.color.purpleDark,
+    fontFamily: theme.fonts.poppins_500,
   },
   
   userName: {
-    fontSize: 28,
-    fontFamily: theme.fonts.poppins_700bold,
+    fontSize: 20,
     color: theme.color.purpleDark,
-    marginTop: -10,
+    fontFamily: theme.fonts.poppins_500,
+    paddingLeft: 3
   },
 
-  iconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: 'auto',
-    // marginLeft: 52,
-    // paddingLeft: 50,
+  subtitle: {
+    fontSize: 15,
+    color: theme.color.whiteHeading,
+    fontFamily: theme.fonts.poppins_400,
+    marginTop: -6
   },
 
-  icon: {
-    backgroundColor: theme.color.purpleDark, 
-    padding: 14, 
-    borderRadius: 15,
-    marginRight: -5
-  },
+  // iconContainer: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   width: 'auto',
+  //   marginLeft: 52,
+  //   paddingLeft: 50,
+  // },
+
+  // icon: {
+  //   backgroundColor: theme.color.purpleDark, 
+  //   padding: 14, 
+  //   borderRadius: 15,
+  //   marginRight: -5
+  // },
 })

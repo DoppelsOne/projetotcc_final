@@ -3,8 +3,10 @@ import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   container: {  
-    backgroundColor: theme.color.whiteHeading,
-    borderRadius: 8,
+    backgroundColor: theme.color.overlay,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: theme.color.whiteHeading,
     flexDirection: 'row',
     paddingVertical: 8,
     paddingHorizontal: 5,
@@ -14,13 +16,13 @@ export const styles = StyleSheet.create({
   },
 
   searchIcon: {
-    paddingHorizontal: 6,
+    paddingHorizontal: 8,
   },
 
   textInput: {
     fontSize: 14,
     width: 280,
+    paddingTop: 2,
     fontFamily: theme.fonts.poppins_400,
-    paddingTop: 2
   },
 })

@@ -10,20 +10,20 @@ import { styles } from './styles';
 export function Profile() {
   return (
     <View style={styles.container}>
-      <Avatar urlImage="https://github.com/douglassantiagos.png"  />
-
-      <View style={styles.user}>
-        <View>
+      <View >
+        <View style={styles.user}>
           <Text style={styles.greeting}>
-            Bem vindo(a),
+            Olá,
           </Text>          
           <Text style={styles.userName}>
             Douglas
           </Text>
         </View>
+        <Text style={styles.subtitle}>Está procurando por plantas?</Text>
       </View>
 
-      <View style={styles.iconContainer}>
+      <Avatar urlImage="https://github.com/douglassantiagos.png"  />
+      {/* <View style={styles.iconContainer}>
         <TouchableOpacity activeOpacity={0.7} style={{marginRight: 5}}>
           <Feather 
             name='plus'
@@ -32,7 +32,7 @@ export function Profile() {
             style={styles.icon}
           />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   )
 }

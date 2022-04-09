@@ -25,8 +25,8 @@ export const styles = StyleSheet.create({
     paddingBottom: 40,
     paddingLeft: 30,
     backgroundColor: theme.color.white,    
-    borderTopRightRadius: 15,
-    borderTopLeftRadius: 15,
+    borderTopRightRadius: 16,
+    borderTopLeftRadius: 16,
   },
 
   title: {

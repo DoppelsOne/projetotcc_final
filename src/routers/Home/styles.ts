@@ -1,60 +1,52 @@
-import styled from 'styled-components/native'
-import { Dimensions, Animated, FlatList, View} from 'react-native';
-import {LinearGradient} from 'expo-linear-gradient'
-import {getStatusBarHeight} from 'react-native-status-bar-height'
-import{StyleSheet,StatusBar} from 'react-native'
+import { Dimensions, StyleSheet } from "react-native";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { theme } from "../../global/theme";
+
 const screenWidth = Dimensions.get('window').width;
 
 
+export const styles = StyleSheet.create({
+  container: {
+    // paddingHorizontal: 30,
+    // width: `${screenWidth/1.2}px`
+  },
 
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    marginTop: getStatusBarHeight() + 10,
+    marginVertical: 20,
+  },
 
- export const Container = styled(LinearGradient).attrs({
-     colors: ['#008040', '#00d736'],
-     start: { x: 0, y: 0 },
-     end: { x: 1, y: 1 },
- })`
- padding-top: ${90 + getStatusBarHeight(true)}px;
- flex: 1;
- justify-content: space-around;
- align-items: flex-start;
- flex-direction:row;
- 
-`;
+  content: {
+    flex: 1,
+    paddingTop: 20,
+    paddingBottom: 40,
+    paddingLeft: 30,
+    backgroundColor: theme.color.white,
+    borderTopRightRadius: 16,
+    borderTopLeftRadius: 16,
+  },
 
+  title: {
+    fontSize: 18,
+    color: theme.color.purpleDark,
+    marginBottom: 8,
+    paddingLeft: 3,
+    fontFamily: theme.fonts.poppins_700bold
+  }, 
 
-export const TextInput = styled.TextInput.attrs({
-    placeholderTextColor: '#998',
-    
-    })`
-    background-color: white;
-    padding: 5px;
-    border-radius: 5px;
-    width: 75%;
-    margin: 10px;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    text-decoration: none ;
-    `;
-
-
-
-    // export const sty = StyleSheet.create({
-    //     container: {
-    //         flex: 1,
-    //         marginTop: StatusBar.currentHeight || 0,
-    //       },
-    //       item: {
-    //         backgroundColor: '#f9c2ff',
-    //         padding: 20,
-    //         marginVertical: 8,
-    //         marginHorizontal: 16,
-    //       },
-    //       title: {
-    //         fontSize: 32,
-    //       },
-    //     });
-        
-    
-
-
+  seeMore: {
+    fontSize: 16,
+    color: theme.color.green,
+    marginBottom: 8,
+    paddingLeft: 3,
+    fontFamily: theme.fonts.poppins_500,
+    marginRight: 35
+  }
+  // flatlist: {
+  //   fontSize: 18,
+  //   fontWeight: 'bold',
+  //   color: theme.color.greenDark
+  // },
+})

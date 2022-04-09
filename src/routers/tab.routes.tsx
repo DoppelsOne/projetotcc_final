@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Entypo from 'react-native-vector-icons/Entypo'
-import Octicons from 'react-native-vector-icons/Octicons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-import { HomeLogin, UserPlant } from '../../src/routers/controller';
+import { Home, UserPlant } from '../../src/routers/controller';
 import { theme } from '../global/theme';
 
 const Tab = createBottomTabNavigator();
 
 export const TabRoutes = () => {
+  const [focused, isFocused] = useState('')
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -40,14 +44,20 @@ export const TabRoutes = () => {
     >
       <Tab.Screen         
         name="HomeLogin" 
-        component={HomeLogin} 
+        component={Home} 
         options={{ 
           headerShown: false,
           tabBarIcon: ({ size, focused }) => (
-            <Entypo
-              name="home"
-              size={size}
-              color={focused ? theme.color.purpleDark : theme.color.gray}
+            focused ? 
+            <Ionicons
+              name="md-home"
+              size={22}
+              color={theme.color.purpleDark}
+            /> :
+            <Ionicons
+              name="ios-home-outline"
+              size={22}
+              color={theme.color.purpleDark}
             />
           )          
         }}
@@ -58,10 +68,16 @@ export const TabRoutes = () => {
         options={{ 
           headerShown: false,
           tabBarIcon: (({ size, focused }) => (
-            <Entypo
+            focused ? 
+            <AntDesign
               name="heart"
-              size={size}
-              color={focused ? theme.color.purpleDark : theme.color.gray}
+              size={22}
+              color={theme.color.purpleDark}
+            /> :
+            <AntDesign
+              name="hearto"
+              size={22}
+              color={theme.color.purpleDark}
             />
           ))           
         }}
@@ -73,11 +89,17 @@ export const TabRoutes = () => {
         options={{ 
           headerShown: false,
           tabBarIcon: (({ size, focused }) => (
-            <Octicons
-            name="bell"
-            size={size}
-            color={focused ? theme.color.purpleDark : theme.color.gray}
-            />
+            focused ? 
+            <MaterialCommunityIcons
+              name="bell"
+              size={25}
+              color={theme.color.purpleDark}
+            /> :
+            <MaterialCommunityIcons
+              name="bell-outline"
+              size={26}
+              color={theme.color.purpleDark}
+            /> 
           ))           
         }}
       /> 
@@ -88,11 +110,17 @@ export const TabRoutes = () => {
         options={{ 
           headerShown: false,
           tabBarIcon: (({ size, focused }) => (
-            <Octicons
-            name="gear"
-            size={size}
-            color={focused ? theme.color.purpleDark : theme.color.gray}
-            />
+            focused ? 
+            <FontAwesome
+              name="user"
+              size={24}
+              color={theme.color.purpleDark}
+            /> :
+            <FontAwesome
+              name="user-o"
+              size={21}
+              color={theme.color.purpleDark}
+            /> 
           ))           
         }}
       />
