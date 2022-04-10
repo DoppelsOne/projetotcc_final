@@ -40,10 +40,15 @@ export default function PlantDetails() {
             name='arrow-back-ios'
             style={{
               marginHorizontal: 20,
-              marginTop: 30, 
+              marginTop: 30,
+              backgroundColor: theme.color.whiteHeading,
+              borderRadius: 8,
+              paddingLeft: 10,
+              paddingVertical: 5,
+              justifyContent: 'center',
             }}
             color={theme.color.purpleDark}
-            size={30}
+            size={25}
           />
         </TouchableOpacity>
       </View>

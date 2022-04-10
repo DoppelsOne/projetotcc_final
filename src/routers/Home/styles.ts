@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingTop: 20,
-    paddingBottom: 40,
+    paddingBottom: 70,
     paddingLeft: 30,
     backgroundColor: theme.color.white,
     borderTopRightRadius: 16,
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 18,
+    fontSize: 16,
     color: theme.color.purpleDark,
     marginBottom: 8,
     paddingLeft: 3,
@@ -37,12 +37,29 @@ export const styles = StyleSheet.create({
   }, 
 
   seeMore: {
-    fontSize: 16,
-    color: theme.color.green,
+    fontSize: 15,
+    color: theme.color.grayDark,
     marginBottom: 8,
     paddingLeft: 3,
     fontFamily: theme.fonts.poppins_500,
     marginRight: 35
+  },
+
+  filterIcon: {
+    color: theme.color.purpleDark,
+    backgroundColor: theme.color.whiteHeading,
+    padding: 13,
+    borderRadius: 16,
+    alignSelf: 'center', 
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.5,
+    elevation: 5
   }
   // flatlist: {
   //   fontSize: 18,

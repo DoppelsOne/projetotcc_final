@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingTop: 25,
-    paddingBottom: 40,
+    paddingBottom: 70,
     paddingLeft: 30,
     backgroundColor: theme.color.white,    
     borderTopRightRadius: 16,

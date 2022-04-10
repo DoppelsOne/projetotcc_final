@@ -11,19 +11,20 @@ import { theme } from '../global/theme';
 const Tab = createBottomTabNavigator();
 
 export const TabRoutes = () => {
-  const [focused, isFocused] = useState('')
-
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',
+          height: 70,
+          paddingHorizontal: 10,
           // bottom: 10,
           // left: 10,
           // right: 10,
           backgroundColor: theme.color.whiteHeading,
-          // borderRadius: 15,
+          borderTopRightRadius: 16,
+          borderTopLeftRadius: 16,
           shadowColor: '#008040',
           shadowOffset: {
             width: 0,
@@ -52,12 +53,17 @@ export const TabRoutes = () => {
             <Ionicons
               name="md-home"
               size={22}
-              color={theme.color.purpleDark}
+              color={theme.color.green}
+              style={{
+                backgroundColor: theme.color.greenWeak,
+                padding: 16,
+                borderRadius: 16,
+              }}
             /> :
             <Ionicons
               name="ios-home-outline"
               size={22}
-              color={theme.color.purpleDark}
+              color={theme.color.gray}
             />
           )          
         }}
@@ -72,12 +78,17 @@ export const TabRoutes = () => {
             <AntDesign
               name="heart"
               size={22}
-              color={theme.color.purpleDark}
+              color={theme.color.green}
+              style={{
+                backgroundColor: theme.color.greenWeak,
+                padding: 16,
+                borderRadius: 16,
+              }}
             /> :
             <AntDesign
               name="hearto"
               size={22}
-              color={theme.color.purpleDark}
+              color={theme.color.gray}
             />
           ))           
         }}
@@ -93,12 +104,17 @@ export const TabRoutes = () => {
             <MaterialCommunityIcons
               name="bell"
               size={25}
-              color={theme.color.purpleDark}
+              color={theme.color.green}
+              style={{
+                backgroundColor: theme.color.greenWeak,
+                padding: 16,
+                borderRadius: 16,
+              }}
             /> :
             <MaterialCommunityIcons
               name="bell-outline"
               size={26}
-              color={theme.color.purpleDark}
+              color={theme.color.gray}
             /> 
           ))           
         }}
@@ -114,12 +130,18 @@ export const TabRoutes = () => {
             <FontAwesome
               name="user"
               size={24}
-              color={theme.color.purpleDark}
+              color={theme.color.green}
+              style={{
+                backgroundColor: theme.color.greenWeak,
+                paddingVertical: 16,
+                paddingHorizontal: 20,
+                borderRadius: 16,
+              }}
             /> :
             <FontAwesome
               name="user-o"
               size={21}
-              color={theme.color.purpleDark}
+              color={theme.color.gray}
             /> 
           ))           
         }}

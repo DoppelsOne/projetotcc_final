@@ -9,10 +9,11 @@ const screenWidth = Dimensions.get('window').width;
 export const Container = styled.View`
   width: ${screenWidth/1}px;
   padding: 8px 20px;
+  padding-top: 10px;
   background-color: ${theme.color.whiteHeading};
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;  
+  align-self: center;
+  justify-content: space-between;
 `
 
 export const Content = styled.View`
@@ -22,20 +23,20 @@ export const Content = styled.View`
 export const Title = styled.Text`
   font-family: ${theme.fonts.poppins_400};
   color: ${theme.color.gray};
-  margin-bottom: -6px;
+  margin-bottom: -10px;
 `
 
 export const TypeMoney = styled.Text`
   font-size: 18px;
   color: ${theme.color.purpleDark};
-  font-family: ${theme.fonts.poppins_500};
+  font-family: ${theme.fonts.poppins_700bold};
   padding-right: 3px;
 `
 
 export const Price = styled.Text`
   font-size: 26px;
   color: ${theme.color.purpleDark};
-  font-family: ${theme.fonts.poppins_500};
+  font-family: ${theme.fonts.poppins_700bold};
 `
 
 export const Button = styled(LinearGradient).attrs({
@@ -46,8 +47,13 @@ export const Button = styled(LinearGradient).attrs({
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 10px 30px;
-  border-radius: 26px;
+  padding: 10px 75px;
+  border-radius: 16px;
+  shadow-color: #008040;
+  shadow-offset: {width: 0, height: 10};
+  shadow-opacity: 0.25;
+  shadow-radius: 3.5px;
+  elevation: 5;
 `
 
 export const TitleButton = styled.Text`

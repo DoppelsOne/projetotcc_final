@@ -20,7 +20,7 @@ export function CheckoutAndPrice() {
         <Title>Valor</Title>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <TypeMoney>R$</TypeMoney>
-          <Price>40,00</Price>
+          <Price>29,90</Price>
         </View>
       </Content>
       <TouchableOpacity activeOpacity={0.7}>

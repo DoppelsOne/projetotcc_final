@@ -1,5 +1,8 @@
 import { Keyboard, Text, TouchableWithoutFeedback, View, ScrollView, TouchableOpacityBase, TouchableOpacity } from "react-native";
+import AntDesign from 'react-native-vector-icons/AntDesign'
+
 import { Background } from "../../components/Background";
+import { PlantCardFilter } from "../../components/PlantCardFilter";
 import { PlantCardPrimary } from "../../components/PlantCardPrimary";
 import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
@@ -16,10 +19,21 @@ export default function Home() {
               <Profile />
             </View>
             
-            <SearchBar />
+            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+              <SearchBar />
+              <TouchableOpacity activeOpacity={0.7}>
+                <AntDesign
+                  name='menu-fold'
+                  style={styles.filterIcon}
+                  size={22}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>  
         <View style={styles.content}>
+          <PlantCardFilter horizontal/>
+
           <ScrollView
             showsVerticalScrollIndicator={false}
           >

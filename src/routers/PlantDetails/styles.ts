@@ -50,8 +50,8 @@ export const About = styled.Text`
 export const Text = styled.Text`
   font-size: 16px;
   font-family: ${theme.fonts.poppins_400};
-  line-height: 30px;
-  color: ${theme.color.purpleDark};
+  line-height: 29px;
+  color: ${theme.color.grayDark};
 `
 
 
