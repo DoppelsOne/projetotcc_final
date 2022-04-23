@@ -17,7 +17,7 @@ export const Container = styled(LinearGradient).attrs({
 
 export const Content = styled.View`
   width: ${screenWidth/1.2}px;
-  /* align-items: center;   */
+  margin-top: 20px;
 `
 
 export const Wrapper = styled.View`
@@ -31,21 +31,31 @@ export const Image = styled.Image.attrs({
   height: 115px;
 `;
 
+
 export const Title = styled.Text`
   font-size: 30px;
   color: ${theme.color.whiteHeading}
   font-family: ${theme.fonts.poppins_700bold};
   text-align: left;
   margin-bottom: -10px;
-  margin-top: 20px;
+  margin-top: 10px;
 `
 
 export const Subtitle = styled.Text`
   font-size: 18px;
   color: ${theme.color.whiteHeading}
   text-align: left;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-family: ${theme.fonts.poppins_400};
+`
+
+export const Or = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.whiteHeading}
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: ${theme.fonts.poppins_400};
+
 `
 
 // export const Button = styled.TouchableOpacity`
@@ -59,22 +69,29 @@ export const Subtitle = styled.Text`
 // `;
 
 
+
+export const ButtonFooter = styled.TouchableOpacity`  
+  align-items: flex-end;
+  margin-top: 12px;
+  margin-bottom: 12px;
+`
+export const TextForgot = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.whiteHeading}
+  font-family: ${theme.fonts.poppins_400};  
+`
+
 export const ContainerFooter = styled.View`
-  flex-direction: row;
-  margin-top: 25px;
+  margin-top: 10px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
- `
-
-// export const TextFooter = styled.Text`
-//   font-size: 18px;
-//   color: ${theme.color.purpleDark}
-//   font-family: ${theme.fonts.poppins_400};  
-// `
-
-export const ButtonTitle = styled.Text`
-  font-size: 18px;
-  color: ${theme.color.whiteHeading};
-  font-family: ${theme.fonts.poppins_500};
 `
+
+export const TextFooter = styled.Text`
+  font-size: 20px;
+  color: ${theme.color.whiteHeading}
+  font-family: ${theme.fonts.poppins_500};  
+`
+
+
+

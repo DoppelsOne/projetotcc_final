@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import { Home, UserPlant } from '../../src/routers/controller';
 import { theme } from '../global/theme';
+import { Text, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,23 +19,23 @@ export const TabRoutes = () => {
         tabBarStyle: {
           position: 'absolute',
           height: 70,
-          paddingHorizontal: 10,
+          paddingHorizontal: 8,
+          backgroundColor: theme.color.whiteHeading,
           // bottom: 10,
           // left: 10,
           // right: 10,
-          backgroundColor: theme.color.whiteHeading,
-          borderTopRightRadius: 16,
-          borderTopLeftRadius: 16,
-          shadowColor: '#008040',
-          shadowOffset: {
-            width: 0,
-            height: 10,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.5,
-          elevation: 5
+          // borderTopRightRadius: 16,
+          // borderTopLeftRadius: 16,
+          // shadowColor: '#008040',
+          // shadowOffset: {
+          //   width: 0,
+          //   height: 10,
+          // },
+          // shadowOpacity: 0.25,
+          // shadowRadius: 3.5,
+          // elevation: 5
         }
-        // activeBackgroundColor: theme.color.green,
+        // activeBackgroundColor: theme.color.orangeMedium,
         // activeTintColor: theme.color.white,
         // inactiveTintColor: theme.color.purpleDark,
         // style: {
@@ -50,16 +51,30 @@ export const TabRoutes = () => {
           headerShown: false,
           tabBarIcon: ({ size, focused }) => (
             focused ? 
-            <Ionicons
-              name="md-home"
-              size={22}
-              color={theme.color.green}
+            <View
               style={{
-                backgroundColor: theme.color.greenWeak,
-                padding: 16,
+                backgroundColor: theme.color.orangeWeak,
+                paddingHorizontal: 14,
+                paddingVertical: 10,
                 borderRadius: 16,
+                alignItems: 'center'
               }}
-            /> :
+            >
+              <Ionicons
+                name="md-home"
+                size={22}
+                color={theme.color.orangeMedium}
+              />
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontFamily: theme.fonts.poppins_400,
+                  color: theme.color.orangeMedium,
+                }}
+              >
+                Home
+              </Text>
+            </View> :
             <Ionicons
               name="ios-home-outline"
               size={22}
@@ -75,16 +90,30 @@ export const TabRoutes = () => {
           headerShown: false,
           tabBarIcon: (({ size, focused }) => (
             focused ? 
-            <AntDesign
-              name="heart"
-              size={22}
-              color={theme.color.green}
+            <View
               style={{
-                backgroundColor: theme.color.greenWeak,
-                padding: 16,
+                backgroundColor: theme.color.orangeWeak,
+                paddingHorizontal: 14,
+                paddingVertical: 10,
                 borderRadius: 16,
+                alignItems: 'center',
               }}
-            /> :
+            >
+              <AntDesign
+                name="heart"
+                size={22}
+                color={theme.color.orangeMedium}
+              />
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontFamily: theme.fonts.poppins_400,
+                  color: theme.color.orangeMedium,
+                }}
+              >
+                Suas plantas
+              </Text>
+            </View> :
             <AntDesign
               name="hearto"
               size={22}
@@ -101,16 +130,31 @@ export const TabRoutes = () => {
           headerShown: false,
           tabBarIcon: (({ size, focused }) => (
             focused ? 
-            <MaterialCommunityIcons
-              name="bell"
-              size={25}
-              color={theme.color.green}
+            <View
               style={{
-                backgroundColor: theme.color.greenWeak,
-                padding: 16,
+                backgroundColor: theme.color.orangeWeak,
+                paddingHorizontal: 14,
+                paddingVertical: 10,
                 borderRadius: 16,
+                alignItems: 'center',
               }}
-            /> :
+            >
+              <MaterialCommunityIcons
+                name="bell"
+                size={25}
+                color={theme.color.orangeMedium}                
+              />
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontFamily: theme.fonts.poppins_400,
+                  color: theme.color.orangeMedium,
+                  maxWidth: 200,
+                }}
+              >
+                Notificações
+              </Text>
+            </View> :
             <MaterialCommunityIcons
               name="bell-outline"
               size={26}
@@ -127,17 +171,31 @@ export const TabRoutes = () => {
           headerShown: false,
           tabBarIcon: (({ size, focused }) => (
             focused ? 
-            <FontAwesome
-              name="user"
-              size={24}
-              color={theme.color.green}
+            <View
               style={{
-                backgroundColor: theme.color.greenWeak,
-                paddingVertical: 16,
-                paddingHorizontal: 20,
+                backgroundColor: theme.color.orangeWeak,
+                paddingHorizontal: 16,
+                paddingVertical: 10,
                 borderRadius: 16,
+                alignItems: 'center'
               }}
-            /> :
+            >
+              <FontAwesome
+                name="user"
+                size={24}
+                color={theme.color.orangeMedium}
+              />
+              <Text
+                style={{
+                  fontSize: 10,
+                  fontFamily: theme.fonts.poppins_400,
+                  color: theme.color.orangeMedium,
+                  maxWidth: 200,
+                }}
+              >
+                Perfil
+              </Text>
+            </View> :
             <FontAwesome
               name="user-o"
               size={21}

@@ -40,7 +40,7 @@ export const Price = styled.Text`
 `
 
 export const Button = styled(LinearGradient).attrs({
-  colors: ['#008040', '#00d736'],
+  colors: [theme.color.orange, theme.color.orangeDark],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 1 },
 })`
@@ -49,7 +49,7 @@ export const Button = styled(LinearGradient).attrs({
   justify-content: center;
   padding: 10px 75px;
   border-radius: 16px;
-  shadow-color: #008040;
+  shadow-color: ${theme.color.purpleDark};
   shadow-offset: {width: 0, height: 10};
   shadow-opacity: 0.25;
   shadow-radius: 3.5px;

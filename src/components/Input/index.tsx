@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, TextInput, TextInputProps, View } from "react-native";
 import { Feather } from "@expo/vector-icons"
 import { styles } from "./styles";
+import { theme } from "../../global/theme";
 
 interface InputProps extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>["name"];
@@ -29,8 +30,9 @@ export function Input({ iconName, value, ...rest }: InputProps) {
           style={styles.icon}
         />                   
         <TextInput
+          placeholderTextColor={theme.color.white}
           style={styles.input}
-          {...rest}              
+          {...rest}             
         />
       </View>
     </>

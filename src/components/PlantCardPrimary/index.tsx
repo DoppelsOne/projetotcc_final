@@ -50,7 +50,7 @@ export function PlantCardPrimary() {
                 <Text style={styles.text}>Valor</Text>
                 <Text style={styles.price}>R$ {price}</Text>
               </View>
-              <View style={{alignItems: 'center'}}>
+              {/* <View style={{alignItems: 'center'}}>
                 <Text style={styles.status}>{status}</Text>
                 <Switch
                   trackColor={{ false: "#767577", true: theme.color.green }}
@@ -59,7 +59,7 @@ export function PlantCardPrimary() {
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 />
-              </View>
+              </View> */}
             </View>
           </View>
         </View>

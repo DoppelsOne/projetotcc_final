@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
   }, 
 
   seeMore: {
-    fontSize: 15,
+    fontSize: 14,
     color: theme.color.grayDark,
     marginBottom: 8,
     paddingLeft: 3,
@@ -46,13 +46,13 @@ export const styles = StyleSheet.create({
   },
 
   filterIcon: {
-    color: theme.color.purpleDark,
-    backgroundColor: theme.color.whiteHeading,
+    // color: theme.color.whiteHeading,
+    // backgroundColor: theme.color.orangeMedium,
     padding: 13,
     borderRadius: 16,
     alignSelf: 'center', 
     justifyContent: 'center',
-    shadowColor: '#000',
+    shadowColor: theme.color.purpleDark,
     shadowOffset: {
       width: 0,
       height: 10,
@@ -61,9 +61,4 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5
   }
-  // flatlist: {
-  //   fontSize: 18,
-  //   fontWeight: 'bold',
-  //   color: theme.color.greenDark
-  // },
 })

@@ -10,7 +10,8 @@ import {
   About, 
   Subtitle, 
   Information, 
-  Title 
+  Title, 
+  TextLocalization
 } from './styles'
 import { CheckoutAndPrice } from '../../components/CheckoutAndPrice'
 import { theme } from '../../global/theme'
@@ -63,6 +64,19 @@ export default function PlantDetails() {
           <View>
             <About>Descrição</About>
             <Text>As samambaias são vegetais vasculares membros do táxon das pteridófitas (que deixou de ter validade taxonômica e só é utilizado como uma denominação informal). Elas possuem tecidos vasculares (xilema e floema), folhas verdadeiras, se reproduzem através de esporos e não produzem sementes ou flores.</Text>
+          </View>
+          <View>
+            <About>Localização</About>
+            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+              <View>
+                <Subtitle>Cidade</Subtitle>
+                <TextLocalization>Rio de Janeiro</TextLocalization>
+              </View>
+              <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
+                <Subtitle>Estado</Subtitle>
+                <TextLocalization>RJ</TextLocalization>
+              </View>
+            </View>
           </View>
         </ScrollView>
       </Content>

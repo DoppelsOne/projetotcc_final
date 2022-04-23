@@ -6,27 +6,28 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 8,
     height: 56,
-    borderWidth: 1, 
+    borderWidth: 2, 
     borderRadius: 16,
-    borderColor: theme.color.whiteHeading,
-    backgroundColor: theme.color.overlay,
+    borderColor: theme.color.gray,
+    backgroundColor: theme.color.whiteHeading,
   },
   
   icon: {
     fontSize: 28,    
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
-    color: theme.color.whiteHeading,
+    color: theme.color.gray,
     paddingHorizontal: 10,
-    paddingTop: 12,
-    marginRight: 3
+    paddingTop: 10,
+    marginRight: 3,
+
   },
   
   input: {
     width: '83%',
     paddingTop: 6,
-    fontSize: 17,  
-    fontFamily: theme.fonts.poppins_700bold,
+    fontSize: 16,  
+    fontFamily: theme.fonts.poppins_500,
     color: theme.color.purpleDark
   },
 })

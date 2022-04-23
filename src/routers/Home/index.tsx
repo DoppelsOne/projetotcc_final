@@ -1,5 +1,6 @@
+import { LinearGradient } from "expo-linear-gradient";
 import { Keyboard, Text, TouchableWithoutFeedback, View, ScrollView, TouchableOpacityBase, TouchableOpacity } from "react-native";
-import AntDesign from 'react-native-vector-icons/AntDesign'
+import Feather from 'react-native-vector-icons/Feather'
 
 import { Background } from "../../components/Background";
 import { PlantCardFilter } from "../../components/PlantCardFilter";
@@ -7,9 +8,12 @@ import { PlantCardPrimary } from "../../components/PlantCardPrimary";
 import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
+import { theme } from "../../global/theme";
 import { styles } from "./styles";
 
-export default function Home() {  
+export default function Home() { 
+  const { green, greenDark } = theme.color;
+  
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>      
       <Background>
@@ -22,17 +26,23 @@ export default function Home() {
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <SearchBar />
               <TouchableOpacity activeOpacity={0.7}>
-                <AntDesign
-                  name='menu-fold'
+                <LinearGradient
+                  // style={styles.buttonRegister}
                   style={styles.filterIcon}
-                  size={22}
-                />
+                  colors={[green, greenDark]}
+                >
+                  <Feather
+                    name='sliders'
+                    size={22}
+                    color={theme.color.whiteHeading}
+                  />
+                </LinearGradient>
               </TouchableOpacity>
             </View>
           </View>
         </View>  
         <View style={styles.content}>
-          <PlantCardFilter horizontal/>
+          <PlantCardFilter horizontal />
 
           <ScrollView
             showsVerticalScrollIndicator={false}

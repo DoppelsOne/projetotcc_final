@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     // backgroundColor: theme.color.greenWeak,
     borderBottomWidth: 3,
-    borderColor: theme.color.green,
+    borderColor: theme.color.orangeMedium,
     // shadowColor: theme.color.purpleDark,
     // shadowOffset: {
     //   width: 0,

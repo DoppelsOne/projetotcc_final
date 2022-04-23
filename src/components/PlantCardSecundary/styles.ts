@@ -3,8 +3,10 @@ import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   background: {
+    // width: '100%',
     marginRight: 8,
     borderRadius: 8,
+    // paddingRight: 50,
     // marginBottom: 10
   },
 
@@ -30,7 +32,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
 
-  information: { 
+  information: {
     paddingHorizontal: 20,
     alignItems: 'flex-start',
     justifyContent: 'center',

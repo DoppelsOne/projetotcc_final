@@ -52,6 +52,15 @@ export const Text = styled.Text`
   font-family: ${theme.fonts.poppins_400};
   line-height: 29px;
   color: ${theme.color.grayDark};
+  margin-bottom: 16px;
+`
+
+export const TextLocalization = styled.Text`
+  font-size: 16px;
+  font-family: ${theme.fonts.poppins_500};
+  line-height: 29px;
+  color: ${theme.color.purpleDark};
+  margin-bottom: 16px;
 `
 
 
