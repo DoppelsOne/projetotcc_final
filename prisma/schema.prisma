@@ -10,37 +10,39 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model User {
-  id       Int    @id @default(autoincrement())
+model Usuario {
+  id       Int        @id @default(autoincrement())
   name     String
   email    String
   login    String
   password String
-  locale   String
+  bairro   String
+  endereco String
+  numero   String
+  cep      String
   tel      String
-  postagem Post[]
-
-
-  @@map("Usuário")
+  postagem Postagem[]
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  subtitle  String
+model Postagem {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String?
+  subtitle  String?
   value     Float
-  published Boolean @default(true)
-  image     String
-  authorId  Int
-  author    User    @relation(fields: [authorId], references: [id])
-  planta    Plant[] @relation(references: [id])
+  troca     Boolean  @default(true)
+  image     String?
+  autorId   Int
+  autor     Usuario  @relation(fields: [autorId], references: [id])
+  plantaId  Int
+  planta    Planta   @relation(fields: [plantaId], references: [id])
 
-  @@map("Postagem")
 }
 
-model Plant {
-  id    Int    @id @default(autoincrement())
-  name  String
-  posts Post[] @relation(references: [id])
-  @@map("Planta")
+model Planta {
+  id        Int        @id @default(autoincrement())
+  name      String
+  descricao String?
+  posts     Postagem[]
 }
