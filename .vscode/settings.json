@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "Dracula",
+    "cSpell.enableFiletypes": [
+        "!typescriptreact"
+    ],
+    "cSpell.ignoreWords": [
+        "enter"
+    ],
+    "cSpell.enabled": false
+}

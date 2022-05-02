@@ -1,48 +1,76 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./dev.db"
+  url      = env("DATABASE_URL")
 }
 
-model Usuario {
-  id       Int        @id @default(autoincrement())
-  name     String
-  email    String
-  login    String
-  password String
-  bairro   String
-  endereco String
-  numero   String
-  cep      String
-  tel      String
-  postagem Postagem[]
+model Planta {
+  id        Int                   @id @default(autoincrement())
+  name      String
+  descricao String?
+  Postagem  Postagem[]
+  Categoria CategoriaController[]
 }
 
 model Postagem {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   title     String?
   subtitle  String?
   value     Float
   troca     Boolean  @default(true)
   image     String?
   autorId   Int
-  autor     Usuario  @relation(fields: [autorId], references: [id])
   plantaId  Int
-  planta    Planta   @relation(fields: [plantaId], references: [id])
+  imagemId  Int
+  Usuario   Usuario  @relation(fields: [autorId], references: [id])
+  Planta    Planta   @relation(fields: [plantaId], references: [id])
 
+  Imagem Imagem[]
 }
 
-model Planta {
-  id        Int        @id @default(autoincrement())
-  name      String
-  descricao String?
-  posts     Postagem[]
+model Usuario {
+  id       Int         @id @default(autoincrement())
+  nome     String
+  email    String      @unique
+  login    String
+  senha    String
+  Postagem Postagem[]
+  Endereco U_endereco?
+}
+
+model U_endereco {
+  id        Int     @id @default(autoincrement())
+  bairro    String
+  endereco  String
+  numero    String
+  cep       String
+  tel       String
+  Usuario   Usuario @relation(fields: [usuarioId], references: [id])
+  usuarioId Int     @unique
+}
+
+model Imagem {
+  id         Int      @id @default(autoincrement())
+  uri        String
+  Imagem     Postagem @relation(references: [id], fields: [postagemId])
+  postagemId Int
+}
+
+model Categorias {
+  id        Int                   @id @default(autoincrement())
+  categoria String                @unique
+  plantas   CategoriaController[]
+}
+
+model CategoriaController {
+  planta     Planta     @relation(fields: [plantaId], references: [id])
+  plantaId   Int
+  category   Categorias @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  @@id([plantaId, categoryId])
 }
