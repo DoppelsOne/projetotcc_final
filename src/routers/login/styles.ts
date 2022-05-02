@@ -88,7 +88,7 @@ export const ContainerFooter = styled.View`
 `
 
 export const TextFooter = styled.Text`
-  font-size: 20px;
+  font-size: 16px;
   color: ${theme.color.whiteHeading}
   font-family: ${theme.fonts.poppins_500};  
 `

@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   input: {
     width: '83%',
     paddingTop: 6,
-    fontSize: 17,  
+    fontSize: 16,  
     fontFamily: theme.fonts.poppins_700bold,
     color: theme.color.purpleDark
   },

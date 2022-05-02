@@ -1,5 +1,5 @@
 import React from "react";
-import { Keyboard, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View, Text } from "react-native";
+import { Keyboard, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View, Text, SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
@@ -32,82 +32,84 @@ export default function Login() {
   // const Stack = createNativeStackNavigator();
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Container>
-        <StatusBar backgroundColor="transparent" style="light" translucent />
-        <Content>
-          <Wrapper>
-            <Image source={logo} />
-          </Wrapper>
+    <SafeAreaView style={{flex: 1}}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <StatusBar backgroundColor="transparent" style="light" translucent />
+          <Content>
+            <Wrapper>
+              <Image source={logo} />
+            </Wrapper>
 
-          <Title>Login</Title>
-          <Subtitle>Para entrar na sua conta!</Subtitle>
+            <Title>Login</Title>
+            <Subtitle>Para entrar na sua conta!</Subtitle>
 
-          <View style={styles.form_icon}>
-            <TouchableOpacity activeOpacity={0.7}>
-              <LinearGradient
-                style={styles.backgroundSocialIcon}
-                colors={[green, greenDark]}
-              >
-                <Icon style={styles.icones} name='social-facebook' />
-                <Text style={styles.textSocialIcon}>Entrar com Facebook</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+            <View style={styles.form_icon}>
+              <TouchableOpacity activeOpacity={0.7}>
+                <LinearGradient
+                  style={styles.backgroundSocialIcon}
+                  colors={[green, greenDark]}
+                >
+                  <Icon style={styles.icones} name='social-facebook' />
+                  <Text style={styles.textSocialIcon}>Entrar com Facebook</Text>
+                </LinearGradient>
+              </TouchableOpacity>
 
-            {/* <TouchableOpacity activeOpacity={0.7}>
-              <LinearGradient
-                style={styles.backgroundSocialIcon}
-                colors={[orange, orangeDark]}
-              >
-                <Icon style={styles.icones} name='social-instagram'  />
-                <Text>Entrar com Instagram</Text>
-              </LinearGradient>
-            </TouchableOpacity> */}
-            
-            <TouchableOpacity activeOpacity={0.7} >
-              <LinearGradient
-                style={styles.backgroundSocialIcon}
-                colors={[green, greenDark]}
-              >
-                <Icon style={styles.icones} name='social-google' />
-                <Text style={styles.textSocialIcon}>Entrar com Google</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </View>
+              {/* <TouchableOpacity activeOpacity={0.7}>
+                <LinearGradient
+                  style={styles.backgroundSocialIcon}
+                  colors={[orange, orangeDark]}
+                >
+                  <Icon style={styles.icones} name='social-instagram'  />
+                  <Text>Entrar com Instagram</Text>
+                </LinearGradient>
+              </TouchableOpacity> */}
+              
+              <TouchableOpacity activeOpacity={0.7} >
+                <LinearGradient
+                  style={styles.backgroundSocialIcon}
+                  colors={[green, greenDark]}
+                >
+                  <Icon style={styles.icones} name='social-google' />
+                  <Text style={styles.textSocialIcon}>Entrar com Google</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
 
-          <Or>Ou</Or>
+            <Or>Ou</Or>
 
-          <Input
-            iconName='user'
-            placeholder='Usuário ou email'
-            placeholderTextColor={theme.color.white}
-          />
-          <Input
-            iconName='lock'
-            placeholder='Senha'
-            placeholderTextColor={theme.color.white}
-            secureTextEntry
-          />
+            <Input
+              iconName='user'
+              placeholder='Usuário ou email'
+              placeholderTextColor={theme.color.white}
+            />
+            <Input
+              iconName='lock'
+              placeholder='Senha'
+              placeholderTextColor={theme.color.white}
+              secureTextEntry
+            />
 
-          <ButtonFooter onPress={() => navigation.navigate('Login')}>
-            <TextForgot>Esqueci minha senha </TextForgot>
-          </ButtonFooter>
-
-          <Button 
-            title='Entrar' 
-            onPress={() => navigation.navigate('Home')}
-            style={{marginTop: 10}}
-          />
-
-          <ContainerFooter>            
-            <ButtonFooter onPress={() => navigation.navigate('Cadastrar')}>
-              <TextFooter>CADASTRE-SE</TextFooter>
+            <ButtonFooter onPress={() => navigation.navigate('Login')}>
+              <TextForgot>Esqueci minha senha </TextForgot>
             </ButtonFooter>
-          </ContainerFooter>
 
-        </Content>
-      </Container>
-    </TouchableWithoutFeedback>
+            <Button 
+              title='Entrar' 
+              onPress={() => navigation.navigate('Home')}
+              style={{marginTop: 10}}
+            />
+
+            <ContainerFooter>            
+              <ButtonFooter onPress={() => navigation.navigate('Cadastrar')}>
+                <TextFooter>CADASTRE-SE</TextFooter>
+              </ButtonFooter>
+            </ContainerFooter>
+
+          </Content>
+        </Container>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
     // <Container>
     //   <StatusBar backgroundColor="transparent" style="light" translucent />
 

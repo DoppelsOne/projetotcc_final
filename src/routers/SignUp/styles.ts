@@ -17,6 +17,7 @@ export const Container = styled(LinearGradient).attrs({
 
 export const Content = styled.View`
   width: ${screenWidth/1.2}px;
+  margin-top: -20px;
   /* align-items: center;   */
 `
 
@@ -64,7 +65,7 @@ export const ContainerFooter = styled.View`
   margin-top: 25px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
  `
 
 // export const TextFooter = styled.Text`
@@ -74,7 +75,7 @@ export const ContainerFooter = styled.View`
 // `
 
 export const ButtonTitle = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_500};
 `

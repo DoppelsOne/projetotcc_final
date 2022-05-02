@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
 
   title: {
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: theme.fonts.poppins_500,
     color: theme.color.whiteHeading,
   }
