@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "Omni",
+    "cSpell.enableFiletypes": [
+        "!typescriptreact"
+    ],
+    "cSpell.ignoreWords": [
+        "enter"
+    ],
+    "cSpell.enabled": false
+}
