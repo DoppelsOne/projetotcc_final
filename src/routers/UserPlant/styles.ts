@@ -32,13 +32,8 @@ export const styles = StyleSheet.create({
   buttonRegisterContainer: {
     position: 'absolute',
     alignSelf: 'flex-end',
-<<<<<<< HEAD
     bottom: 80,
     right: 30,
-=======
-    marginTop: 540,
-    paddingRight: 30,
->>>>>>> 2d24345217008d4b93a2d7d586b784b6a606b21e
   }, 
    
   buttonRegister: {
