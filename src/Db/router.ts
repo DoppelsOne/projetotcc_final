@@ -5,6 +5,8 @@ const router = Router()
 
 const createUseController = new CreateUseController()
 
-router.get("/",createUseController.handle)
+const login = " "
+
+router.get("/:login?/:senha?", createUseController.handle)
 
 export {router}

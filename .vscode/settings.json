@@ -6,5 +6,6 @@
     "cSpell.ignoreWords": [
         "enter"
     ],
-    "cSpell.enabled": false
+    "cSpell.enabled": false,
+    "editor.fontSize": 20
 }

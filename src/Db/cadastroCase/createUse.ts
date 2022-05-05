@@ -1,25 +1,25 @@
 import { prisma } from "../../../prisma/prisma";
 
 interface Iuser {
-  nome: String;
-  login: String[];
-  senha: String;
+  login: String;
 }
 
 class CreateUse {
-  async execute({nome,login, senha }: Iuser){
-
-    const userExists = await prisma.usuario.findMany({});
-
-
-    if(userExists){
-      console.log(userExists)
+  async execute({login}: Iuser) {
+    console.log(login)
+    if (login == null){
+      login = ""
     }
-    return userExists
-
-
+    // console.log(login)
+    const userExists = await prisma.usuario.findMany({
+      where: { login: { contains: `${login}` } },
+    });
+    
+    if (userExists) {
+      console.log(userExists);
+    }
+    return userExists;
   }
-  
 }
 
-export { CreateUse }
+export { CreateUse };

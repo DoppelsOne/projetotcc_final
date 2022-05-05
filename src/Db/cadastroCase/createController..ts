@@ -3,17 +3,13 @@ import { Request, Response } from "express";
 import { CreateUse } from "./createUse";
 
 class CreateUseController {
-  async handle(request: Request, response: Response) {
-    const { login, nome, senha } = request.body;
-
+  async handle(request: any, response:any) {
+    const {login} = request.params
+    console.log(login)
+    console.log(1)
     const createUse = new CreateUse();
-
-    const user = await createUse.execute({
-      login,
-      nome,
-      senha,
-    });
-
+    
+    const user = await createUse.execute({login});
     return response.json(user)
   }
 }
