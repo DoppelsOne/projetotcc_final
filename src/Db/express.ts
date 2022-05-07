@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(router);
 
 
-const server = app.listen(3000, () =>
+const server = app.listen(3333, () =>
   console.log(`
-🚀 Servidor sendo executado: http://localhost:3000
+🚀 Servidor sendo executado: http://localhost:3333
   `)
 );

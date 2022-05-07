@@ -1,53 +1,57 @@
-import styled from 'styled-components/native'
-import { Dimensions } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient'
-import { theme } from '../../global/theme';
+import styled from "styled-components/native";
+import { Dimensions } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { theme } from "../../global/theme";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get("window").width;
 
 export const Container = styled(LinearGradient).attrs({
-  colors: ['#008040', '#00d736'],
+  colors: ["#008040", "#00d736"],
   start: { x: 0, y: 0 },
   end: { x: 1, y: 1 },
-  })`
+})`
   flex: 1;
+  padding-top: ${30 + getStatusBarHeight(true)}px;
   justify-content: center;
   align-items: center;
-`
-
-export const Content = styled.View`
-  width: ${screenWidth/1.2}px;
-  margin-top: -20px;
-  /* align-items: center;   */
-`
+`;
 
 export const Wrapper = styled.View`
   align-items: center;
-`
+  justify-content: center;
+  width: 100%;
+  padding-top: 10px;
+  /* background-color: blue; */
+`;
 
 export const Image = styled.Image.attrs({
-  resizeMode: 'stretch',
+  resizeMode: "stretch",
 })`
   width: 35%;
-  height: 115px;
+  height: 100px;
+  border-radius: 200px;
 `;
 
 export const Title = styled.Text`
   font-size: 30px;
   color: ${theme.color.whiteHeading}
   font-family: ${theme.fonts.poppins_700bold};
-  text-align: left;
-  margin-bottom: -10px;
-  margin-top: 20px;
-`
+`;
 
 export const Subtitle = styled.Text`
   font-size: 18px;
   color: ${theme.color.whiteHeading}
-  text-align: left;
-  margin-bottom: 30px;
   font-family: ${theme.fonts.poppins_400};
-`
+`;
+
+export const Content = styled.View`
+  flex: 1;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* background-color: red; */
+`;
 
 // export const Button = styled.TouchableOpacity`
 //   background-color: ${theme.color.purpleDark};
@@ -55,27 +59,28 @@ export const Subtitle = styled.Text`
 //   border-radius: 8px;
 //   width: 100%;
 //   align-items: center;
-//   border-style: solid; 
+//   border-style: solid;
 //   margin-top: 16px;
 // `;
 
+export const TextForgot = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.whiteHeading}
+  font-family: ${theme.fonts.poppins_400};  
+`;
 
 export const ContainerFooter = styled.View`
-  flex-direction: row;
-  margin-top: 25px;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
- `
+  width: 100%;
+  margin-top: 10px;
+  /* background-color: black; */
+`;
 
-// export const TextFooter = styled.Text`
-//   font-size: 18px;
-//   color: ${theme.color.purpleDark}
-//   font-family: ${theme.fonts.poppins_400};  
-// `
-
-export const ButtonTitle = styled.Text`
+export const TextFooter = styled.Text`
+width: 100%;
+margin: 10px;
+text-align: center;
   font-size: 16px;
-  color: ${theme.color.whiteHeading};
-  font-family: ${theme.fonts.poppins_500};
-`
+  color: ${theme.color.whiteHeading}
+  font-family: ${theme.fonts.poppins_500};  
+`;

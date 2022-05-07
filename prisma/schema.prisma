@@ -34,7 +34,6 @@ model Postagem {
 
 model Usuario {
   id       Int         @id @default(autoincrement())
-  nome     String
   email    String      @unique
   login    String
   senha    String
@@ -44,9 +43,10 @@ model Usuario {
 
 model U_endereco {
   id        Int     @id @default(autoincrement())
-  bairro    String
-  endereco  String
-  numero    String
+  bairro    String?
+  endereco  String?
+  cidade    String?
+  uf        String?
   cep       String
   tel       String
   Usuario   Usuario @relation(fields: [usuarioId], references: [id])

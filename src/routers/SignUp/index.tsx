@@ -1,38 +1,62 @@
-import { useState } from "react";
-import { Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Alert,
+  Keyboard,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { StatusBar } from "expo-status-bar";
 
 import logo from "../../../assets/Login/clara.jpg";
 import { Input } from "../../components/Input";
-import { Button } from '../../components/Button'
+import { Button } from "../../components/Button";
 import { theme } from "../../global/theme";
-import { 
-  Container, 
-  Content, 
-  Title, 
-  ButtonTitle, 
-  Image, 
-  Subtitle, 
+import {
+  Container,
+  TextFooter,
+  Content,
+  Title,
+  ButtonTitle,
+  Image,
+  Subtitle,
   ContainerFooter,
-  Wrapper
+  Wrapper,
 } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { postCadastro, getCep } from "../../Db/axiosController";
+
+
+
+
 
 export default function SignUp() {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   function handleGoBack() {
     navigation.goBack();
   }
 
+  const [usuario, setUsuario] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirm, setConfirmSenha] = useState("");
+  const [cep, setCep] = useState("");
+  //validar senha
+  const validate = false;
+
+  // if (senha == confirm){
+  //   const validate = true
+  //   return validate
+  // }
+
   return (
-    <SafeAreaView style={{flex: 1}}>      
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Container>
-          <StatusBar backgroundColor='transparent' translucent />
-          <TouchableOpacity
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Container>
+        <StatusBar backgroundColor="transparent" translucent />
+        {/* <TouchableOpacity
             activeOpacity={0.7}
             style={{ alignSelf: 'flex-start' }}
             onPress={handleGoBack}       
@@ -49,52 +73,81 @@ export default function SignUp() {
               color={theme.color.whiteHeading}
               size={25}
             />
-          </TouchableOpacity>
-          <Content>
-            <Wrapper>
-              <Image source={logo} />
-            </Wrapper>
+          </TouchableOpacity> */}
+        <Wrapper>
+          <Image source={logo} />
+          <Title>Cadastro</Title>
+          <Subtitle>Crie sua conta rápido e fácil!</Subtitle>
+        </Wrapper>
 
-            <Title>Cadastro</Title>
-            <Subtitle>Crie sua conta rápido e fácil!</Subtitle>
+        <Content>
+          <Input
+            iconName="user"
+            placeholder="Usuário"
+            onChangeText={(prop) => {
+              setUsuario(prop);
+            }}
+          />
 
-            <Input
-              iconName='user'            
-              placeholder='Nome completo'
-            />
+          <Input
+            iconName="mail"
+            placeholder="E-mail"
+            keyboardType="email-address"
+            onChangeText={(prop) => {
+              setEmail(prop);
+            }}
+          />
+          <Input
+            iconName="phone"
+            placeholder="Telefone"
+            keyboardType="numeric"
+            onChangeText={(prop) => {
+              setTel(prop);
+            }}
+          />
+          <Input
+            iconName="map"
+            placeholder="CEP"
+            keyboardType="numeric"
+            onChangeText={(prop) => {
+              setCep(prop);
+            }}
+          />
 
-            <Input
-              iconName='mail'
-              placeholder='E-mail'
-              keyboardType='email-address'
-            />
-            <Input
-              iconName='phone'
-              placeholder='Telefone'
-              keyboardType='numeric'
-            />
-            <Input
-              iconName='lock'
-              placeholder='Senha'
-              secureTextEntry
-            />
+          <Input
+            iconName="lock"
+            placeholder="Senha"
+            secureTextEntry
+            onChangeText={(prop) => {
+              setSenha(prop);
+            }}
+          />
 
-            {/* <Button>
+          <Input
+            iconName="lock"
+            placeholder="Confirmar Senha"
+            secureTextEntry
+            onChangeText={(prop) => {
+              setConfirmSenha(prop);
+            }}
+          />
+
+          {/* <Button>
               <ButtonTitle>Cadastrar</ButtonTitle>
             </Button> */}
-            <Button 
-              title='Cadastrar' 
-              style={{marginTop: 20}}
-            />
-
-            <ContainerFooter>
-              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <ButtonTitle>JÁ POSSUO UMA CONTA</ButtonTitle>
-              </TouchableOpacity>
-            </ContainerFooter>       
-          </Content>
-        </Container>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
-  )
+          <Button
+            title="Cadastrar"
+            style={{ marginTop: 15 }}
+            onPress={() => {
+              postCadastro(usuario, email, tel, cep ,senha);
+              // Alert.alert()
+            }}
+          />
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+            <TextFooter>JÁ POSSUO UMA CONTA</TextFooter>
+          </TouchableOpacity>
+        </Content>
+      </Container>
+    </TouchableWithoutFeedback>
+  );
 }

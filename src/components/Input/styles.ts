@@ -4,12 +4,13 @@ import { theme } from "../../global/theme"
 export const styles = StyleSheet.create({
   form: {
     flexDirection: 'row',
-    marginBottom: 8,
-    height: 56,
     borderWidth: 1, 
+    justifyContent:"center",
+    alignItems:"center",
     borderRadius: 16,
     borderColor: theme.color.whiteHeading,
     backgroundColor: theme.color.overlay,
+    marginTop: 10,
   },
   
   icon: {
@@ -18,13 +19,12 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: 8,
     color: theme.color.whiteHeading,
     paddingHorizontal: 10,
-    paddingTop: 12,
     marginRight: 3
   },
   
   input: {
     width: '83%',
-    paddingTop: 6,
+    margin: 10,
     fontSize: 16,  
     fontFamily: theme.fonts.poppins_700bold,
     color: theme.color.purpleDark

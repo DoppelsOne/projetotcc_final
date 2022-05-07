@@ -1,12 +1,12 @@
-import { Router } from 'express';
-import { CreateUseController} from './cadastroCase/createController.';
+import { Router } from "express";
+import { CreateUseController } from "./cadastroUser/createController.";
+import { LoginUseController } from "./loginUser/loginController.";
 
-const router = Router()
+const router = Router();
 
-const createUseController = new CreateUseController()
+const createUseController = new CreateUseController();
+const loginUserController = new LoginUseController();
+router.post("/user/cadastro", createUseController.handle);
+router.post("/user/login", loginUserController.handle);
 
-const login = " "
-
-router.get("/:login?/:senha?", createUseController.handle)
-
-export {router}
+export { router };

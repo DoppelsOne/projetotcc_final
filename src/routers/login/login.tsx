@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
   Text,
-  SafeAreaView
+  SafeAreaView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
@@ -30,63 +30,84 @@ import {
   TextForgot,
 } from "./styles";
 import { theme } from "../../global/theme";
-import { CreateUse } from "../../DB/cadastroCase/createUse";
-import { CreateUseController } from "../../DB/cadastroCase/createController.";
+import { CreateUse } from "../../Db/ListarUser/createUse";
+import { CreateUseController } from "../../Db/ListarUser/createController.";
 import axios from "axios";
 import { json } from "express";
-
+import { postLogin } from "../../Db/axiosController";
 
 
 export default function Login() {
   const { green, greenDark } = theme.color;
   const navigation = useNavigation();
-  
+
   // const [cont, setcont] = useState(new Animated.Value(0));
   // Animated.timing(cont,{toValue:1,duration:1000}).start;
   // const Stack = createNativeStackNavigator();
 
   const [dados, setDados] = useState([]);
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   useEffect(() => {
-    async function getDados() {
-      const url = "http://10.0.2.2:3000/"
-      try {
-        const lista = await axios.get(url, {params:{login:"f"}})
-        console.log(lista.data);
-        setDados(lista.data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    getDados()
-
+    // async function getDados() {
+    //   const url = "http://10.0.2.2:3000/";
+    //   try {
+    //     const lista = await axios.get(url, { params: { login: "f" } });
+    //     console.log(lista.data);
+    //     setDados(lista.data);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
+    // getDados();
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <Container>
-          <StatusBar backgroundColor="transparent" style="light" translucent />
-          <Content>
-            <Wrapper>
-              <Image source={logo} />
-            </Wrapper>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Container>
+        <StatusBar backgroundColor="transparent" style="light" translucent />
+        {/* <Content> */}
+        <Wrapper>
+          <Image source={logo} />
+          <Title>Login</Title>
+          <Subtitle>Para entrar na sua conta!</Subtitle>
+        </Wrapper>
 
-            <Title>Login</Title>
-            <Subtitle>Para entrar na sua conta!</Subtitle>
+        <View style={styles.form_icon}>
+          <Input
+            iconName="mail"
+            placeholder="E-mail"
+            placeholderTextColor={theme.color.white}
+            onChangeText={(props) =>{setEmail(props)}}
+          />
+          <Input
+            iconName="lock"
+            placeholder="Senha"
+            placeholderTextColor={theme.color.white}
+            secureTextEntry
+            onChangeText={(props) =>{setSenha(props)}}
+          />
 
-            <View style={styles.form_icon}>
-              <TouchableOpacity activeOpacity={0.7}>
-                <LinearGradient
-                  style={styles.backgroundSocialIcon}
-                  colors={[green, greenDark]}
-                >
-                  <Icon style={styles.icones} name='social-facebook' />
-                  <Text style={styles.textSocialIcon}>Entrar com Facebook</Text>
-                </LinearGradient>
-              </TouchableOpacity>
+          <Button
+            title="Entrar"
+            onPress={()=>{postLogin(email, senha)}}
+            // onPress={() => navigation.navigate("Home")}
+            style={{ marginTop: 15 }}
+          />
 
-              {/* <TouchableOpacity activeOpacity={0.7}>
+          <Or>Ou</Or>
+          <TouchableOpacity activeOpacity={0.7}>
+            <LinearGradient
+              style={styles.backgroundSocialIcon}
+              colors={[green, greenDark]}
+            >
+              <Icon style={styles.icones} name="social-facebook" />
+              <Text style={styles.textSocialIcon}>Entrar com Facebook</Text>
+            </LinearGradient>
+          </TouchableOpacity>
+
+          {/* <TouchableOpacity activeOpacity={0.7}>
                 <LinearGradient
                   style={styles.backgroundSocialIcon}
                   colors={[orange, orangeDark]}
@@ -95,52 +116,31 @@ export default function Login() {
                   <Text>Entrar com Instagram</Text>
                 </LinearGradient>
               </TouchableOpacity> */}
-              
-              <TouchableOpacity activeOpacity={0.7} >
-                <LinearGradient
-                  style={styles.backgroundSocialIcon}
-                  colors={[green, greenDark]}
-                >
-                  <Icon style={styles.icones} name='social-google' />
-                  <Text style={styles.textSocialIcon}>Entrar com Google</Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            </View>
 
-            <Or>Ou</Or>
+          <TouchableOpacity activeOpacity={0.7}>
+            <LinearGradient
+              style={styles.backgroundSocialIcon}
+              colors={[green, greenDark]}
+            >
+              <Icon style={styles.icones} name="social-google" />
+              <Text style={styles.textSocialIcon}>Entrar com Google</Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
-            <Input
-              iconName='user'
-              placeholder='Usuário ou email'
-              placeholderTextColor={theme.color.white}
-            />
-            <Input
-              iconName='lock'
-              placeholder='Senha'
-              placeholderTextColor={theme.color.white}
-              secureTextEntry
-            />
-
-            <ButtonFooter onPress={() => navigation.navigate('Login')}>
-              <TextForgot>Esqueci minha senha </TextForgot>
+          <ContainerFooter>
+            <ButtonFooter onPress={() => navigation.navigate("Cadastrar")}>
+              <TextFooter>CADASTRE-SE</TextFooter>
             </ButtonFooter>
 
-            <Button 
-              title='Entrar' 
-              onPress={() => navigation.navigate('Home')}
-              style={{marginTop: 10}}
-            />
+            <ButtonFooter onPress={() => navigation.navigate("Login")}>
+              <TextForgot>Esqueci minha senha </TextForgot>
+            </ButtonFooter>
+          </ContainerFooter>
+        </View>
 
-            <ContainerFooter>            
-              <ButtonFooter onPress={() => navigation.navigate('Cadastrar')}>
-                <TextFooter>CADASTRE-SE</TextFooter>
-              </ButtonFooter>
-            </ContainerFooter>
-
-          </Content>
-        </Container>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+        {/* </Content> */}
+      </Container>
+    </TouchableWithoutFeedback>
     // <Container>
     //   <StatusBar backgroundColor="transparent" style="light" translucent />
 
@@ -185,8 +185,12 @@ export default function Login() {
 
 const styles = StyleSheet.create({
   form_icon: {
-    flexDirection: "column",
-    marginVertical: 10,
+    width: `100%`,
+    flex: 1,
+    flexGrow: 2,
+    padding: 15,
+
+    // justifyContent:'center',
   },
 
   backgroundSocialIcon: {
