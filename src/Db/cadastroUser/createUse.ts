@@ -1,23 +1,22 @@
 import { prisma } from "../../../prisma/prisma";
 
 interface Iuser {
-  login: String;
-  email: String;
-  tel: String;
-  senha: String;
+  login: string;
+  email: string;
+  tel: string;
+  senha: string;
   end: {
-    localidade: String;
-    cep: String;
-    logradouro: String;
-    uf:String
-    bairro: String;
-  }
+    localidade: string;
+    cep: string;
+    logradouro: string;
+    uf: string;
+    bairro: string;
+  };
 }
 
 class CreateUse {
   async execute({ login, email, tel, senha, end }: Iuser) {
     //verificar se o user existe
-    console.log(end.bairro);
     const userExists = await prisma.usuario.findFirst({
       where: {
         email: `${email}`,
@@ -29,17 +28,17 @@ class CreateUse {
     } else {
       const user = await prisma.usuario.create({
         data: {
-          login: `${login}`,
-          email: `${email}`,
-          senha: `${senha}`,
+          login: login,
+          email: email,
+          senha: senha,
           Endereco: {
             create: {
-              bairro: `${end.bairro}`,
-              endereco: `${end.logradouro}`,
-              cidade: `${end.localidade}`,
-              uf: `${end.uf}`,
-              cep: `${end.cep}`,
-              tel: `${tel}`
+              bairro: end.bairro,
+              endereco: end.logradouro,
+              cidade: end.localidade,
+              uf: end.uf,
+              cep: end.cep,
+              tel: tel,
             },
           },
         },

@@ -1,8 +1,9 @@
+import { response } from "express";
 import { prisma } from "../../../prisma/prisma";
 
 interface Iuser {
-  email: String;
-  senha: String;
+  email: string;
+  senha: string;
 }
 
 export class LoginUse {
@@ -10,15 +11,15 @@ export class LoginUse {
     //verificar se o user existe
     const userExists = await prisma.usuario.findFirst({
       where: {
-        email: `${email}`,
+        email: email,
       },
     });
 
     if (!userExists) {
-      console.log("Usuário ou Senha Incorreta ");
+      return false;
     }
     else if (senha == userExists.senha){
-      
+      return userExists.id
     }
   }
 

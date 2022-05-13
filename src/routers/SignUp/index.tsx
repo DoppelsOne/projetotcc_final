@@ -25,11 +25,10 @@ import {
   Wrapper,
 } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { postCadastro, getCep } from "../../Db/axiosController";
-
-
-
-
+import { postCadastro, getCep, validateCep } from "../../Db/axiosController";
+import { Poppins_100Thin } from "@expo-google-fonts/poppins";
+import { isEmpty } from "lodash";
+import axios from "axios";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -38,19 +37,78 @@ export default function SignUp() {
     navigation.goBack();
   }
 
-  const [usuario, setUsuario] = useState("");
-  const [email, setEmail] = useState("");
-  const [tel, setTel] = useState("");
-  const [senha, setSenha] = useState("");
+  // const [usuario, setUsuario] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [tel, setTel] = useState("");
+  // const [senha, setSenha] = useState("");
   const [confirm, setConfirmSenha] = useState("");
-  const [cep, setCep] = useState("");
-  //validar senha
-  const validate = false;
 
-  // if (senha == confirm){
-  //   const validate = true
-  //   return validate
+
+  const [userData, setUserData] = useState({
+    usuario: "",
+    email: "",
+    tel: "",
+    senha: "",
+    cep: "",
+  });
+
+  // if (isEmpty(userData.cep)) {
+  //   console.log("é nulo");
+  // } else {
+  //   console.log("sas");
   // }
+  //Validando Campos
+  async function validarCampos(props: any, confirm: string) {
+    let receba = true;
+
+    if (
+      isEmpty(props.usuario) ||
+      isEmpty(props.email) ||
+      isEmpty(props.tel) ||
+      isEmpty(props.senha) ||
+      isEmpty(props.cep) ||
+      isEmpty(confirm)
+    ) {
+      Alert.alert("Um ou mais campos sem preenchimento");
+    } else if (props.senha != confirm) {
+      Alert.alert("Senhas não coincidem");
+    } else if (receba == true) {
+      let cep = false;
+      //validar Cep
+      await axios
+        .get("https://viacep.com.br/ws/" + props.cep + "/json/")
+        .then((resp) => {
+          if (resp.status == 400 || resp.data.erro) {
+            cep = false;
+          } else {
+            cep = true;
+          }
+        })
+        .catch((err) => {
+          err;
+        });
+
+      if (!cep) {
+        Alert.alert("Cep não encontrado ou inválido");
+      } else {
+        postCadastro(props);
+        handleGoBack();
+      }
+    }
+    //Validando Senha
+
+    console.log(userData, confirm);
+
+    // if (isEmpty(props.user)) {
+    //   console.log("user vazio");
+    // }
+    // if (props.senha != props.passc) {
+    //   Alert.alert("Senhas Não Coincidem");
+    // } else {
+    //   postCadastro(usuario, email, tel, cep, senha);
+    //   handleGoBack();
+    // }
+  }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -85,7 +143,7 @@ export default function SignUp() {
             iconName="user"
             placeholder="Usuário"
             onChangeText={(prop) => {
-              setUsuario(prop);
+              userData.usuario = prop;
             }}
           />
 
@@ -94,7 +152,7 @@ export default function SignUp() {
             placeholder="E-mail"
             keyboardType="email-address"
             onChangeText={(prop) => {
-              setEmail(prop);
+              userData.email = prop;
             }}
           />
           <Input
@@ -102,7 +160,7 @@ export default function SignUp() {
             placeholder="Telefone"
             keyboardType="numeric"
             onChangeText={(prop) => {
-              setTel(prop);
+              userData.tel = prop;
             }}
           />
           <Input
@@ -110,7 +168,7 @@ export default function SignUp() {
             placeholder="CEP"
             keyboardType="numeric"
             onChangeText={(prop) => {
-              setCep(prop);
+              userData.cep = prop;
             }}
           />
 
@@ -119,7 +177,7 @@ export default function SignUp() {
             placeholder="Senha"
             secureTextEntry
             onChangeText={(prop) => {
-              setSenha(prop);
+              userData.senha = prop;
             }}
           />
 
@@ -139,8 +197,7 @@ export default function SignUp() {
             title="Cadastrar"
             style={{ marginTop: 15 }}
             onPress={() => {
-              postCadastro(usuario, email, tel, cep ,senha);
-              // Alert.alert()
+              validarCampos(userData, confirm);
             }}
           />
           <TouchableOpacity onPress={() => navigation.navigate("Login")}>

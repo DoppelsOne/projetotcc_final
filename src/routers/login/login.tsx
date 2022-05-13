@@ -30,16 +30,11 @@ import {
   TextForgot,
 } from "./styles";
 import { theme } from "../../global/theme";
-import { CreateUse } from "../../Db/ListarUser/createUse";
-import { CreateUseController } from "../../Db/ListarUser/createController.";
 import axios from "axios";
-import { json } from "express";
-import { postLogin } from "../../Db/axiosController";
+import { loginId, postLogin } from "../../Db/axiosController";
 
-
-export default function Login() {
+export default function Login({navigation}) {
   const { green, greenDark } = theme.color;
-  const navigation = useNavigation();
 
   // const [cont, setcont] = useState(new Animated.Value(0));
   // Animated.timing(cont,{toValue:1,duration:1000}).start;
@@ -48,20 +43,27 @@ export default function Login() {
   const [dados, setDados] = useState([]);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  // const [id, setId] = useState();
 
-  useEffect(() => {
-    // async function getDados() {
-    //   const url = "http://10.0.2.2:3000/";
-    //   try {
-    //     const lista = await axios.get(url, { params: { login: "f" } });
-    //     console.log(lista.data);
-    //     setDados(lista.data);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-    // getDados();
-  }, []);
+  // useEffect(() => {
+  // async function getDados() {
+
+  //   const url = "http://10.0.2.2:3333/user/:id";
+
+  //   const lista = await axios.get(url, { params: { id: id } }).then((resp) => {
+  //     return resp.data;
+  //   });
+  //   // console.log(lista.data);
+  // }
+  // }, []);
+  function verificar(id) {
+    if (id > 0) {
+      console.log(id);
+      navigation.navigate("TabRoutes",{userId: id});
+    } else {
+
+    }
+  }
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -79,19 +81,27 @@ export default function Login() {
             iconName="mail"
             placeholder="E-mail"
             placeholderTextColor={theme.color.white}
-            onChangeText={(props) =>{setEmail(props)}}
+            onChangeText={(props) => {
+              setEmail(props);
+            }}
           />
           <Input
             iconName="lock"
             placeholder="Senha"
             placeholderTextColor={theme.color.white}
             secureTextEntry
-            onChangeText={(props) =>{setSenha(props)}}
+            onChangeText={(props) => {
+              setSenha(props);
+            }}
           />
 
           <Button
             title="Entrar"
-            onPress={()=>{postLogin(email, senha)}}
+            onPress={() => {
+              postLogin(email, senha).then((resp) => {
+                verificar(resp);
+              });
+            }}
             // onPress={() => navigation.navigate("Home")}
             style={{ marginTop: 15 }}
           />

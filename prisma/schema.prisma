@@ -33,24 +33,26 @@ model Postagem {
 }
 
 model Usuario {
-  id       Int         @id @default(autoincrement())
-  email    String      @unique
-  login    String
-  senha    String
-  Postagem Postagem[]
-  Endereco U_endereco?
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
+  login      String
+  senha      String
+  avatar     String?
+  Postagem   Postagem[]
+  Endereco   U_endereco @relation(fields: [EnderecoId], references: [id])
+  EnderecoId Int        @unique
+
 }
 
 model U_endereco {
-  id        Int     @id @default(autoincrement())
-  bairro    String?
-  endereco  String?
-  cidade    String?
-  uf        String?
-  cep       String
-  tel       String
-  Usuario   Usuario @relation(fields: [usuarioId], references: [id])
-  usuarioId Int     @unique
+  id       Int       @id @default(autoincrement())
+  bairro   String?
+  endereco String?
+  cidade   String?
+  uf       String?
+  cep      String
+  tel      String
+  Usuario  Usuario[]
 }
 
 model Imagem {

@@ -5,7 +5,6 @@ import { CreateUse } from "./createUse";
 class CreateUseController {
   async handle(request: any, response: any) {
     const { login, email, tel, senha , end} = request.body;
-    console.log(login, end)
     const createUse = new CreateUse();
     const user = await createUse.execute({ login, email, tel, senha, end});
     return response.json(user);

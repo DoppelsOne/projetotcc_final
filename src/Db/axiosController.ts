@@ -1,39 +1,42 @@
 import axios from "axios";
+import { isEmpty, reject } from "lodash";
+import { Alert } from "react-native";
 import { theme } from "./../global/theme";
+import { json } from "express";
 
 //url padrão
 const url = "http://10.0.2.2:3333/";
 
 let end = {};
+let error: boolean = false;
+let x: any;
 
-async function postCadastro(
-  login: String,
-  email: String,
-  tel: String,
-  cep: String,
-  senha: String
-) {
+async function postCadastro(props: any) {
   try {
     // const end = {bairro, uf, localidade, logadouro, cep}
-    getCep(cep);
+    getCep(props.cep);
+    // console.log(end)
     const dados = {
-      login: login,
-      email: email,
-      tel: tel,
+      login: props.usuario,
+      email: props.email,
+      tel: props.tel,
       end: end,
-      senha: senha,
+      senha: props.senha,
     };
-    await axios.post(url + "user/cadastro", dados);
+    await axios.post(url + "user/cadastro", dados).then((resp) => {
+      resp.data;
+    });
   } catch (err) {
     console.log(err);
   }
 }
 
 async function getCep(cep: String) {
-  try {
-    await axios
-      .get("https://viacep.com.br/ws/" + cep + "/json/")
-      .then((resp) => {
+  let err = true;
+  await axios
+    .get("https://viacep.com.br/ws/" + cep + "/json/")
+    .then((resp) => {
+      if (!resp.data.erro) {
         const enderec = {
           bairro: resp.data.bairro,
           cep: resp.data.cep,
@@ -42,22 +45,32 @@ async function getCep(cep: String) {
           uf: resp.data.uf,
         };
         end = enderec;
-      });
-  } catch (err) {
-    console.log(err);
-  }
+      }
+    })
+    .catch((error) => {
+      error.message;
+    });
+  return err;
 }
 
 async function postLogin(email: String, senha: String) {
-  try {
-    // const end = {bairro, uf, localidade, logadouro, cep}
-    const dados = {
-      email: email,
-      senha: senha,
-    };
-    await axios.post(url + "user/login", dados);
-  } catch (err) {
-    console.log(err);
+  // const end = {bairro, uf, localidade, logadouro, cep}
+
+  const dados = {
+    email: email,
+    senha: senha,
+  };
+
+  if (!isEmpty(dados.email) || !isEmpty(dados.senha)) {
+    const id = await axios
+      .post(url + "user/login", dados)
+      .then((resp) => {
+        return resp.data;
+      })
+      .catch((err) => {
+        return err.message;
+      });
+    return id;
   }
 }
 
