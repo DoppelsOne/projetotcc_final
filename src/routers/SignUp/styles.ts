@@ -26,11 +26,11 @@ export const Wrapper = styled.View`
 `;
 
 export const Image = styled.Image.attrs({
-  resizeMode: "stretch",
+  resizeMode: "center",
 })`
-  width: 35%;
+  width: 50%;
   height: 100px;
-  border-radius: 200px;
+
 `;
 
 export const Title = styled.Text`

@@ -1,33 +1,32 @@
-import { Keyboard, SafeAreaView, Text, TouchableWithoutFeedback, View } from 'react-native'
-import React from 'react'
+import {
+  Keyboard,
+  SafeAreaView,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
+import React from "react";
+import logotipo from "../../../assets/Logotipo/Logotipowide.png";
+import { Background } from "../../components/Background";
+import { styles } from "./styles";
+import { Image, ImgView } from "./styles";
 
-import { Background } from '../../components/Background'
-import { styles } from './styles'
-import { Image } from './styles'
-import logo from "../../../assets/Login/clara.jpg";
-
-
-export default function Setting() {
+export default function Setting({ route, navegation }) {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>      
-        <Background>        
-          <View style={styles.container}>           
-            <View style={styles.header}>
-              <Image 
-                source={logo}
-              />
-            </View>
-          </View> 
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Background>
+        <View style={styles.container}>
           
-          <View style={styles.content}>
-            <Text style={styles.title}>
-              Dados Cadastrais
-            </Text>
-          </View>
-          
-        </Background>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
-  )
+          <ImgView>
+            <Image source={logotipo} />
+          </ImgView>
+        
+        <View style={styles.content}>
+          <Text style={styles.title}>Dados Cadastrais</Text>
+        </View>
+
+        </View>
+      </Background>
+    </TouchableWithoutFeedback>
+  );
 }

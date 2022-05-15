@@ -1,10 +1,16 @@
 import styled from "styled-components/native";
 
-export const Image = styled.Image.attrs({
-  resizeMode: "stretch",
-})`
-  width: 56px;
-  height: 56px;
-  border-radius: 20px;
+export const ImgView = styled.View`
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background-color: white;
+`;
 
+export const Image = styled.Image.attrs({
+  resizeMode: "center",
+})`
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
 `;
