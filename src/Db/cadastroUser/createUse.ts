@@ -30,7 +30,6 @@ class CreateUse {
           login: login,
           email: email,
           senha: senha,
-          avatar: '../../../assets/Avatar/avatarStandard.jpg',
           Endereco: {
             create: {
               bairro: end.bairro,

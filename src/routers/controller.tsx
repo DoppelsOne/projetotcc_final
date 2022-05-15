@@ -4,6 +4,7 @@ import Home from './Home/index'
 import UserPlant from './UserPlant/index'
 import PlantDetails from './PlantDetails/index'
 import RegisterPlant from './ResgiterPlant/index'
+import Setting from './Setting/index'
 
 export {    
     Login,
@@ -11,5 +12,6 @@ export {
     Home,
     UserPlant,
     PlantDetails,
-    RegisterPlant
+    RegisterPlant,
+    Setting
 };
