@@ -17,7 +17,6 @@ import {
   Poppins_500Medium,
 } from "@expo-google-fonts/poppins";
 import AppLoading from "expo-app-loading";
-import Home from './src/routers/Home/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,7 +47,7 @@ export default function App () {
         <Stack.Screen
           name="Home"
           component={TabRoutes}
-          options={{ headerShown: false }}
+          options={{ headerShown: false}}
         />
         <Stack.Screen
           name="PlantDetails"

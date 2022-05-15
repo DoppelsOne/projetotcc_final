@@ -31,9 +31,9 @@ import {
 } from "./styles";
 import { theme } from "../../global/theme";
 import axios from "axios";
-import { loginId, postLogin } from "../../Db/axiosController";
+import { loginId, postLogin, getUser } from "../../Db/axiosController";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   const { green, greenDark } = theme.color;
 
   // const [cont, setcont] = useState(new Animated.Value(0));
@@ -45,24 +45,14 @@ export default function Login({navigation}) {
   const [senha, setSenha] = useState("");
   // const [id, setId] = useState();
 
-  // useEffect(() => {
-  // async function getDados() {
-
-  //   const url = "http://10.0.2.2:3333/user/:id";
-
-  //   const lista = await axios.get(url, { params: { id: id } }).then((resp) => {
-  //     return resp.data;
-  //   });
-  //   // console.log(lista.data);
-  // }
-  // }, []);
   function verificar(id) {
-    if (id > 0) {
-      console.log(id);
-      navigation.navigate("TabRoutes",{userId: id});
-    } else {
-
-    }
+    getUser(id)
+      .then((resp) => {
+        navigation.navigate("Home", { user:resp});
+      })
+      .catch((error) => {
+        error;
+      });
   }
 
   return (

@@ -1,10 +1,10 @@
-import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
 
-export const styles = StyleSheet.create({ 
-  avatar: {
-    width: 55,
-    height: 55,
-    borderRadius: 20,
-    marginRight: 6
-  }
-})
+export const Image = styled.Image.attrs({
+  resizeMode: "stretch",
+})`
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+
+`;

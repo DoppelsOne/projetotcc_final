@@ -11,6 +11,7 @@ model Planta {
   id        Int                   @id @default(autoincrement())
   name      String
   descricao String?
+  valor     Float
   Postagem  Postagem[]
   Categoria CategoriaController[]
 }

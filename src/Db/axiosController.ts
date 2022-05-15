@@ -5,7 +5,8 @@ import { theme } from "./../global/theme";
 import { json } from "express";
 
 //url padrão
-const url = "http://10.0.2.2:3333/";
+// const url = "http://10.0.2.2:3333/";
+const url = "http://192.168.10.11:3333/";
 
 let end = {};
 let error: boolean = false;
@@ -23,6 +24,7 @@ async function postCadastro(props: any) {
       end: end,
       senha: props.senha,
     };
+
     await axios.post(url + "user/cadastro", dados).then((resp) => {
       resp.data;
     });
@@ -74,4 +76,13 @@ async function postLogin(email: String, senha: String) {
   }
 }
 
-export { postCadastro, getCep, postLogin };
+async function getUser(id: number) {
+  const lista = await axios.get(url + "login/" + id).then((resp) => {
+    return resp.data
+  });
+  return lista
+
+  // console.log(lista.data);
+}
+
+export { postCadastro, getCep, postLogin, getUser };

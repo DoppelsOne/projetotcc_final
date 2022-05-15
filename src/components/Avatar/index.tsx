@@ -10,7 +10,7 @@ type AvatarProps = {
 export function Avatar({ urlImage }: AvatarProps) {
   return (
     <Image
-      source={{ uri: urlImage }}
+      source={{ uri:`${urlImage}` }}
       style={styles.avatar}
     />
   )

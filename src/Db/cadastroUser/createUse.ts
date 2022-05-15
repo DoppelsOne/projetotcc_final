@@ -1,5 +1,4 @@
 import { prisma } from "../../../prisma/prisma";
-
 interface Iuser {
   login: string;
   email: string;
@@ -31,6 +30,7 @@ class CreateUse {
           login: login,
           email: email,
           senha: senha,
+          avatar: '../../../assets/Avatar/avatarStandard.jpg',
           Endereco: {
             create: {
               bairro: end.bairro,

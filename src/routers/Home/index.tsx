@@ -8,8 +8,8 @@ import {
   TouchableOpacityBase,
   TouchableOpacity,
 } from "react-native";
+import React, { useState, useEffect } from "react";
 import Feather from "react-native-vector-icons/Feather";
-
 import { Background } from "../../components/Background";
 import { PlantCardFilter } from "../../components/PlantCardFilter";
 import { PlantCardPrimary } from "../../components/PlantCardPrimary";
@@ -18,23 +18,29 @@ import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
-import { useNavigation, Route } from "@react-navigation/native";
+import { getUser } from "../../Db/axiosController";
+import { Avatar } from './../../components/Avatar/index';
 
 export default function Home({ route, navigation }) {
   const { green, greenDark } = theme.color;
-
-  const sas = route.params.userId
-
-  // console.log(navigation.getParam('userId',{}))
-
-  console.log("home:"+sas)
+  let data;
+  const user = route.params.user;
+  const log = user.login.charAt(0).toUpperCase() + user.login.slice(1)
+  if (user.avatar == null){
+    data = user.avatar = ''
+  }else{
+    data = user.avatar
+  }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Background>
         <View style={styles.container}>
           <View style={{ paddingHorizontal: 30, paddingVertical: 15 }}>
             <View style={styles.header}>
-              <Profile />
+              <Profile
+                login={log}
+                avat={data}
+              />
             </View>
 
             <View

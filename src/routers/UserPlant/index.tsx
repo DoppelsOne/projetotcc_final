@@ -8,8 +8,7 @@ import { Profile } from "../../components/Profile";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
 
-export default function UserPlant() { 
-  const navigation = useNavigation();
+export default function UserPlant({route, navigation}) { 
 
   const { orange, orangeDark } = theme.color;
 
@@ -20,7 +19,7 @@ export default function UserPlant() {
           <View style={styles.container}>
             <View style={{ paddingHorizontal: 30, paddingVertical: 15 }}>
               <View style={styles.header}>
-                <Profile />
+                {/* <Profile /> */}
               </View>
             </View>
           </View> 
