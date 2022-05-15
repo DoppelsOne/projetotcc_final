@@ -5,8 +5,8 @@ import { theme } from "./../global/theme";
 import { json } from "express";
 
 //url padrão
-// const url = "http://10.0.2.2:3333/";
-const url = "http://192.168.10.11:3333/";
+const url = "http://10.0.2.2:3333/";
+// const url = "http://192.168.10.11:3333/";
 
 let end = {};
 let error: boolean = false;

@@ -4,7 +4,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Home, UserPlant } from "../../src/routers/controller";
+import { Home, UserPlant, Setting } from "../../src/routers/controller";
 import { theme } from "../global/theme";
 import { Text, View } from "react-native";
 import { getUser } from "../Db/axiosController";
@@ -173,7 +173,7 @@ export const TabRoutes = ({ route, navigation }) => {
 
       <Tab.Screen
         name="Settings"
-        component={UserPlant}
+        component={Setting}
         initialParams={{user: user}}
         options={{
           headerShown: false,
