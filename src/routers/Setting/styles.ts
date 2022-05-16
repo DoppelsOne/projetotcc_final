@@ -3,7 +3,6 @@ import { Dimensions, StyleSheet } from "react-native";
 import styled from "styled-components/native";
 import { theme } from "../../global/theme";
 import { getStatusBarHeight } from "react-native-status-bar-height";
-import { wrap } from "lodash";
 
 const screenWidth = Dimensions.get("window").width;
 

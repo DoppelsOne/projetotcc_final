@@ -1,7 +1,6 @@
 import axios from "axios";
 import { isEmpty, reject } from "lodash";
 import { Alert } from "react-native";
-import { theme } from "./../global/theme";
 import { json } from "express";
 
 //url padrão
@@ -15,7 +14,7 @@ let x: any;
 async function postCadastro(props: any) {
   try {
     // const end = {bairro, uf, localidade, logadouro, cep}
-    getCep(props.cep);
+    getCep(props.cep); 
 
     const dados = {
       login: props.usuario,

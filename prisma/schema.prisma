@@ -39,10 +39,10 @@ model Usuario {
   login      String
   senha      String
   avatar     String?
+  tel        String
   Postagem   Postagem[]
   Endereco   U_endereco @relation(fields: [EnderecoId], references: [id])
-  EnderecoId Int        @unique
-
+  EnderecoId Int
 }
 
 model U_endereco {
@@ -51,8 +51,7 @@ model U_endereco {
   endereco String?
   cidade   String?
   uf       String?
-  cep      String
-  tel      String
+  cep      String    @unique
   Usuario  Usuario[]
 }
 

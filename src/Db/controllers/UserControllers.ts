@@ -21,7 +21,7 @@ export async function findUser(req: any, res: any) {
 }
 
 export async function createUser(req: any, res: any) {
-  const { login, email, tel, senha, end = {} } = req.body;
+  const { login, email, tel, senha, end } = req.body;
   //verificar se o user existe
   console.log(end);
   const userExists = await prisma.usuario.findFirst({
@@ -30,14 +30,38 @@ export async function createUser(req: any, res: any) {
     },
   });
 
+  const cepExists = await prisma.u_endereco.findFirst({
+    where: {
+      cep: `${end.cep}`,
+    },
+  });
+
   if (userExists) {
     return console.log("usuário Existe");
+  } else if (!userExists && cepExists) {
+    console.log(cepExists.id);
+    const user = await prisma.usuario.create({
+      data: {
+        login: login,
+        email: email,
+        senha: senha,
+        tel: tel,
+        Endereco: {
+          connect: {
+            id: cepExists.id,
+          },
+        },
+      },
+    });
+    console.log("Usuário Criado com cep existente");
+    return res.json(user);
   } else {
     const user = await prisma.usuario.create({
       data: {
         login: login,
         email: email,
         senha: senha,
+        tel: tel,
         Endereco: {
           create: {
             bairro: end.bairro,
@@ -45,11 +69,11 @@ export async function createUser(req: any, res: any) {
             cidade: end.localidade,
             uf: end.uf,
             cep: end.cep,
-            tel: tel,
           },
         },
       },
     });
+    console.log("Usuário Criado");
     return res.json(user);
   }
 }
