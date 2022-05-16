@@ -8,28 +8,17 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  user: {
-    flexDirection: 'row',
-  },
-
   greeting: {
     fontSize: 20,
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_500,
   },
   
-  userName: {
-    fontSize: 20,
-    color: theme.color.purpleDark,
-    fontFamily: theme.fonts.poppins_500,
-    paddingLeft: 3
-  },
 
   subtitle: {
     fontSize: 15,
     color: theme.color.whiteHeading,
     fontFamily: theme.fonts.poppins_400,
-    marginTop: -6
   },
 
   // iconContainer: {

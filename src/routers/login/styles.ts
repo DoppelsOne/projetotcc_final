@@ -30,9 +30,9 @@ export const Wrapper = styled.View`
 `;
 
 export const Image = styled.Image.attrs({
-  resizeMode: "stretch",
+  resizeMode: "center",
 })`
-  width: 35%;
+  width: 80%;
   height: 115px;
 `;
 

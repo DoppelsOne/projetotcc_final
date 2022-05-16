@@ -1,17 +1,11 @@
 import { Router } from "express";
-import { CreateUseController } from "./cadastroUser/createController.";
-import { LoginUseController } from "./loginUser/loginController.";
-import { UserUseController } from "./userUser/userController.";
+import { findUser, createUser, loginUser } from "./controllers/UserControllers";
 
 const router = Router();
 
-const createUseController = new CreateUseController();
-const loginUserController = new LoginUseController();
-const userUserController = new UserUseController();
-
-router.post("/user/cadastro", createUseController.handle);
-router.post("/user/login", loginUserController.handle);
-router.get("/login/:id", userUserController.handle);
+router.post("/user/cadastro", createUser);
+router.post("/user/login", loginUser);
+router.get("/login/:id", findUser);
 
 // router.get("/user/Error");
 

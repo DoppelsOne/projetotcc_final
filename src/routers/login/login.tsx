@@ -8,12 +8,9 @@ import {
   Text,
   SafeAreaView,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
 import { LinearGradient } from "expo-linear-gradient";
-
-import logo from "../../../assets/Login/clara.jpg";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import {
@@ -30,8 +27,7 @@ import {
   TextForgot,
 } from "./styles";
 import { theme } from "../../global/theme";
-import axios from "axios";
-import { loginId, postLogin, getUser } from "../../Db/axiosController";
+import { postLogin, getUser } from "../../Db/axiosController";
 
 export default function Login({ navigation }) {
   const { green, greenDark } = theme.color;
@@ -48,7 +44,7 @@ export default function Login({ navigation }) {
   function verificar(id) {
     getUser(id)
       .then((resp) => {
-        navigation.navigate("Home", { user:resp});
+        navigation.navigate("Home", { user: resp });
       })
       .catch((error) => {
         error;
@@ -59,9 +55,8 @@ export default function Login({ navigation }) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
         <StatusBar backgroundColor="transparent" style="light" translucent />
-        {/* <Content> */}
         <Wrapper>
-          <Image source={logo} />
+          <Image source={require("../../../assets/Logotipo/Logotipo.png")} />
           <Title>Login</Title>
           <Subtitle>Para entrar na sua conta!</Subtitle>
         </Wrapper>

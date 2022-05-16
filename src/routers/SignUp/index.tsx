@@ -9,7 +9,6 @@ import { useNavigation } from "@react-navigation/native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { StatusBar } from "expo-status-bar";
 
-import logo from "../../../assets/Login/clara.jpg";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { theme } from "../../global/theme";
@@ -133,7 +132,7 @@ export default function SignUp() {
             />
           </TouchableOpacity> */}
         <Wrapper>
-          <Image source={logo} />
+          <Image source={require("../../../assets/Logotipo/Logotipo.png")} />
           <Title>Cadastro</Title>
           <Subtitle>Crie sua conta rápido e fácil!</Subtitle>
         </Wrapper>

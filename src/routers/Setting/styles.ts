@@ -1,7 +1,7 @@
-import styled from 'styled-components/native'
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { Dimensions } from "react-native";
+import styled from "styled-components/native";
 import { theme } from "../../global/theme";
-
+import { getStatusBarHeight } from "react-native-status-bar-height";
 
 export const Container = styled.View`
   padding-left: 30px;
@@ -9,12 +9,22 @@ export const Container = styled.View`
   flex-direction: row;
   padding-top: ${getStatusBarHeight() + 20};
 `;
+const screenWidth = Dimensions.get("window").width;
 
 export const Image = styled.Image.attrs({
-  resizeMode: "stretch",
+  resizeMode: "center",
 })`
-  width: 35%;
-  height: 115px;
+  height: 100%;
+  width: 100%;
+`;
+
+export const ImgView = styled.View`
+  height: 100px;
+  width: 90%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 20px;
+  margin-top: ${30 + getStatusBarHeight(true)}px;
 `;
 
 export const Content = styled.View`

@@ -16,7 +16,7 @@ async function postCadastro(props: any) {
   try {
     // const end = {bairro, uf, localidade, logadouro, cep}
     getCep(props.cep);
-    // console.log(end)
+
     const dados = {
       login: props.usuario,
       email: props.email,
@@ -24,35 +24,37 @@ async function postCadastro(props: any) {
       end: end,
       senha: props.senha,
     };
+    await axios.post(url + "user/cadastro", dados);
 
-    await axios.post(url + "user/cadastro", dados).then((resp) => {
-      resp.data;
-    });
+    // .then((resp) => {
+
+    //   resp.data;
+
+    // });
   } catch (err) {
     console.log(err);
   }
+  // console.log(end)
 }
 
 async function getCep(cep: String) {
-  let err = true;
   await axios
     .get("https://viacep.com.br/ws/" + cep + "/json/")
     .then((resp) => {
       if (!resp.data.erro) {
-        const enderec = {
+        const endereco = {
           bairro: resp.data.bairro,
           cep: resp.data.cep,
           logradouro: resp.data.logradouro,
           localidade: resp.data.localidade,
           uf: resp.data.uf,
         };
-        end = enderec;
+        end = endereco;
       }
     })
     .catch((error) => {
       error.message;
     });
-  return err;
 }
 
 async function postLogin(email: String, senha: String) {
@@ -78,9 +80,9 @@ async function postLogin(email: String, senha: String) {
 
 async function getUser(id: number) {
   const lista = await axios.get(url + "login/" + id).then((resp) => {
-    return resp.data
+    return resp.data;
   });
-  return lista
+  return lista;
 
   // console.log(lista.data);
 }

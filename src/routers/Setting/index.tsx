@@ -1,6 +1,5 @@
 import React from 'react'
 import { Keyboard, ScrollView, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
-
 import { 
   Image,
   Container,
@@ -12,8 +11,8 @@ import {
   TextEditPhoto
 } from './styles'
 import { Background } from '../../components/Background'
-import logo from "../../../assets/Login/clara.jpg";
-import avatar from "../../../assets/Avatar/avatarStandard.jpg";
+// import logo from "../../../assets/Login/clara.jpg";
+// import avatar from "../../../assets/Avatar/avatarStandard.jpg";
 import { InputRegister } from '../../components/InputRegister';
 import { theme } from '../../global/theme';
 import { Button } from '../../components/Button';
@@ -25,7 +24,7 @@ export default function Setting() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>      
       <Background>        
         <Container>
-          <Image source={logo} />
+          {/* <Image source={logo} /> */}
         </Container>          
 
         <Content>
@@ -43,7 +42,7 @@ export default function Setting() {
                   marginTop: 12                
                 }}
             >
-              <Avatar source={avatar}/>
+              {/* <Avatar source={avatar}/> */}
               <TextEditPhoto>
                 Alterar foto do perfil
               </TextEditPhoto>
