@@ -1,10 +1,14 @@
-import { LinearGradient } from "expo-linear-gradient";
-import { Dimensions, StyleSheet } from "react-native";
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import styled from 'styled-components/native'
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { theme } from "../../global/theme";
 
-const screenWidth = Dimensions.get('window').width;
+
+export const Container = styled.View`
+  padding-left: 30px;
+  width: 100%;
+  flex-direction: row;
+  padding-top: ${getStatusBarHeight() + 20};
+`;
 
 export const Image = styled.Image.attrs({
   resizeMode: "stretch",
@@ -13,69 +17,42 @@ export const Image = styled.Image.attrs({
   height: 115px;
 `;
 
-export const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 30,   
-  },
+export const Content = styled.View`
+  flex: 1; 
+  padding-top: 15px;
+  background-color: ${theme.color.white};
+  border-top-right-radius: 16px;
+  border-top-left-radius: 16px;
+  margin-top: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+`;
 
-  header: {
-    width: '100%',
-    flexDirection: 'row',
-    marginTop: getStatusBarHeight() + 10,
-  },
+export const Wrapper = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+`;
 
-  content: {
-    flex: 1,
-    paddingTop: 15,
-    paddingLeft: 30,
-    backgroundColor: theme.color.white,    
-    borderTopRightRadius: 16,
-    borderTopLeftRadius: 16,
-    marginTop: 16,
-  },
+export const Avatar = styled.Image`
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+`;
 
-  buttonRegisterContainer: {
-    position: 'absolute',
-    alignSelf: 'flex-end',
-    bottom: 80,
-    right: 30,
-  }, 
-   
-  buttonRegister: {
-    padding: 18,
-    borderRadius: 35,
-    borderStyle: 'solid',
-    // paddingVertical: 6,
-    // width: 250,
-    // marginBottom: 16,
-    // flexDirection: 'row',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // borderWidth: 2,
-    // borderColor: theme.color.whiteHeading,
-    shadowColor: theme.color.purpleDark,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.5,
-    elevation: 5
-  },
+export const Title = styled.Text`
+  font-size: 22px;
+  color: ${theme.color.purpleDark};
+  font-family: ${theme.fonts.poppins_700bold};
+`;
 
-  title: {
-    fontSize: 18,
-    color: theme.color.purpleDark,
-    fontFamily: theme.fonts.poppins_700bold,
-    marginBottom: 4,
-    paddingLeft: 3
-  },
+export const TextEditPhoto = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.green};
+  font-family: ${theme.fonts.poppins_500};
+  padding-top: 10px;
+`;
 
-  buttonText: {
-    fontSize: 16,
-    fontFamily: theme.fonts.poppins_500,
-    color: theme.color.whiteHeading,
-    marginTop: 2,
-  }
-})
-
+export const Row = styled.View`
+  flex-direction: row;
+`;
