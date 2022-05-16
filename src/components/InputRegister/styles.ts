@@ -4,12 +4,13 @@ import { theme } from "../../global/theme"
 export const styles = StyleSheet.create({
   form: {
     flexDirection: 'row',
-    marginBottom: 8,
-    height: 56,
-    borderWidth: 2, 
-    borderRadius: 16,
+    marginTop: 10,
+    height: 45,
+    borderWidth: 1, 
+    borderRadius: 8,
     borderColor: theme.color.gray,
     backgroundColor: theme.color.whiteHeading,
+    marginRight: 5 
   },
   
   icon: {
@@ -25,7 +26,6 @@ export const styles = StyleSheet.create({
   
   input: {
     width: '83%',
-    paddingTop: 6,
     fontSize: 16,  
     fontFamily: theme.fonts.poppins_500,
     color: theme.color.purpleDark

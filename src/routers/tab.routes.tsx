@@ -61,7 +61,7 @@ export const TabRoutes = ({ route, navigation }) => {
               <View
                 style={{
                   backgroundColor: theme.color.orangeWeak,
-                  paddingHorizontal: 14,
+                  paddingHorizontal: 20,
                   paddingVertical: 10,
                   borderRadius: 16,
                   alignItems: "center",
@@ -182,7 +182,7 @@ export const TabRoutes = ({ route, navigation }) => {
               <View
                 style={{
                   backgroundColor: theme.color.orangeWeak,
-                  paddingHorizontal: 16,
+                  paddingHorizontal: 26,
                   paddingVertical: 10,
                   borderRadius: 16,
                   alignItems: "center",

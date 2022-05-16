@@ -5,7 +5,7 @@ import { styles } from "./styles";
 import { theme } from "../../global/theme";
 
 interface InputProps extends TextInputProps {
-  iconName: React.ComponentProps<typeof Feather>["name"];
+  iconName?: React.ComponentProps<typeof Feather>["name"];
   value?: string;
 }
 

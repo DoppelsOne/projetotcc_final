@@ -15,14 +15,15 @@ export default function UserPlant({route, navigation}) {
   return (
     <SafeAreaView style={{flex: 1}}>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>      
-        <Background>        
-          <View style={styles.container}>
-            <View style={{ paddingHorizontal: 30, paddingVertical: 15 }}>
-              <View style={styles.header}>
-                {/* <Profile /> */}
-              </View>
+        <Background>       
+          <View style={{ paddingHorizontal: 30, paddingVertical: 15 }}>
+            <View style={styles.header}>
+              {/* <Profile 
+                login={log}
+                avat={data}
+              /> */}
             </View>
-          </View> 
+          </View>
           
           <View style={styles.content}>
 
