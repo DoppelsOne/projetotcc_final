@@ -7,11 +7,6 @@ import { theme } from "../../global/theme";
 const screenWidth = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
-  container: {
-    // paddingHorizontal: 30,
-    // width: `${screenWidth/1.2}px`    
-  },
-
   header: {
     width: '100%',
     flexDirection: 'row',

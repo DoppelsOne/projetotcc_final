@@ -5,9 +5,9 @@ export const styles = StyleSheet.create({
   form: {
     flexDirection: 'row',
     marginTop: 10,
-    height: 50,
-    borderWidth: 2, 
-    borderRadius: 16,
+    height: 45,
+    borderWidth: 1, 
+    borderRadius: 8,
     borderColor: theme.color.gray,
     backgroundColor: theme.color.whiteHeading,
     marginRight: 5 
