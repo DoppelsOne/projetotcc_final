@@ -7,6 +7,7 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 export const Container = styled.View`
   flex: 1;
   align-items: center;
+  
 `;
 
 export const Image = styled.Image.attrs({
@@ -26,14 +27,15 @@ export const ImgView = styled.View`
 `;
 
 export const Content = styled.View`
-  flex: 1; 
+  flex: 1;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
   padding-top: 15px;
   background-color: ${theme.color.white};
-  border-top-right-radius: 16px;
-  border-top-left-radius: 16px;
+  border-radius: 16px;
   margin-top: 16px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px;
 `;
 
 export const AvatarView = styled.View`
@@ -60,10 +62,6 @@ export const TextEditPhoto = styled.Text`
   color: ${theme.color.green};
   font-family: ${theme.fonts.poppins_500};
   padding-top: 10px;
-`;
-
-export const Row = styled.View`
-  flex-direction: row;
 `;
 
 // export const styles = StyleSheet.create({

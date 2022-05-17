@@ -35,13 +35,13 @@ export const Image = styled.Image.attrs({
 
 export const Title = styled.Text`
   font-size: 30px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_700bold};
 `;
 
 export const Subtitle = styled.Text`
   font-size: 18px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_400};
 `;
 
@@ -65,7 +65,7 @@ export const Content = styled.View`
 
 export const TextForgot = styled.Text`
   font-size: 16px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_400};  
 `;
 
@@ -81,6 +81,6 @@ width: 100%;
 margin: 10px;
 text-align: center;
   font-size: 16px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_500};  
 `;
