@@ -18,12 +18,9 @@ import {
   Image,
   Avatar,
   Title,
-  Row,
   TextEditPhoto,
   ImgView,
   AvatarView,
-  Viewteste,
-  Textteste,
 } from "./styles";
 
 export default function Setting({ route, navegation }) {
