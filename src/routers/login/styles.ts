@@ -38,16 +38,14 @@ export const Image = styled.Image.attrs({
 
 export const Title = styled.Text`
   font-size: 30px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_700bold};
-  text-align: left;
-  margin-bottom: -10px;
-  margin-top: 10px;
+
 `;
 
 export const Subtitle = styled.Text`
   font-size: 18px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   text-align: left;
   margin-bottom: 10px;
   font-family: ${theme.fonts.poppins_400};
@@ -55,7 +53,7 @@ export const Subtitle = styled.Text`
 
 export const Or = styled.Text`
   font-size: 16px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   text-align: center;
   font-family: ${theme.fonts.poppins_400};
 
@@ -74,7 +72,7 @@ export const Or = styled.Text`
 export const ButtonFooter = styled.TouchableOpacity``;
 export const TextForgot = styled.Text`
   font-size: 16px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_400};  
 `;
 
@@ -88,6 +86,6 @@ export const ContainerFooter = styled.View`
 
 export const TextFooter = styled.Text`
   font-size: 16px;
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_500};  
 `;

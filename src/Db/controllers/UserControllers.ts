@@ -101,20 +101,3 @@ export async function loginUser(req: any, res: any) {
   }
 }
 
-// export async function listUser(req: any, res: any) {
-//   const { login } = req.params;
-
-//   if (login == null) {
-//     login = "";
-//   }
-//   // console.log(login)
-//   const userExists = await prisma.usuario.findMany({
-//     where: { login: { contains: `${login}` } },
-//   });
-
-//   if (userExists) {
-//     console.log(userExists);
-//   } else {
-//     return res.json(userExists);
-//   }
-// }

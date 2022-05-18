@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Omni",
+    "workbench.colorTheme": "Dracula",
     "cSpell.enableFiletypes": [
         "!typescriptreact"
     ],

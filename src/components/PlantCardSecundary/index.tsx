@@ -59,7 +59,7 @@ export function PlantCardSecundary({...rest}) {
       onEndReachedThreshold={0.1}
       data={plants}
       renderItem={renderItem}
-      keyExtractor={(item) => String(item.id)}
+      keyExtractor={(item) => String(item.id.toString())}
       {...rest}
     />
   )

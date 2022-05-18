@@ -1,5 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, StyleSheet } from "react-native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 import styled from "styled-components/native";
 import { theme } from "../../global/theme";
 
@@ -11,23 +12,23 @@ export const Container = styled(LinearGradient).attrs({
   end: { x: 1, y: 1 },
 })`
   flex: 1;
-
-`
+  padding-top: ${30 + getStatusBarHeight(true)}px;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const Content = styled.View`
   flex: 1;
+  align-items: center;
+  width: 100%;
   background-color: ${theme.color.white};
   height: 100%;
-  padding: 30px;
-  border-top-right-radius: 16px;
-  border-top-left-radius: 16px;
+  padding: 10px;
+  border-top-left-radius:16px;
+  border-top-right-radius:16px;
+  margin-top: 10px;
 `
 
-export const ContainerTitle = styled.View`
-  /* width: ${screenWidth/1.2}px; */
-  padding-left: 20px;
-  padding-right: 20px;
-`
 
 export const Wrapper = styled.View`
   width: ${screenWidth/1.2}px;
@@ -36,17 +37,14 @@ export const Wrapper = styled.View`
 
 export const Title = styled.Text`
   font-family: ${theme.fonts.poppins_700bold};
-  color: ${theme.color.purpleDark}
+  color: ${theme.color.purpleDark};
   font-size: 30px;
-  margin-top: 50px;
 `
 
 export const Subtitle = styled.Text`
   font-family: ${theme.fonts.poppins_500};
-  color: ${theme.color.whiteHeading}
+  color: ${theme.color.whiteHeading};
   font-size: 16px;
-  margin-bottom: 20px;
-  margin-top: -10px;
 `
 
 export const DescriptionInputContainer = styled.View`
@@ -65,7 +63,7 @@ export const CheckBoxContainer = styled.View`
   margin-top: 5px;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin-bottom: 30px;
 `
 export const CheckBoxCategotyContainer = styled.View`

@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native"
 import { theme } from "../../global/theme"
+import { Background } from './../Background/index';
 
 export const styles = StyleSheet.create({
   form: {
@@ -25,9 +26,9 @@ export const styles = StyleSheet.create({
   },
   
   input: {
-    width: '83%',
+    width: '100%',
     fontSize: 16,  
     fontFamily: theme.fonts.poppins_500,
-    color: theme.color.purpleDark
+    color: theme.color.purpleDark,
   },
 })

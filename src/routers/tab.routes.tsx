@@ -16,8 +16,6 @@ const Tab = createBottomTabNavigator();
 export const TabRoutes = ({ route, navigation }) => {
   const user = route.params.user;
 
-
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -91,10 +89,10 @@ export const TabRoutes = ({ route, navigation }) => {
             ),
         }}
       />
-
       <Tab.Screen
         name="UserPlant"
         component={UserPlant}
+        initialParams={{ user: user }}
         options={{
           headerShown: false,
           tabBarIcon: ({ size, focused }) =>
@@ -174,7 +172,7 @@ export const TabRoutes = ({ route, navigation }) => {
       <Tab.Screen
         name="Settings"
         component={Setting}
-        initialParams={{user: user}}
+        initialParams={{ user: user }}
         options={{
           headerShown: false,
           tabBarIcon: ({ size, focused }) =>
