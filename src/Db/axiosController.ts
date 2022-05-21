@@ -98,7 +98,7 @@ async function getPlants() {
 }
 
 async function getPlant(id: number) {
-  console.log(id)
+  console.log(id);
   const plant = await axios.get(url + "plant/" + id).then((resp) => {
     return resp.data;
   });
@@ -122,7 +122,37 @@ async function getPostsUser(id: number) {
   return lista;
 }
 
+async function postPost(
+  idUser: number,
+  plantId: number,
+  plantName: string,
+  image: string,
+  valor: number,
+  troca: boolean
+) {
+  const dados = {
+    idUser: idUser,
+    plantId: plantId,
+    plantName: plantName,
+    image: image,
+    valor: valor,
+    troca: troca,
+  };
+
+  const data = await axios
+    .post(url + "post/create", dados)
+    .then((resp) => {
+      return resp.data;
+    })
+    .catch((err) => {
+      return err.message;
+    });
+
+  return data;
+}
+
 export {
+  postPost,
   getPlant,
   getPostsUser,
   getPosts,

@@ -6,8 +6,7 @@ export async function getPosts(req: any, res: any) {
   try {
     const postMany = await prisma.postagem.findMany({
       include: {
-        Imagem: {},
-        Usuario: {},
+        Usuario: { include: { Endereco: {} } },
         Planta: {},
       },
     });
@@ -26,11 +25,25 @@ export async function getPostsUser(req: any, res: any) {
         },
       },
       include: {
-        Imagem: {},
         Planta: {},
       },
     });
     console.log(postMany);
     res.json(postMany);
   } catch (error) {}
+}
+
+export async function createPost(req: any, res: any) {
+  const { idUser, plantId, plantName, image, valor, troca } = req.body;
+  const createPost = await prisma.postagem.create({
+    data: {
+      autorId: Number(idUser),
+      plantaId: Number(plantId),
+      troca: Boolean(troca),
+      valor: Number(valor),
+      image: image,
+      title: plantName,
+    },
+  });
+  return res.json(createPost);
 }

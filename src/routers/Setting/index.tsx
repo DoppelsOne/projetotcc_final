@@ -186,7 +186,8 @@ export default function Setting({ route, navegation }) {
       <Modalize 
         ref={modalizeRef} 
         snapPoint={570} 
-        withHandle={false}
+        withHandle={true}
+        tapGestureEnabled={true}
       >
         <View
           style={{
@@ -290,7 +291,7 @@ export default function Setting({ route, navegation }) {
               marginTop: 20
             }}
           >
-            <Button onPress={() => {}} title='Sair' style={{ width: '45%', marginRight: 10 }} />
+            <Button onPress={() => {navigation.navigate("Login")}} title='Sair' style={{ width: '45%', marginRight: 10 }} />
             <Button onPress={() => {modalizeRefTwo.current?.close()}} title='Cancelar' style={{ width: '45%'}}/>
           </View>
         </View>

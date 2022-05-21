@@ -9,7 +9,7 @@ datasource db {
 
 model Planta {
   id        Int                   @id @default(autoincrement())
-  name      String
+  name      String                @unique
   descricao String?
   Postagem  Postagem[]
   Categoria CategoriaController[]
@@ -25,11 +25,11 @@ model Postagem {
   valor     Float
   autorId   Int
   plantaId  Int
-  imagemId  Int
+  // imagemId  Int
   Usuario   Usuario  @relation(fields: [autorId], references: [id])
   Planta    Planta   @relation(fields: [plantaId], references: [id])
 
-  Imagem Imagem[]
+  // Imagem Imagem[]
 }
 
 model Usuario {
@@ -54,12 +54,12 @@ model U_endereco {
   Usuario  Usuario[]
 }
 
-model Imagem {
-  id         Int      @id @default(autoincrement())
-  uri        String
-  Imagem     Postagem @relation(references: [id], fields: [postagemId])
-  postagemId Int
-}
+// model Imagem {
+//   id         Int      @id @default(autoincrement())
+//   uri        String
+//   Imagem     Postagem @relation(references: [id], fields: [postagemId])
+//   postagemId Int
+// }
 
 model Categorias {
   id        Int                   @id @default(autoincrement())

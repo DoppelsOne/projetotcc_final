@@ -46,7 +46,7 @@ export default function UserPlant({ route, navigation }) {
           activeOpacity={0.7}
           style={styles.buttonRegisterContainer}
           onPress={()=> {getPlants().then((resp) => {
-            navigation.navigate("RegisterPlant", { plant: resp });
+            navigation.navigate("RegisterPlant", { plant: resp, user:user });
           })}}
         >
           <LinearGradient

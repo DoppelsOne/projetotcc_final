@@ -107,6 +107,20 @@ export const CheckBoxText = styled.Text`
   font-size: 16px;
 `;
 
+export const LayoutImage = styled.View`
+  height: 130px;
+  margin-top: 10px;
+  
+ 
+`;
+export const ImagePlant = styled.Image.attrs({
+  resizeMode: "contain",
+})`
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+`;
+
 export const styles = StyleSheet.create({
   DescriptionIcon: {
     fontSize: 28,

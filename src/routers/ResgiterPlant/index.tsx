@@ -12,6 +12,7 @@ import {
   Modal,
   FlatList,
   StyleSheet,
+  Alert,
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Feather } from "@expo/vector-icons";
@@ -36,6 +37,8 @@ import {
   ContainerTitle,
   Viewb,
   Button2,
+  LayoutImage,
+  ImagePlant,
 } from "./styles";
 import { InputRegister } from "../../components/InputRegister";
 import { Button } from "../../components/Button";
@@ -43,10 +46,11 @@ import { InputDescription } from "../../components/InputDescription";
 import { convertToObject } from "typescript";
 import { Background } from "./../../components/Background/index";
 import * as ImagePicker from "expo-image-picker";
-import { getPlant } from "../../Db/axiosController";
+import { getPlant, postPost } from "../../Db/axiosController";
 
 export default function RegisterPlant({ route, navigation }) {
   let plant = route.params.plant;
+  let user = route.params.user;
 
   const [checked, setChecked] = useState("first");
   const [checkedCategory, setCheckedCategory] = useState("first");
@@ -62,12 +66,11 @@ export default function RegisterPlant({ route, navigation }) {
     navigation.goBack();
   }
   const [selectedPlant, setSelectPlant] = useState({});
-  function pushDataPlant(id:number) {
+  function pushDataPlant(id: number) {
     getPlant(id)
       .then((resp) => {
         // setSelectPlant(resp);
-        console.log(resp);
-        setSelectPlant(resp)
+        setSelectPlant(resp);
       })
       .catch((error) => {
         error;
@@ -79,7 +82,7 @@ export default function RegisterPlant({ route, navigation }) {
 
   //Dados Modal
   const [visible, setVisible] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState("");
   const DATA = plant;
   const [itemName, setItemName] = useState("");
 
@@ -113,7 +116,6 @@ export default function RegisterPlant({ route, navigation }) {
   const [image, setImage] = useState(null);
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -128,13 +130,35 @@ export default function RegisterPlant({ route, navigation }) {
     }
   };
 
+  // Postdata
+  function postData(
+    idUser: number,
+    plantId: number,
+    plantName: string,
+    image: string,
+    valor: number,
+    troca: boolean
+  ) {
+    if (valor == null) {
+      Alert.alert("Valor incorreto ou inválido");
+    } else if (plantId == null) {
+      Alert.alert("Planta não selecionada");
+    } else if (image == null) {
+      Alert.alert("Imagem não selecionada");
+    } else{
+      const val = valor.toString().replace(",",".")
+      console.log(idUser, plantId, plantName, image, valor, troca)
+      postPost(idUser, plantId, plantName, image, Number(val), troca);
+    }
+  }
+
   return (
     <Container>
       <StatusBar backgroundColor="transparent" style="dark" translucent />
 
-      <Title>Cadastre sua planta! {selectedPlant.name}</Title>
+      <Title>Cadastre sua planta!</Title>
       <Subtitle>
-        Preenchendo os campos com o máximo {"\n"}de detalhes possíveis{" "}
+        Preenchendo os campos com o máximo {"\n"}de detalhes possíveis
       </Subtitle>
 
       <Content>
@@ -184,10 +208,15 @@ export default function RegisterPlant({ route, navigation }) {
               }}
             />
 
+            <LayoutImage>
+              <ImagePlant source={{ uri: image }}></ImagePlant>
+            </LayoutImage>
+
             <InputRegister
               placeholder="R$ Valor sugerido"
               value={price}
-              onChangeText={setPrice}
+              keyboardType="numeric"
+              onChangeText={(prop) => setPrice(prop)}
             />
 
             <CheckBoxContainer>
@@ -203,7 +232,7 @@ export default function RegisterPlant({ route, navigation }) {
                 value={isEnabled}
               />
             </CheckBoxContainer>
-            <Button title="Cadastrar!" />
+            <Button title="Cadastrar!" onPress={() => {postData(user.id,selectedId,itemName,image,price,isEnabled)}} />
           </Wrapper>
         </ScrollView>
       </Content>
