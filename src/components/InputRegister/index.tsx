@@ -39,7 +39,7 @@ export function InputRegister({ iconName, value, ...rest }: InputProps) {
           ]}
         />                   
         <TextInput
-          placeholderTextColor={theme.color.gray}
+          placeholderTextColor={theme.color.whiteHeading}
           style={styles.input}
           onBlur={handleInputBlur}
           onFocus={handleInputFocus}

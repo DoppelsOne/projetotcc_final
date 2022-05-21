@@ -21,33 +21,40 @@ export const ImgView = styled.View`
   height: 100px;
   width: 90%;
   padding: 10px;
-  background-color: ${theme.color.whiteHeading};
+  /* background-color: ${theme.color.whiteHeading}; */
   border-radius: 20px;
   margin-top: ${30 + getStatusBarHeight(true)}px;
+`;
+
+export const Wrap = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const Content = styled.View`
   flex: 1;
   width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
   padding-top: 15px;
-  background-color: ${theme.color.white};
+  /* background-color: ${theme.color.whiteHeading}; */
   border-radius: 16px;
   margin-top: 16px;
   padding: 20px;
 `;
 
 export const AvatarView = styled.View`
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50px;
-  background-color: white;
+  background-color: ${theme.color.greenLight}
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Avatar = styled.Image`
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   border-radius: 50px;
 `;
 
@@ -59,9 +66,32 @@ export const Title = styled.Text`
 
 export const TextEditPhoto = styled.Text`
   font-size: 16px;
-  color: ${theme.color.green};
+  color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_500};
-  padding-top: 10px;
+  margin-top: 10px;
+`;
+
+export const Password = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.whiteHeading};
+  font-family: ${theme.fonts.poppins_500};
+  /* text-align: left; */
+  padding-left: 5px;
+`;
+
+export const TextchangePassword = styled.Text`
+  font-size: 15px;
+  color: ${theme.color.whiteHeading};
+  font-family: ${theme.fonts.poppins_400};
+  /* text-align: right; */
+  padding-right: 5px;
+`;
+
+export const TextDesconect = styled.Text`
+  font-size: 16px;
+  color: ${theme.color.whiteHeading};
+  font-family: ${theme.fonts.poppins_500};
+  /* padding-top: 10px; */
 `;
 
 // export const styles = StyleSheet.create({
