@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   
   icon: {
-    fontSize: 28,    
+    fontSize: 22,    
     borderTopLeftRadius: 8,
     borderBottomLeftRadius: 8,
     color: theme.color.whiteHeading,

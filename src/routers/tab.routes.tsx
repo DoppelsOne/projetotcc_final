@@ -23,7 +23,7 @@ export const TabRoutes = ({ route, navigation }) => {
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",
-          height: 70,
+          height: 55,
           paddingHorizontal: 8,
           backgroundColor: theme.color.whiteHeading,
           // bottom: 10,
@@ -59,8 +59,8 @@ export const TabRoutes = ({ route, navigation }) => {
             focused ? (
               <View
                 style={{
-                  backgroundColor: theme.color.orangeWeak,
-                  paddingHorizontal: 20,
+                  // backgroundColor: theme.color.orangeWeak,
+                  // paddingHorizontal: 20,
                   paddingVertical: 10,
                   borderRadius: 16,
                   alignItems: "center",
@@ -100,8 +100,8 @@ export const TabRoutes = ({ route, navigation }) => {
             focused ? (
               <View
                 style={{
-                  backgroundColor: theme.color.orangeWeak,
-                  paddingHorizontal: 14,
+                  // backgroundColor: theme.color.orangeWeak,
+                  // paddingHorizontal: 14,
                   paddingVertical: 10,
                   borderRadius: 16,
                   alignItems: "center",
@@ -128,7 +128,7 @@ export const TabRoutes = ({ route, navigation }) => {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Notifications"
         component={UserPlant}
         options={{
@@ -168,7 +168,7 @@ export const TabRoutes = ({ route, navigation }) => {
               />
             ),
         }}
-      />
+      /> */}
 
       <Tab.Screen
         name="Settings"
@@ -180,8 +180,8 @@ export const TabRoutes = ({ route, navigation }) => {
             focused ? (
               <View
                 style={{
-                  backgroundColor: theme.color.orangeWeak,
-                  paddingHorizontal: 26,
+                  // backgroundColor: theme.color.orangeWeak,
+                  // paddingHorizontal: 26,
                   paddingVertical: 10,
                   borderRadius: 16,
                   alignItems: "center",

@@ -9,26 +9,27 @@ export const styles = StyleSheet.create({
     height: 45,
     borderWidth: 1, 
     borderRadius: 8,
-    borderColor: theme.color.gray,
-    backgroundColor: theme.color.whiteHeading,
-    marginRight: 5 
+    borderColor: theme.color.purpleDark,
+    backgroundColor: theme.color.overlay,
+    marginRight: 5,
+    width: '100%',
   },
   
-  icon: {
-    fontSize: 28,    
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-    color: theme.color.gray,
-    paddingHorizontal: 10,
-    paddingTop: 10,
-    marginRight: 3,
-
-  },
+  // icon: {
+  //   fontSize: 28,    
+  //   borderTopLeftRadius: 8,
+  //   borderBottomLeftRadius: 8,
+  //   color: theme.color.gray,
+  //   paddingHorizontal: 10,
+  //   paddingTop: 10,
+  //   marginRight: 3,
+  // },
   
   input: {
     width: '100%',
     fontSize: 16,  
     fontFamily: theme.fonts.poppins_500,
     color: theme.color.purpleDark,
+    paddingLeft: 10
   },
 })
