@@ -39,7 +39,6 @@ export const Content = styled.View`
   padding-top: 15px;
   /* background-color: ${theme.color.whiteHeading}; */
   border-radius: 16px;
-  margin-top: 16px;
   padding: 20px;
 `;
 
