@@ -11,10 +11,12 @@ let end = {};
 let error: boolean = false;
 let x: any;
 
+// #############Cadastro######################
+
 async function postCadastro(props: any) {
   try {
     // const end = {bairro, uf, localidade, logadouro, cep}
-    getCep(props.cep); 
+    getCep(props.cep);
 
     const dados = {
       login: props.usuario,
@@ -55,7 +57,7 @@ async function getCep(cep: String) {
       error.message;
     });
 }
-
+// #############Login######################
 async function postLogin(email: String, senha: String) {
   // const end = {bairro, uf, localidade, logadouro, cep}
 
@@ -73,6 +75,7 @@ async function postLogin(email: String, senha: String) {
       .catch((err) => {
         return err.message;
       });
+
     return id;
   }
 }
@@ -81,9 +84,42 @@ async function getUser(id: number) {
   const lista = await axios.get(url + "login/" + id).then((resp) => {
     return resp.data;
   });
-  return lista;
 
-  // console.log(lista.data);
+  return lista;
 }
 
-export { postCadastro, getCep, postLogin, getUser };
+// #############Planta######################
+async function getPlant() {
+  const plants = await axios.get(url + "plant/").then((resp) => {
+    return resp.data;
+  });
+
+  return plants;
+}
+
+// #############Postagem######################
+async function getPosts() {
+  const posts = await axios.get(url + "post/").then((resp) => {
+    return resp.data;
+  });
+
+  return posts;
+}
+
+async function getPostsUser(id: number) {
+  const lista = await axios.get(url + "post/" + id).then((resp) => {
+    return resp.data;
+  });
+
+  return lista;
+}
+
+export {
+  getPostsUser,
+  getPosts,
+  getPlant,
+  postCadastro,
+  getCep,
+  postLogin,
+  getUser,
+};

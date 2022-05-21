@@ -7,7 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { Home, UserPlant, Setting } from "../../src/routers/controller";
 import { theme } from "../global/theme";
 import { Text, View } from "react-native";
-import { getUser } from "../Db/axiosController";
+import { getPlant } from "../Db/axiosController";
 
 import { transparent } from "react-native-paper/lib/typescript/styles/colors";
 
@@ -16,6 +16,7 @@ const Tab = createBottomTabNavigator();
 export const TabRoutes = ({ route, navigation }) => {
   const user = route.params.user;
 
+  
   return (
     <Tab.Navigator
       screenOptions={{
