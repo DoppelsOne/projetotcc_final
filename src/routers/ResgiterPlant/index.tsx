@@ -42,8 +42,8 @@ import { Button } from "../../components/Button";
 import { InputDescription } from "../../components/InputDescription";
 import { convertToObject } from "typescript";
 import { Background } from "./../../components/Background/index";
-import * as ImagePicker from 'expo-image-picker';
-
+import * as ImagePicker from "expo-image-picker";
+import { getPlant } from "../../Db/axiosController";
 
 export default function RegisterPlant({ route, navigation }) {
   let plant = route.params.plant;
@@ -60,6 +60,18 @@ export default function RegisterPlant({ route, navigation }) {
 
   function handleGoBack() {
     navigation.goBack();
+  }
+  const [selectedPlant, setSelectPlant] = useState({});
+  function pushDataPlant(id:number) {
+    getPlant(id)
+      .then((resp) => {
+        // setSelectPlant(resp);
+        console.log(resp);
+        setSelectPlant(resp)
+      })
+      .catch((error) => {
+        error;
+      });
   }
 
   const [isEnabled, setIsEnabled] = useState(false);
@@ -89,6 +101,7 @@ export default function RegisterPlant({ route, navigation }) {
           setSelectedId(item.id),
           setVisible(false),
           setItemName(item.name),
+          pushDataPlant(item.id),
         ]}
         backgroundColor={{ backgroundColor }}
         textColor={{ color }}
@@ -102,7 +115,7 @@ export default function RegisterPlant({ route, navigation }) {
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
@@ -119,9 +132,9 @@ export default function RegisterPlant({ route, navigation }) {
     <Container>
       <StatusBar backgroundColor="transparent" style="dark" translucent />
 
-      <Title>Cadastre sua planta!</Title>
+      <Title>Cadastre sua planta! {selectedPlant.name}</Title>
       <Subtitle>
-        Preenchendo os campos com o máximo {"\n"}de detalhes possíveis
+        Preenchendo os campos com o máximo {"\n"}de detalhes possíveis{" "}
       </Subtitle>
 
       <Content>
@@ -164,7 +177,7 @@ export default function RegisterPlant({ route, navigation }) {
             />
 
             <Button
-              title={itemName ? itemName : "Selecione uma imagem"}
+              title={"Selecione uma imagem"}
               color="."
               onPress={() => {
                 pickImage();

@@ -4,8 +4,8 @@ import { Alert } from "react-native";
 import { json } from "express";
 
 //url padrão
-const url = "http://10.0.2.2:3333/";
-// const url = "http://192.168.10.11:3333/";
+// const url = "http://10.0.2.2:3333/";
+const url = "http://192.168.10.11:3333/";
 
 let end = {};
 let error: boolean = false;
@@ -89,12 +89,20 @@ async function getUser(id: number) {
 }
 
 // #############Planta######################
-async function getPlant() {
+async function getPlants() {
   const plants = await axios.get(url + "plant/").then((resp) => {
     return resp.data;
   });
 
   return plants;
+}
+
+async function getPlant(id: number) {
+  console.log(id)
+  const plant = await axios.get(url + "plant/" + id).then((resp) => {
+    return resp.data;
+  });
+  return plant;
 }
 
 // #############Postagem######################
@@ -115,9 +123,10 @@ async function getPostsUser(id: number) {
 }
 
 export {
+  getPlant,
   getPostsUser,
   getPosts,
-  getPlant,
+  getPlants,
   postCadastro,
   getCep,
   postLogin,

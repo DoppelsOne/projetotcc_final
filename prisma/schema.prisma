@@ -20,7 +20,6 @@ model Postagem {
   createdAt DateTime @default(now())
   title     String?
   subtitle  String?
-  value     Float
   troca     Boolean  @default(true)
   image     String?
   valor     Float
