@@ -6,9 +6,9 @@ import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
-
-import expo.modules.ReactActivityDelegateWrapper;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+import expo.modules.ReactActivityDelegateWrapper;
+
 
 public class MainActivity extends ReactActivity {
   @Override
@@ -28,6 +28,7 @@ public class MainActivity extends ReactActivity {
   protected String getMainComponentName() {
     return "main";
   }
+
 
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
@@ -62,15 +63,7 @@ public class MainActivity extends ReactActivity {
   
 }
 
-@Override
-protected ReactActivityDelegate createReactActivityDelegate() {
-  return new ReactActivityDelegate(this, getMainComponentName()) {
-    @Override
-    protected ReactRootView createRootView() {
-     return new RNGestureHandlerEnabledRootView(MainActivity.this);
-    }
-  };
-}
+
 
 
 }

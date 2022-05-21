@@ -9,6 +9,9 @@ import {
   TouchableWithoutFeedback,
   View,
   Switch,
+  Modal,
+  FlatList,
+  StyleSheet,
 } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Feather } from "@expo/vector-icons";
@@ -31,20 +34,19 @@ import {
   CheckBoxCategotyContent,
   styles,
   ContainerTitle,
+  Viewb,
+  Button2,
 } from "./styles";
 import { InputRegister } from "../../components/InputRegister";
 import { Button } from "../../components/Button";
 import { InputDescription } from "../../components/InputDescription";
-import { Modalize } from "react-native-modalize";
+import { convertToObject } from "typescript";
+import { Background } from "./../../components/Background/index";
+import * as ImagePicker from 'expo-image-picker';
 
-export default function RegisterPlant() {
 
-  const modalizeRef = useRef<Modalize>(null);
-
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
-
+export default function RegisterPlant({ route, navigation }) {
+  let plant = route.params.plant;
 
   const [checked, setChecked] = useState("first");
   const [checkedCategory, setCheckedCategory] = useState("first");
@@ -56,61 +58,142 @@ export default function RegisterPlant() {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
+  function handleGoBack() {
+    navigation.goBack();
+  }
 
-    const navigation = useNavigation();
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
-    function handleGoBack() {
-      navigation.goBack();
-    }
+  //Dados Modal
+  const [visible, setVisible] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const DATA = plant;
+  const [itemName, setItemName] = useState("");
 
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+  const Item = ({ item, onPress, backgroundColor, textColor }) => (
+    <Viewb style={[styles.item, backgroundColor]}>
+      <Button2 onPress={onPress} style={[styles.title, textColor]}>
+        {item.name}
+      </Button2>
+    </Viewb>
+  );
+  const renderItem = ({ item }) => {
+    const backgroundColor = item.id === selectedId ? "#1b4e2c" : "#ecffdc";
+    const color = item.id === selectedId ? "white" : "black";
 
     return (
-      <>
-        <Container>
-          <StatusBar backgroundColor="transparent" style="dark" translucent />
-
-          <Title>Cadastre sua planta!</Title>
-          <Subtitle>
-            Preenchendo os campos com o máximo {"\n"}de detalhes possíveis
-          </Subtitle>
-
-          <Content>
-            <ScrollView showsVerticalScrollIndicator={false}>
-              <Wrapper>
-                <InputRegister
-                  placeholder="Qual o nome da sua planta?"
-                  value={name}
-                  onChangeText={setName}
-                />
-                <InputRegister
-                  placeholder="R$ Valor sugerido"
-                  value={price}
-                  onChangeText={setPrice}
-                />
-
-                <CheckBoxContainer>
-                  <TextSwap>Disponível para troca?</TextSwap>
-                  <Switch
-                    trackColor={{
-                      false: "#767577",
-                      true: theme.color.greenLight,
-                    }}
-                    thumbColor={isEnabled ? "#cbe6de" : "#cbe6de"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={toggleSwitch}
-                    value={isEnabled}
-                  />
-                </CheckBoxContainer>
-                <Button title="Cadastrar!" onPress={onOpen}></Button>
-              </Wrapper>
-            </ScrollView>
-          </Content>
-        </Container>
-
-        <Modalize ref={modalizeRef} snapPoint={100} withHandle={true}><View><Text>Seu cu</Text></View></Modalize>
-      </>
+      <Item
+        item={item}
+        onPress={() => [
+          setSelectedId(item.id),
+          setVisible(false),
+          setItemName(item.name),
+        ]}
+        backgroundColor={{ backgroundColor }}
+        textColor={{ color }}
+      />
     );
   };
 
+  //image picker
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  return (
+    <Container>
+      <StatusBar backgroundColor="transparent" style="dark" translucent />
+
+      <Title>Cadastre sua planta!</Title>
+      <Subtitle>
+        Preenchendo os campos com o máximo {"\n"}de detalhes possíveis
+      </Subtitle>
+
+      <Content>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Wrapper>
+            <Modal animationType="slide" transparent={true} visible={visible}>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  setVisible(false);
+                }}
+              >
+                <View
+                  style={{
+                    padding: 10,
+                    margin: 10,
+                    height: 300,
+                    borderRadius: 10,
+
+                    alignItems: "center",
+                    backgroundColor: `${theme.color.white}`,
+                    opacity: 0.9,
+                  }}
+                >
+                  <FlatList
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    extraData={selectedId}
+                  />
+                </View>
+              </TouchableWithoutFeedback>
+            </Modal>
+
+            <Button
+              title={itemName ? itemName : "Escolha sua planta"}
+              color="."
+              onPress={() => {
+                setVisible(true);
+              }}
+            />
+
+            <Button
+              title={itemName ? itemName : "Selecione uma imagem"}
+              color="."
+              onPress={() => {
+                pickImage();
+              }}
+            />
+
+            <InputRegister
+              placeholder="R$ Valor sugerido"
+              value={price}
+              onChangeText={setPrice}
+            />
+
+            <CheckBoxContainer>
+              <TextSwap>Disponível para troca?</TextSwap>
+              <Switch
+                trackColor={{
+                  false: "#767577",
+                  true: theme.color.greenLight,
+                }}
+                thumbColor={isEnabled ? "#cbe6de" : "#cbe6de"}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+              />
+            </CheckBoxContainer>
+            <Button title="Cadastrar!" />
+          </Wrapper>
+        </ScrollView>
+      </Content>
+    </Container>
+  );
+}

@@ -18,8 +18,6 @@ import {
 } from "@expo-google-fonts/poppins";
 import AppLoading from "expo-app-loading";
 
-import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
-
 
 
 const Stack = createNativeStackNavigator();
@@ -71,8 +69,8 @@ export default function App () {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    
   );
-
 };
 
 

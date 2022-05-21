@@ -30,7 +30,7 @@ export default function Setting({ route, navegation }) {
         <Container>
           <ImgView>
             <Image
-              source={require("../../../assets/Logotipo/Logotipowide.png")}
+              source={require("../../../assets/Logotipo/LogotipoPlantific.png")}
             />
           </ImgView>
 

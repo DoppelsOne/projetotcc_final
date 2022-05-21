@@ -27,7 +27,7 @@ import {
   TextForgot,
 } from "./styles";
 import { theme } from "../../global/theme";
-import { postLogin, getUser } from "../../Db/axiosController";
+import { postLogin, getUser, getPlant } from "../../Db/axiosController";
 
 export default function Login({ navigation }) {
   const { green, greenDark } = theme.color;
@@ -49,6 +49,7 @@ export default function Login({ navigation }) {
       .catch((error) => {
         error;
       });
+    
   }
 
   return (
@@ -56,7 +57,7 @@ export default function Login({ navigation }) {
       <Container>
         <StatusBar backgroundColor="transparent" style="light" translucent />
         <Wrapper>
-          <Image source={require("../../../assets/Logotipo/Logotipo.png")} />
+          <Image source={require("../../../assets/Logotipo/LogotipoPlantific.png")} />
           <Title>Login</Title>
           <Subtitle>Para entrar na sua conta!</Subtitle>
         </Wrapper>

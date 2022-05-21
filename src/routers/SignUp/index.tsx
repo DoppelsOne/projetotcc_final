@@ -132,7 +132,7 @@ export default function SignUp() {
             />
           </TouchableOpacity> */}
         <Wrapper>
-          <Image source={require("../../../assets/Logotipo/Logotipo.png")} />
+          <Image source={require("../../../assets/Logotipo/LogotipoPlantific.png")} />
           <Title>Cadastro</Title>
           <Subtitle>Crie sua conta rápido e fácil!</Subtitle>
         </Wrapper>
