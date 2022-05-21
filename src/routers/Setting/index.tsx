@@ -229,7 +229,7 @@ export default function Setting({ route, navegation }) {
           >
             <TextInput 
               placeholder='Senha'
-              placeholderTextColor={theme.color.purpleDark}
+              placeholderTextColor={theme.color.gray}
               style={{
                 width: '100%',
                 fontSize: 16,
@@ -243,7 +243,7 @@ export default function Setting({ route, navegation }) {
             />
             <TextInput 
               placeholder='Confirmar senha'
-              placeholderTextColor={theme.color.purpleDark}
+              placeholderTextColor={theme.color.gray}
               style={{
                 width: '100%',
                 fontSize: 16,
