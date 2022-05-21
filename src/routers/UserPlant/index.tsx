@@ -13,6 +13,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { Background } from "../../components/Background";
 import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
+import { getPlant } from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
 
@@ -44,7 +45,9 @@ export default function UserPlant({ route, navigation }) {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.buttonRegisterContainer}
-          onPress={() => navigation.navigate("RegisterPlant")}
+          onPress={()=> {getPlant().then((resp) => {
+            navigation.navigate("RegisterPlant", { plant: resp });
+          })}}
         >
           <LinearGradient
             style={styles.buttonRegister}

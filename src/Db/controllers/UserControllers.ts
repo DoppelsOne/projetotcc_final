@@ -4,7 +4,6 @@ import { prisma } from "../../../prisma/prisma";
 export async function findUser(req: any, res: any) {
   try {
     const { id } = req.params;
-
     const userSearch = await prisma.usuario.findFirst({
       where: {
         id: Number(id),
@@ -100,4 +99,3 @@ export async function loginUser(req: any, res: any) {
     return console.log("Usuário não encontrado");
   }
 }
-
