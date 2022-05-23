@@ -22,35 +22,37 @@ export const Wrapper = styled.View`
   justify-content: center;
   width: 100%;
   padding-top: 10px;
+  flex-grow: 1;
   /* background-color: blue; */
 `;
 
 export const Image = styled.Image.attrs({
   resizeMode: "center",
 })`
-  width: 50%;
-  height: 100px;
+  width: 80%;
+  height: 115px;
 
 `;
 
 export const Title = styled.Text`
-  font-size: 30px;
+  font-size: 28px;
   color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_700bold};
+  margin-top: 10px;
 `;
 
 export const Subtitle = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_400};
 `;
 
 export const Content = styled.View`
-  flex: 1;
+  /* flex: 1; */
+  flex-grow: 4;
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
-  /* background-color: red; */
 `;
 
 // export const Button = styled.TouchableOpacity`

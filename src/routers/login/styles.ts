@@ -22,12 +22,12 @@ export const Container = styled(LinearGradient).attrs({
 //   margin-top: 20px;
 // `
 
-export const Wrapper = styled.View`
-  align-items: center;
-  width: 100%;
-  flex-grow: 4;
-  flex: 1;
-`;
+// export const Wrapper = styled.View`
+//   align-items: center;
+//   width: 100%;
+//   flex-grow: 4;
+//   flex: 1;
+// `;
 
 export const Image = styled.Image.attrs({
   resizeMode: "center",
@@ -37,17 +37,16 @@ export const Image = styled.Image.attrs({
 `;
 
 export const Title = styled.Text`
-  font-size: 30px;
+  font-size: 28px;
   color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_700bold};
+  margin-top: 15px;
 
 `;
 
 export const Subtitle = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   color: ${theme.color.whiteHeading};
-  text-align: left;
-  margin-bottom: 10px;
   font-family: ${theme.fonts.poppins_400};
 `;
 
@@ -56,6 +55,7 @@ export const Or = styled.Text`
   color: ${theme.color.whiteHeading};
   text-align: center;
   font-family: ${theme.fonts.poppins_400};
+  margin: 10px;
 
 `;
 

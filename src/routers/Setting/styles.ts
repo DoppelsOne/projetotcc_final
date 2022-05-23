@@ -6,40 +6,29 @@ import { getStatusBarHeight } from "react-native-status-bar-height";
 
 export const Container = styled.View`
   flex: 1;
-  align-items: center;
-  
+  align-items: center;  
 `;
 
-export const Image = styled.Image.attrs({
-  resizeMode: "center",
-})`
-  height: 100%;
-  width: 100%;
-`;
+// export const Image = styled.Image.attrs({
+//   resizeMode: "center",
+// })`
+//   height: 100%;
+//   width: 100%;
+// `;
 
-export const ImgView = styled.View`
-  height: 100px;
-  width: 90%;
-  padding: 10px;
-  /* background-color: ${theme.color.whiteHeading}; */
-  border-radius: 20px;
-  margin-top: ${30 + getStatusBarHeight(true)}px;
-`;
-
-export const Wrap = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
+// export const ImgView = styled.View`
+//   height: 100px;
+//   width: 90%;
+//   padding: 10px;
+//   /* background-color: ${theme.color.whiteHeading}; */
+//   border-radius: 20px;
+//   `;
 
 export const Content = styled.View`
   flex: 1;
   width: 100%;
-  /* flex-direction: row; */
-  /* flex-wrap: wrap; */
-  padding-top: 15px;
-  /* background-color: ${theme.color.whiteHeading}; */
-  border-radius: 16px;
-  padding: 20px;
+  margin-top: ${30 + getStatusBarHeight(true)}px;
+  padding: 15px;
 `;
 
 export const AvatarView = styled.View`
@@ -57,12 +46,6 @@ export const Avatar = styled.Image`
   border-radius: 50px;
 `;
 
-export const Title = styled.Text`
-  font-size: 22px;
-  color: ${theme.color.purpleDark};
-  font-family: ${theme.fonts.poppins_700bold};
-`;
-
 export const TextEditPhoto = styled.Text`
   font-size: 16px;
   color: ${theme.color.whiteHeading};
@@ -70,11 +53,15 @@ export const TextEditPhoto = styled.Text`
   margin-top: 10px;
 `;
 
+export const Wrap = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
 export const Password = styled.Text`
   font-size: 16px;
   color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_500};
-  /* text-align: left; */
   padding-left: 5px;
 `;
 

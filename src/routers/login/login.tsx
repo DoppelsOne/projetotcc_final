@@ -15,9 +15,9 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import {
   Container,
-  Content,
+  // Content,
   Image,
-  Wrapper,
+  // Wrapper,
   Title,
   ContainerFooter,
   TextFooter,
@@ -56,11 +56,11 @@ export default function Login({ navigation }) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
         <StatusBar backgroundColor="transparent" style="light" translucent />
-        <Wrapper>
+        {/* <Wrapper> */}
           <Image source={require("../../../assets/Logotipo/LogotipoPlantific.png")} />
           <Title>Login</Title>
           <Subtitle>Para entrar na sua conta!</Subtitle>
-        </Wrapper>
+        {/* </Wrapper> */}
 
         <View style={styles.form_icon}>
           <Input
@@ -88,11 +88,11 @@ export default function Login({ navigation }) {
                 verificar(resp);
               });
             }}
-            // onPress={() => navigation.navigate("Home")}
             style={{ marginTop: 15 }}
           />
 
           <Or>Ou</Or>
+          
           <TouchableOpacity activeOpacity={0.7}>
             <LinearGradient
               style={styles.backgroundSocialIcon}
@@ -102,16 +102,6 @@ export default function Login({ navigation }) {
               <Text style={styles.textSocialIcon}>Entrar com Facebook</Text>
             </LinearGradient>
           </TouchableOpacity>
-
-          {/* <TouchableOpacity activeOpacity={0.7}>
-                <LinearGradient
-                  style={styles.backgroundSocialIcon}
-                  colors={[orange, orangeDark]}
-                >
-                  <Icon style={styles.icones} name='social-instagram'  />
-                  <Text>Entrar com Instagram</Text>
-                </LinearGradient>
-              </TouchableOpacity> */}
 
           <TouchableOpacity activeOpacity={0.7}>
             <LinearGradient
@@ -133,49 +123,8 @@ export default function Login({ navigation }) {
             </ButtonFooter>
           </ContainerFooter>
         </View>
-
-        {/* </Content> */}
       </Container>
     </TouchableWithoutFeedback>
-    // <Container>
-    //   <StatusBar backgroundColor="transparent" style="light" translucent />
-
-    //   <Image source={logo} />
-
-    //   <Form>
-    //     {/* <InputText placeholder='Usuário' />
-    //     <InputText placeholder="Senha" secureTextEntry={true}/> */}
-    //     {/* <Input onPress={() => navigation.navigate('Home')} accessible={false} >
-    //       <TextBtn>Login</TextBtn>
-    //     </Input> */}
-    //     {/* <Input accessible={false} onPress={() => navigation.navigate('Cadastrar')}>
-    //       <TextBtn>Cadastrar</TextBtn>
-    //     </Input> */}
-    //     <Input
-    //       iconName="user"
-    //       placeholder="Usuário ou email"
-    //     />
-    //     <Input
-    //       iconName="lock"
-    //       placeholder="Senha"
-    //     />
-
-    //     <View
-    //       style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}
-    //     >
-    //       <Button title='Login' onPress={() => navigation.navigate('Home')}/>
-    //       <Button title='Cadastrar' onPress={() => navigation.navigate('Cadastrar')}/>
-    //     </View>
-
-    //     <View style={styles.form_icon}>
-    //       <Icon style={styles.icones} name='social-facebook' />
-    //       <Icon style={styles.icones} name='social-instagram'  />
-    //       <Icon style={styles.icones} name='social-google' />
-    //     </View>
-
-    //     <Link>Esqueceu sua senha?</Link>
-    //   </Form>
-    // </Container>
   );
 }
 
@@ -183,10 +132,8 @@ const styles = StyleSheet.create({
   form_icon: {
     width: `100%`,
     flex: 1,
-    flexGrow: 2,
+    flexGrow: 3,
     padding: 15,
-
-    // justifyContent:'center',
   },
 
   backgroundSocialIcon: {

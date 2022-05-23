@@ -4,30 +4,26 @@ import {
   Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Feather from "react-native-vector-icons/Feather";
 import { StatusBar } from "expo-status-bar";
+import { isEmpty } from "lodash";
+import axios from "axios";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { theme } from "../../global/theme";
+import { postCadastro, getCep } from "../../Db/axiosController";
 import {
   Container,
-  TextFooter,
   Content,
   Title,
-  ButtonTitle,
   Image,
   Subtitle,
-  ContainerFooter,
   Wrapper,
 } from "./styles";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { postCadastro, getCep, validateCep } from "../../Db/axiosController";
-import { Poppins_100Thin } from "@expo-google-fonts/poppins";
-import { isEmpty } from "lodash";
-import axios from "axios";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -132,6 +128,26 @@ export default function SignUp() {
             />
           </TouchableOpacity> */}
         <Wrapper>
+          <TouchableOpacity 
+            onPress={() => navigation.navigate("Login")}
+            style={{
+              position: 'absolute',              
+              borderWidth: 1,
+              borderRadius: 8,
+              borderColor: theme.color.whiteHeading,
+              backgroundColor: theme.color.overlay,
+              top: 20,
+              left: 20
+            }}
+          >
+            <Feather
+              name='chevron-left'
+              size={28}
+              color={theme.color.whiteHeading}
+              style={{ padding: 3 }}
+            />
+            {/* <TextFooter>JÁ POSSUO UMA CONTA</TextFooter> */}
+          </TouchableOpacity>
           <Image source={require("../../../assets/Logotipo/LogotipoPlantific.png")} />
           <Title>Cadastro</Title>
           <Subtitle>Crie sua conta rápido e fácil!</Subtitle>
@@ -198,10 +214,7 @@ export default function SignUp() {
             onPress={() => {
               validarCampos(userData, confirm);
             }}
-          />
-          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-            <TextFooter>JÁ POSSUO UMA CONTA</TextFooter>
-          </TouchableOpacity>
+          />          
         </Content>
       </Container>
     </TouchableWithoutFeedback>
