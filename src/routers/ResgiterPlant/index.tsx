@@ -36,15 +36,11 @@ import Feather from "react-native-vector-icons/Feather"
 export default function RegisterPlant({ route, navigation }) {
   let plant = route.params.plant;
   let user = route.params.user;
-<<<<<<< HEAD
   // console.log(plant)
   const [checked, setChecked] = useState("first");
   const [checkedCategory, setCheckedCategory] = useState("first");
 
   const [name, setName] = useState("");
-=======
-
->>>>>>> d6a6f52cae84f1b542ea206ec88ba558232750d6
   const [price, setPrice] = useState("");
   const [selectedPlant, setSelectPlant] = useState({});
 
@@ -263,7 +259,6 @@ export default function RegisterPlant({ route, navigation }) {
               </View>
 
 
-<<<<<<< HEAD
             {image ? <LayoutImage>
               <ImagePlant source={{ uri: image }}></ImagePlant>
             </LayoutImage> : <></>}
@@ -294,39 +289,5 @@ export default function RegisterPlant({ route, navigation }) {
         </ScrollView>
       </Content>
     </Container>
-=======
-              <CheckBoxContainer>
-                <TextSwap>Disponível para troca?</TextSwap>               
-                <Switch
-                  trackColor={{
-                    false: "#767577",
-                    true: theme.color.greenLight,
-                  }}
-                  thumbColor={isEnabled ? theme.color.greenWeak : theme.color.greenWeak}
-                  ios_backgroundColor="#3e3e3e"
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
-                />
-              </CheckBoxContainer>
-              <Button title="Cadastrar!" style={{ marginTop: 20 }} onPress={() => {postData(user.id,selectedId,itemName,image,price,isEnabled)}} />
-            </Wrapper>
-          </ScrollView>
-        </Content>
-      </Container>
-
-      <Modalize 
-        ref={modalizeRef}
-        snapPoint={600}
-        withHandle={false}
-        flatListProps={{
-          data: DATA,
-          renderItem: renderItem,
-          keyExtractor: item => item.id,
-          extraData: selectedId,
-          showsVerticalScrollIndicator: false,
-        }}
-      />      
-    </>
->>>>>>> d6a6f52cae84f1b542ea206ec88ba558232750d6
   );
 }

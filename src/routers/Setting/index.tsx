@@ -24,10 +24,10 @@ import { isEmpty } from "lodash";
 import {
   Container,
   Content,
-  // Image,
+  Image,
   Avatar,
   TextEditPhoto,
-  // ImgView,
+  ImgView,
   AvatarView,
   Wrap,
   TextDesconect,
