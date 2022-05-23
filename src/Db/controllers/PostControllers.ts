@@ -7,7 +7,7 @@ export async function getPosts(req: any, res: any) {
     const postMany = await prisma.postagem.findMany({
       include: {
         Usuario: { include: { Endereco: {} } },
-        Planta: {},
+        Planta: {include:{Categoria:{include:{category:{select:{categoria:true}}}}}},
       },
     });
     console.log(postMany);
@@ -18,19 +18,21 @@ export async function getPosts(req: any, res: any) {
 export async function getPostsUser(req: any, res: any) {
   const { id } = req.params;
   try {
-    const postMany = await prisma.postagem.findFirst({
+    const postMany = await prisma.postagem.findMany({
       where: {
         Usuario: {
-          id: id,
+          id: Number(id),
         },
       },
       include: {
-        Planta: {},
+        Planta: { include: { Categoria: {} } },
       },
     });
     console.log(postMany);
     res.json(postMany);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function createPost(req: any, res: any) {

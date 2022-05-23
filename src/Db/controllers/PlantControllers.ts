@@ -6,7 +6,7 @@ export async function getPlants(req: any, res: any) {
     const plantMany = await prisma.planta.findMany({
       include: {
         Categoria: {},
-        Postagem: {},
+        // Postagem: {},
       },
     });
     console.log(plantMany);

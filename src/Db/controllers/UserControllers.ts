@@ -9,7 +9,19 @@ export async function findUser(req: any, res: any) {
         id: Number(id),
       },
       include: {
-        Postagem: {},
+        Postagem: {
+          include: {
+            Planta: {
+              include: {
+                Categoria: {
+                  include: {
+                    category: {},
+                  },
+                },
+              },
+            },
+          },
+        },
         Endereco: {},
       },
     });

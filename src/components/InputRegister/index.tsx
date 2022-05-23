@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, TextInput, TextInputProps, View } from "react-native";
 import { Feather } from "@expo/vector-icons"
 import { styles } from "./styles";
@@ -7,9 +7,10 @@ import { theme } from "../../global/theme";
 interface InputProps extends TextInputProps {
   iconName?: React.ComponentProps<typeof Feather>["name"];
   value?: string;
+  place?: any;
 }
 
-export function InputRegister({ iconName, value, ...rest }: InputProps) {
+export function InputRegister({ place, iconName, value, ...rest }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
 
@@ -30,6 +31,9 @@ export function InputRegister({ iconName, value, ...rest }: InputProps) {
         { borderColor: theme.color.greenLight }
       ]}
       > 
+
+  
+
         <Feather 
           name={iconName}
           style={[
@@ -39,6 +43,7 @@ export function InputRegister({ iconName, value, ...rest }: InputProps) {
           ]}
         />                   
         <TextInput
+        placeholder={place}
           placeholderTextColor={theme.color.whiteHeading}
           style={styles.input}
           onBlur={handleInputBlur}

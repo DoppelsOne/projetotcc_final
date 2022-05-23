@@ -115,11 +115,11 @@ async function getPosts() {
 }
 
 async function getPostsUser(id: number) {
-  const lista = await axios.get(url + "post/" + id).then((resp) => {
+  const postsUser = await axios.get(url + "post/" + id).then((resp) => {
     return resp.data;
   });
 
-  return lista;
+  return postsUser;
 }
 
 async function postPost(
@@ -150,6 +150,10 @@ async function postPost(
 
   return data;
 }
+
+
+
+
 
 export {
   postPost,

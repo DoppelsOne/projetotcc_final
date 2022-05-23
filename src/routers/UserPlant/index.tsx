@@ -9,24 +9,42 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
+import React, { useState, useEffect } from "react";
 import Entypo from "react-native-vector-icons/Entypo";
 import { Background } from "../../components/Background";
 import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
-import { getPlant, getPlants } from "../../Db/axiosController";
+import { getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
+import { map } from 'lodash';
 
 export default function UserPlant({ route, navigation }) {
   const { orange, orangeDark } = theme.color;
   let data;
   const user = route.params.user;
+
+  // console.log(posts)
+
+  // useEffect( () => {
+  //   function chamadaPost(){
+
+  //   console.log("sas")
+  // }
+  //   chamadaPost()
+  // }, []);
+
+  const categorias = user.Postagem.map(s=>s.Planta.Categoria.category)
+  console.log(JSON.stringify(categorias))
+
   const log = user.login.charAt(0).toUpperCase() + user.login.slice(1);
   if (user.avatar == null) {
     data = user.avatar = "";
   } else {
     data = user.avatar;
   }
+
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Background>
@@ -39,15 +57,17 @@ export default function UserPlant({ route, navigation }) {
         <View style={styles.content}>
           <Text style={styles.title}>Suas Plantas</Text>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <PlantCardSecundary />
+            <PlantCardSecundary posts={user.Postagem} />
           </ScrollView>
         </View>
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.buttonRegisterContainer}
-          onPress={()=> {getPlants().then((resp) => {
-            navigation.navigate("RegisterPlant", { plant: resp, user:user });
-          })}}
+          onPress={() => {
+            getPlants().then((resp) => {
+              navigation.navigate("RegisterPlant", { plant: resp, user: user });
+            });
+          }}
         >
           <LinearGradient
             style={styles.buttonRegister}

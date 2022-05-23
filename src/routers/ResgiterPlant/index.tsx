@@ -51,7 +51,7 @@ import { getPlant, postPost } from "../../Db/axiosController";
 export default function RegisterPlant({ route, navigation }) {
   let plant = route.params.plant;
   let user = route.params.user;
-
+  // console.log(plant)
   const [checked, setChecked] = useState("first");
   const [checkedCategory, setCheckedCategory] = useState("first");
 
@@ -208,9 +208,10 @@ export default function RegisterPlant({ route, navigation }) {
               }}
             />
 
-            <LayoutImage>
+            {image ? <LayoutImage>
               <ImagePlant source={{ uri: image }}></ImagePlant>
-            </LayoutImage>
+            </LayoutImage> : <></>}
+            
 
             <InputRegister
               placeholder="R$ Valor sugerido"
@@ -232,7 +233,7 @@ export default function RegisterPlant({ route, navigation }) {
                 value={isEnabled}
               />
             </CheckBoxContainer>
-            <Button title="Cadastrar!" onPress={() => {postData(user.id,selectedId,itemName,image,price,isEnabled)}} />
+            <Button title="Cadastrar!" onPress={() => {postData(user.id,selectedId,itemName,image,price,isEnabled),handleGoBack()}} />
           </Wrapper>
         </ScrollView>
       </Content>
