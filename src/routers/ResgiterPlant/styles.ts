@@ -18,16 +18,9 @@ export const Container = styled(LinearGradient).attrs({
 `;
 
 export const Button2 = styled.Text`
-  width: 100%;
   text-align: center;
   font-size: 16px;
-`;
-
-export const Viewb = styled.View`
-  width: 200px;
-  background-color: white;
-  margin: 2px;
-  border-radius: 16px;
+  font-family: ${theme.fonts.poppins_500};  
 `;
 
 export const Content = styled.View`
@@ -51,24 +44,16 @@ export const Title = styled.Text`
   font-family: ${theme.fonts.poppins_700bold};
   color: ${theme.color.purpleDark};
   font-size: 30px;
+  text-align: center;
+  line-height: 32px;
+  margin-top: 15px; 
 `;
 
 export const Subtitle = styled.Text`
   font-family: ${theme.fonts.poppins_500};
   color: ${theme.color.whiteHeading};
   font-size: 16px;
-`;
-
-export const DescriptionInputContainer = styled.View`
-  flex-direction: row;
-  margin-bottom: 8px;
-  height: 260px;
-  width: 330px;
-  border-width: 2px;
-  border-radius: 16px;
-  border-color: ${theme.color.gray};
-  font-family: ${theme.fonts.poppins_700bold};
-  background-color: ${theme.color.whiteHeading};
+  margin-top: 10px; 
 `;
 
 export const CheckBoxContainer = styled.View`
@@ -76,17 +61,7 @@ export const CheckBoxContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 30px;
-`;
-export const CheckBoxCategotyContainer = styled.View`
-  margin-top: 5px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-`;
-
-export const CheckBoxCategotyContent = styled.View`
-  flex-direction: row;
+  margin-top: 15px;
 `;
 
 export const TextSwap = styled.Text`
@@ -95,24 +70,11 @@ export const TextSwap = styled.Text`
   font-size: 16px;
 `;
 
-export const CheckBoxWrapper = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const CheckBoxText = styled.Text`
-  font-family: ${theme.fonts.poppins_500};
-  color: ${theme.color.purpleDark};
-  font-size: 16px;
-`;
-
 export const LayoutImage = styled.View`
   height: 130px;
   margin-top: 10px;
-  
- 
 `;
+
 export const ImagePlant = styled.Image.attrs({
   resizeMode: "contain",
 })`
@@ -122,19 +84,31 @@ export const ImagePlant = styled.Image.attrs({
 `;
 
 export const styles = StyleSheet.create({
-  DescriptionIcon: {
-    fontSize: 28,
-    borderTopLeftRadius: 8,
-    borderBottomLeftRadius: 8,
-    color: theme.color.gray,
-    paddingHorizontal: 10,
-    paddingTop: 12,
-    marginRight: 3,
-  },
   item: {
-    padding: 7,
+    padding: 10,
+    margin: 2,
+    borderRadius: 8
   },
-  title: {
-    fontSize: 16,
+
+  buttonPlant: {
+    flexDirection: 'row',
+    alignItems: 'center', 
+    justifyContent: 'space-between',
+    width: '100%',
+    backgroundColor: theme.color.whiteHeading,
+    borderWidth: 1, 
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    marginTop: 10,
   },
+
+  inputPrice: { 
+    flexDirection: "row",
+    width: '100%',
+    backgroundColor: theme.color.whiteHeading,
+    borderWidth: 1, 
+    borderRadius: 8,
+    padding: 10,
+    marginTop: 10}
 });

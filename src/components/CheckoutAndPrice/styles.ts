@@ -40,9 +40,9 @@ export const Price = styled.Text`
 `
 
 export const Button = styled(LinearGradient).attrs({
-  colors: [theme.color.orange, theme.color.orangeDark],
-  start: { x: 0, y: 0 },
-  end: { x: 1, y: 1 },
+  colors: [theme.color.greenLight, theme.color.green],
+  // start: { x: 0, y: 0 },
+  // end: { x: 1, y: 1 },
 })`
   flex-direction: row;
   align-items: center;

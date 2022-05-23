@@ -24,11 +24,10 @@ import { isEmpty } from "lodash";
 import {
   Container,
   Content,
-  Image,
+  // Image,
   Avatar,
-  Title,
   TextEditPhoto,
-  ImgView,
+  // ImgView,
   AvatarView,
   Wrap,
   TextDesconect,
@@ -91,7 +90,9 @@ export default function Setting({ route, navegation }) {
                 <Image
                   source={require("../../../assets/Logotipo/LogotipoPlantific.png")}
                 />
-              </ImgView>
+              </AvatarView>
+              <TextEditPhoto>Alterar foto do perfil</TextEditPhoto>
+            </TouchableOpacity>
 
               <Content>
                 <TouchableOpacity
@@ -116,6 +117,8 @@ export default function Setting({ route, navegation }) {
                   <TextEditPhoto>Alterar foto do perfil</TextEditPhoto>
                 </TouchableOpacity>
 
+            <Wrap>
+              <View style={{ width:'57%' }}>
                 <InputRegister
                   place={user.login}
                   onChangeText={(prop) => setNome(prop)}
@@ -299,6 +302,9 @@ export default function Setting({ route, navegation }) {
             <TextInput
               placeholder="Confirmar senha"
               placeholderTextColor={theme.color.purpleDark}
+            <TextInput 
+              placeholder='Confirmar senha'
+              placeholderTextColor={theme.color.gray}
               style={{
                 width: "100%",
                 fontSize: 16,
