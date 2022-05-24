@@ -11,7 +11,7 @@ type ButtonProps = TouchableOpacityProps & {
 };
 
 export function Button({ title, color, ...rest }: ButtonProps) {
-  const { orange, orangeDark, green, greenLight } = theme.color;
+  const { orange, orangeDark, greenLight, green } = theme.color;
 
   return (
     <TouchableOpacity {...rest} activeOpacity={0.7}>
