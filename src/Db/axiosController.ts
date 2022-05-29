@@ -5,8 +5,8 @@ import { json } from "express";
 import { TextLocalization } from "../routers/PlantDetails/styles";
 
 //url padrão
-const url = "http://10.0.2.2:3333/";
-// const url = "http://192.168.10.11:3333/";
+// const url = "http://10.0.2.2:3333/";
+const url = "http://192.168.10.11:3333/";
 
 let end = {};
 let error: boolean = false;
@@ -40,7 +40,7 @@ async function postCadastro(props: any) {
 }
 
 async function getCep(cep: String) {
-  await axios
+  const endre = await axios
     .get("https://viacep.com.br/ws/" + cep + "/json/")
     .then((resp) => {
       if (!resp.data.erro) {
@@ -52,11 +52,13 @@ async function getCep(cep: String) {
           uf: resp.data.uf,
         };
         end = endereco;
+        return endereco;
       }
     })
     .catch((error) => {
       error.message;
     });
+  return endre;
 }
 // #############User######################
 async function postLogin(email: String, senha: String) {
@@ -74,10 +76,12 @@ async function postLogin(email: String, senha: String) {
         return resp.data;
       })
       .catch((err) => {
-        return err.message;
+        return false;
       });
-
-    return id;
+    if (id) {
+      return id;
+    }
+    return false;
   }
 }
 
@@ -85,7 +89,6 @@ async function getUser(id: number) {
   const lista = await axios.get(url + "login/" + id).then((resp) => {
     return resp.data;
   });
-
   return lista;
 }
 
@@ -106,7 +109,12 @@ async function alterUser(
       return resp;
     }),
   };
-  const alterDataUser = await axios.put(url + "user/alter/" + id, dados);
+  const alterDataUser = await axios
+    .put(url + "user/alter/" + id, dados)
+    .then((resp) => {
+      return resp.data;
+    });
+  return alterDataUser;
 }
 
 // #############Planta######################

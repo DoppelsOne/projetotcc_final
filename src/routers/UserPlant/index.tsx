@@ -21,6 +21,8 @@ export default function UserPlant({ route, navigation }) {
   const { orange, orangeDark } = theme.color;
   let data;
   const user = route.params.user;
+
+
   // const sassi = async () => {
   //   await getPostsUser(user.id).then(resp=>{setPosts(resp)})
   // };
@@ -31,7 +33,7 @@ export default function UserPlant({ route, navigation }) {
       getPostsUser(user.id).then((resp) => {
         setPosts(resp);
       });
-    }, 2000);
+    }, 1000);
 
     return function myStopFunction() {
       clearTimeout(updateData);
@@ -61,9 +63,9 @@ export default function UserPlant({ route, navigation }) {
 
         <View style={styles.content}>
           <Text style={styles.title}>Suas Plantas</Text>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <PlantCardSecundary posts={posts} />
-          </ScrollView>
+          {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+          <PlantCardSecundary posts={posts} />
+          {/* </ScrollView> */}
         </View>
 
         <View style={styles.buttonRegisterContainer}>
@@ -82,11 +84,7 @@ export default function UserPlant({ route, navigation }) {
               style={styles.buttonRegister}
               colors={[orange, orangeDark]}
             >
-              <Entypo
-                name="plus"
-                size={30}
-                color={theme.color.whiteHeading}
-              />
+              <Entypo name="plus" size={30} color={theme.color.whiteHeading} />
             </LinearGradient>
           </TouchableWithoutFeedback>
         </View>

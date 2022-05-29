@@ -24,7 +24,7 @@ export function Profile(props: any) {
           source={
             user == ""
               ? require("../../../assets/Avatar/avatarStandard.jpg")
-              : { uri: JSON.stringify(user) }
+              : { uri: user }
           }
         />
       </ImgView>

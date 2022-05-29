@@ -92,7 +92,7 @@ export async function createUser(req: any, res: any) {
   }
 }
 
-export async function loginUser(req: any, res: any) {
+export async function loginUser(req: any, res: Response) {
   const { email, senha } = req.body;
   let id;
   const userExists = await prisma.usuario.findFirst({
@@ -102,24 +102,29 @@ export async function loginUser(req: any, res: any) {
   });
 
   if (!userExists) {
-    return false;
+    // console.log("Usuário não encontrado");
+    return res.sendStatus(400);
   } else if (senha == userExists.senha) {
     id = userExists.id;
+    console.log(id);
+    return res.json(id);
+  }else{
+    // console.log("Senha não encontrado");
+    return res.sendStatus(400);
   }
 
-  if (id) {
-    return res.json(id);
-  } else {
-    return console.log("Usuário não encontrado");
-  }
 }
+
 
 export async function alterUser(req: any, res: any) {
   const { id } = req.params;
   const { login, tel, senha, end, avatar } = req.body;
 
+  console.log(id)
+  console.log(login, tel, senha, end, avatar);
+
   const alterUser = await prisma.usuario.update({
-    where: { id: id },
+    where: { id: Number(id) },
     data: {
       login: login,
       tel: tel,

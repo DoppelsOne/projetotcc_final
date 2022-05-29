@@ -69,6 +69,7 @@ export function PlantCardSecundary({ posts, ...rest }) {
     <FlatList
       
       showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
       // contentContainerStyle={{ paddingRight: 30 }}
       onEndReachedThreshold={0.1}
       data={dados}

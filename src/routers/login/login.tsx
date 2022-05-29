@@ -28,28 +28,71 @@ import {
 } from "./styles";
 import { theme } from "../../global/theme";
 import { postLogin, getUser, getPlant } from "../../Db/axiosController";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { isEmpty } from "lodash";
 
 export default function Login({ navigation }) {
   const { green, greenDark } = theme.color;
-
-  // const [cont, setcont] = useState(new Animated.Value(0));
-  // Animated.timing(cont,{toValue:1,duration:1000}).start;
-  // const Stack = createNativeStackNavigator();
-
-  const [dados, setDados] = useState([]);
+  const [dados, setDados] = useState({ email: "", senha: "" });
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  // const [id, setId] = useState();
 
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (dados) {
+    postLogin(dados.email, dados.senha).then((resp) => {
+      if (resp) {
+        verificar(resp);
+      } else {
+      }
+    });
+  }
+  // const [cont, setcont] = useState(new Animated.Value(0));
+  // Animated.timing(cont,{toValue:1,duration:1000}).start;
+
+  //Async Storage
+  const storeData = async (email, senha) => {
+    try {
+      const dados = {
+        email: email,
+        senha: senha,
+      };
+
+      const jsonValue = JSON.stringify(dados);
+      await AsyncStorage.setItem("@User", jsonValue);
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@User");
+      return jsonValue != null ? setDados(JSON.parse(jsonValue)) : null;
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  //Validação
   function verificar(id) {
     getUser(id)
       .then((resp) => {
-        navigation.navigate("Home", { user: resp });
+        if (resp) {
+          storeData(resp.email, resp.senha);
+          navigation.navigate("Home", { user: resp });
+          setEmail("")
+          setSenha("")
+        } else {
+          // storeData(resp);
+          // navigation.navigate("Home", { user: resp });
+        }
       })
       .catch((error) => {
         error;
       });
-    
   }
 
   return (
@@ -57,9 +100,11 @@ export default function Login({ navigation }) {
       <Container>
         <StatusBar backgroundColor="transparent" style="light" translucent />
         {/* <Wrapper> */}
-          <Image source={require("../../../assets/Logotipo/LogotipoPlantific.png")} />
-          <Title>Login</Title>
-          <Subtitle>Para entrar na sua conta!</Subtitle>
+        <Image
+          source={require("../../../assets/Logotipo/LogotipoPlantific.png")}
+        />
+        <Title>Login</Title>
+        <Subtitle>Para entrar na sua conta!</Subtitle>
         {/* </Wrapper> */}
 
         <View style={styles.form_icon}>
@@ -84,15 +129,23 @@ export default function Login({ navigation }) {
           <Button
             title="Entrar"
             onPress={() => {
-              postLogin(email, senha).then((resp) => {
-                verificar(resp);
-              });
+              if (email == "" || senha == "") {
+                console.log("Dados Faltando");
+              } else {
+                postLogin(email, senha).then((resp) => {
+                  if (resp) {
+                    verificar(resp);
+                  } else {
+                    console.log("Usuário não cadastrado");
+                  }
+                });
+              }
             }}
             style={{ marginTop: 15 }}
           />
 
           <Or>Ou</Or>
-          
+
           <TouchableOpacity activeOpacity={0.7}>
             <LinearGradient
               style={styles.backgroundSocialIcon}
