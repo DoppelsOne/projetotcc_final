@@ -17,25 +17,31 @@ import { Profile } from "../../components/Profile";
 import { getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
-import { map } from 'lodash';
-
 export default function UserPlant({ route, navigation }) {
   const { orange, orangeDark } = theme.color;
   let data;
   const user = route.params.user;
+  // const sassi = async () => {
+  //   await getPostsUser(user.id).then(resp=>{setPosts(resp)})
+  // };
+  const [posts, setPosts] = useState();
 
-  // console.log(posts)
+  useEffect(() => {
+    const updateData = setTimeout(() => {
+      getPostsUser(user.id).then((resp) => {
+        setPosts(resp);
+      });
+    }, 2000);
 
-  // useEffect( () => {
-  //   function chamadaPost(){
+    return function myStopFunction() {
+      clearTimeout(updateData);
+    };
+  });
 
-  //   console.log("sas")
-  // }
-  //   chamadaPost()
-  // }, []);
+  // const posts = route.params.posts;
 
-  const categorias = user.Postagem.map(s=>s.Planta.Categoria.category)
-  console.log(JSON.stringify(categorias))
+  // const categorias = user.Postagem.map(s=>s.Planta.Categoria.category)
+  // console.log(JSON.stringify(categorias))
 
   const log = user.login.charAt(0).toUpperCase() + user.login.slice(1);
   if (user.avatar == null) {
@@ -43,7 +49,6 @@ export default function UserPlant({ route, navigation }) {
   } else {
     data = user.avatar;
   }
-
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -57,33 +62,34 @@ export default function UserPlant({ route, navigation }) {
         <View style={styles.content}>
           <Text style={styles.title}>Suas Plantas</Text>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <PlantCardSecundary posts={user.Postagem} />
+            <PlantCardSecundary posts={posts} />
           </ScrollView>
         </View>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.buttonRegisterContainer}
-          onPress={() => {
-            getPlants().then((resp) => {
-              navigation.navigate("RegisterPlant", { plant: resp, user: user });
-            });
-          }}
-        >
-          <LinearGradient
-            style={styles.buttonRegister}
-            colors={[orange, orangeDark]}
+
+        <View style={styles.buttonRegisterContainer}>
+          <TouchableWithoutFeedback
+            style={{}}
+            onPress={() => {
+              getPlants().then((resp) => {
+                navigation.navigate("RegisterPlant", {
+                  plant: resp,
+                  user: user,
+                });
+              });
+            }}
           >
-            <Entypo
-              name="plus"
-              size={30}
-              color={theme.color.whiteHeading}
-              // style={{ marginRight: 5 }}
-            />
-            {/* <Text style={styles.buttonText}>
-                Cadastrar planta
-              </Text> */}
-          </LinearGradient>
-        </TouchableOpacity>
+            <LinearGradient
+              style={styles.buttonRegister}
+              colors={[orange, orangeDark]}
+            >
+              <Entypo
+                name="plus"
+                size={30}
+                color={theme.color.whiteHeading}
+              />
+            </LinearGradient>
+          </TouchableWithoutFeedback>
+        </View>
       </Background>
     </TouchableWithoutFeedback>
   );

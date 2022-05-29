@@ -10,7 +10,7 @@ export async function getPlants(req: any, res: any) {
       },
     });
     console.log(plantMany);
-    res.json(plantMany);
+    return res.json(plantMany);
   } catch (error) {}
 }
 
@@ -25,6 +25,6 @@ export async function getPlant(req: any, res: any) {
         Categoria: {include:{category:{}}},
       },
     });
-    res.json(plant);
+    return res.json(plant);
   } catch (error) {console.log(error)}
 }

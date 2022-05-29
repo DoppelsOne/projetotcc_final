@@ -12,10 +12,10 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { StatusBar } from "expo-status-bar";
-import { Modalize } from 'react-native-modalize'
+import { Modalize } from "react-native-modalize";
 
 import { theme } from "../../global/theme";
-import { getPlant, postPost } from "../../Db/axiosController";
+import { getPlant, getUser, postPost } from "../../Db/axiosController";
 import { InputRegister } from "../../components/InputRegister";
 import { Button } from "../../components/Button";
 import {
@@ -31,11 +31,12 @@ import {
   LayoutImage,
   ImagePlant,
 } from "./styles";
-import Feather from "react-native-vector-icons/Feather"
+import Feather from "react-native-vector-icons/Feather";
 
-export default function RegisterPlant({ route, navigation }) {
+export default function RegisterPlant({ route, navigation:{goBack} }) {
   let plant = route.params.plant;
   let user = route.params.user;
+
   const [price, setPrice] = useState("");
   const [selectedPlant, setSelectPlant] = useState({});
 
@@ -48,6 +49,8 @@ export default function RegisterPlant({ route, navigation }) {
       .catch((error) => {
         error;
       });
+
+    getUser(id);
   }
 
   const [isEnabled, setIsEnabled] = useState(false);
@@ -60,29 +63,21 @@ export default function RegisterPlant({ route, navigation }) {
   const [itemName, setItemName] = useState("");
 
   const Item = ({ item, onPress, backgroundColor, textColor }) => (
-    <View 
-      style={[ 
-        styles.item, 
-        backgroundColor
-      ]}
-    >
-      <Button2 
-        onPress={onPress} 
-        style={textColor}
-      >
+    <View style={[styles.item, backgroundColor]}>
+      <Button2 onPress={onPress} style={textColor}>
         {item.name}
       </Button2>
     </View>
   );
 
   const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId 
-      ? theme.color.green 
-      : theme.color.white;
+    const backgroundColor =
+      item.id === selectedId ? theme.color.green : theme.color.white;
 
-    const color = item.id === selectedId 
-      ? theme.color.whiteHeading
-      : theme.color.purpleDark;
+    const color =
+      item.id === selectedId
+        ? theme.color.whiteHeading
+        : theme.color.purpleDark;
 
     return (
       <Item
@@ -91,7 +86,7 @@ export default function RegisterPlant({ route, navigation }) {
           setSelectedId(item.id),
           setItemName(item.name),
           pushDataPlant(item.id),
-          modalizeRef.current?.close()
+          modalizeRef.current?.close(),
         ]}
         backgroundColor={{ backgroundColor }}
         textColor={{ color }}
@@ -110,7 +105,7 @@ export default function RegisterPlant({ route, navigation }) {
       quality: 1,
     });
 
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
       setImage(result.uri);
@@ -132,26 +127,27 @@ export default function RegisterPlant({ route, navigation }) {
       Alert.alert("Planta não selecionada");
     } else if (image == null) {
       Alert.alert("Imagem não selecionada");
-    } else{
-      const val = valor.toString().replace(",",".")
-      console.log(idUser, plantId, plantName, image, valor, troca)
+    } else {
+      const val = valor.toString().replace(",", ".");
+      console.log(idUser, plantId, plantName, image, valor, troca);
       postPost(idUser, plantId, plantName, image, Number(val), troca);
+      goBack()
     }
   }
 
-  const modalizeRef = useRef<Modalize>(null)
+  const modalizeRef = useRef<Modalize>(null);
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   function handleInputBlur() {
-    setIsFocused(false)
-    setIsFilled(!!value)
+    setIsFocused(false);
+    setIsFilled(!!value);
   }
 
   function handleInputFocus() {
-    setIsFocused(true)
+    setIsFocused(true);
   }
 
   return (
@@ -160,19 +156,16 @@ export default function RegisterPlant({ route, navigation }) {
         <StatusBar backgroundColor="transparent" style="dark" translucent />
 
         <Title>Cadastre {"\n"}sua planta!</Title>
-        <Subtitle>
-          Preenchendo os campos abaixo
-        </Subtitle>
+        <Subtitle>Preenchendo os campos abaixo</Subtitle>
 
         <Content>
           <ScrollView showsVerticalScrollIndicator={false}>
             <Wrapper>
-
-              { image &&
+              {image && (
                 <LayoutImage>
                   <ImagePlant source={{ uri: image }}></ImagePlant>
                 </LayoutImage>
-              }
+              )}
               <Button
                 title={"Selecione uma imagem"}
                 color="."
@@ -183,17 +176,18 @@ export default function RegisterPlant({ route, navigation }) {
 
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => {modalizeRef.current?.open()}}
+                onPress={() => {
+                  modalizeRef.current?.open();
+                }}
                 style={[
                   styles.buttonPlant,
-                  (itemName) &&
-                  { borderColor: theme.color.greenLight }
+                  itemName && { borderColor: theme.color.greenLight },
                 ]}
               >
                 <TextInput
                   editable={false}
                   onBlur={handleInputBlur}
-                  onFocus={handleInputFocus}                  
+                  onFocus={handleInputFocus}
                   placeholder="Selecione a planta"
                   placeholderTextColor={theme.color.gray}
                   style={{
@@ -201,36 +195,31 @@ export default function RegisterPlant({ route, navigation }) {
                     fontFamily: theme.fonts.poppins_500,
                     color: theme.color.purpleDark,
                     marginRight: 5,
-                    width: '90%',
+                    width: "90%",
                   }}
                 >
-                  { itemName && itemName }
+                  {itemName && itemName}
                 </TextInput>
                 <View>
-                  <Feather
-                    name='chevron-up'
-                    size={16}
-                  />
-                  <Feather
-                    name='chevron-down'
-                    size={16}
-                  />
+                  <Feather name="chevron-up" size={16} />
+                  <Feather name="chevron-down" size={16} />
                 </View>
               </TouchableOpacity>
 
               <View
-               style={[
+                style={[
                   styles.inputPrice,
-                  (isFocused || isFilled) &&
-                  { borderColor: theme.color.greenLight }
-                ]}       
+                  (isFocused || isFilled) && {
+                    borderColor: theme.color.greenLight,
+                  },
+                ]}
               >
                 <Text
                   style={{
                     fontSize: 16,
                     fontFamily: theme.fonts.poppins_500,
                     color: theme.color.purpleDark,
-                    marginRight: 5
+                    marginRight: 5,
                   }}
                 >
                   R$
@@ -245,46 +234,60 @@ export default function RegisterPlant({ route, navigation }) {
                   onChangeText={(prop) => setPrice(prop)}
                   keyboardType="numeric"
                   style={{
-                    width: '100%',
+                    width: "100%",
                     fontSize: 16,
                     fontFamily: theme.fonts.poppins_500,
-                    color: theme.color.purpleDark
-                  }}               
+                    color: theme.color.purpleDark,
+                  }}
                 />
               </View>
 
-
               <CheckBoxContainer>
-                <TextSwap>Disponível para troca?</TextSwap>               
+                <TextSwap>Disponível para troca?</TextSwap>
                 <Switch
                   trackColor={{
                     false: "#767577",
                     true: theme.color.greenLight,
                   }}
-                  thumbColor={isEnabled ? theme.color.greenWeak : theme.color.greenWeak}
+                  thumbColor={
+                    isEnabled ? theme.color.greenWeak : theme.color.greenWeak
+                  }
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch}
                   value={isEnabled}
                 />
               </CheckBoxContainer>
-              <Button title="Cadastrar!" style={{ marginTop: 20 }} onPress={() => {postData(user.id,selectedId,itemName,image,price,isEnabled)}} />
+              <Button
+                title="Cadastrar!"
+                style={{ marginTop: 20 }}
+                onPress={() => {
+                  postData(
+                    user.id,
+                    selectedId,
+                    itemName,
+                    image,
+                    price,
+                    isEnabled
+                  );
+                }}
+              />
             </Wrapper>
           </ScrollView>
         </Content>
       </Container>
 
-      <Modalize 
+      <Modalize
         ref={modalizeRef}
         snapPoint={600}
         withHandle={false}
         flatListProps={{
           data: DATA,
           renderItem: renderItem,
-          keyExtractor: item => item.id,
+          keyExtractor: (item) => item.id,
           extraData: selectedId,
           showsVerticalScrollIndicator: false,
         }}
-      />      
+      />
     </>
   );
 }

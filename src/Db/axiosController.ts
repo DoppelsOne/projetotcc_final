@@ -2,6 +2,7 @@ import axios from "axios";
 import { isEmpty, reject } from "lodash";
 import { Alert } from "react-native";
 import { json } from "express";
+import { TextLocalization } from "../routers/PlantDetails/styles";
 
 //url padrão
 const url = "http://10.0.2.2:3333/";
@@ -57,7 +58,7 @@ async function getCep(cep: String) {
       error.message;
     });
 }
-// #############Login######################
+// #############User######################
 async function postLogin(email: String, senha: String) {
   // const end = {bairro, uf, localidade, logadouro, cep}
 
@@ -88,6 +89,26 @@ async function getUser(id: number) {
   return lista;
 }
 
+async function alterUser(
+  id: Number,
+  login: String,
+  tel: String,
+  senha: String,
+  avatar: String,
+  end: any
+) {
+  const dados = {
+    login: login,
+    tel: tel,
+    senha: senha,
+    avatar: avatar,
+    end: await getCep(end).then((resp) => {
+      return resp;
+    }),
+  };
+  const alterDataUser = await axios.put(url + "user/alter/" + id, dados);
+}
+
 // #############Planta######################
 async function getPlants() {
   const plants = await axios.get(url + "plant/").then((resp) => {
@@ -98,7 +119,6 @@ async function getPlants() {
 }
 
 async function getPlant(id: number) {
-  console.log(id);
   const plant = await axios.get(url + "plant/" + id).then((resp) => {
     return resp.data;
   });
@@ -151,11 +171,32 @@ async function postPost(
   return data;
 }
 
+async function deletePost(id: any) {
+  await axios.delete(url + "post/delete/" + id);
+}
 
-
-
+async function alterPost(
+  idPost: any,
+  plantId: number,
+  plantName: string,
+  image: string,
+  valor: number,
+  troca: boolean
+) {
+  const dados = {
+    plantId: plantId,
+    plantName: plantName,
+    image: image,
+    valor: valor,
+    troca: troca,
+  };
+  await axios.put(url + "post/alter/" + idPost, dados);
+}
 
 export {
+  alterUser,
+  alterPost,
+  deletePost,
   postPost,
   getPlant,
   getPostsUser,

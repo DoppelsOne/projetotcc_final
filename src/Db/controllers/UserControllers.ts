@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { prisma } from "../../../prisma/prisma";
+import { map } from "lodash";
+import { useEffect } from "react";
 
 export async function findUser(req: any, res: any) {
   try {
@@ -15,7 +17,7 @@ export async function findUser(req: any, res: any) {
               include: {
                 Categoria: {
                   include: {
-                    category: {},
+                    category: true,
                   },
                 },
               },
@@ -25,6 +27,7 @@ export async function findUser(req: any, res: any) {
         Endereco: {},
       },
     });
+
     return res.json(userSearch);
   } catch (error) {
     return res.json({ error });
@@ -105,9 +108,37 @@ export async function loginUser(req: any, res: any) {
   }
 
   if (id) {
-    console.log(id);
     return res.json(id);
   } else {
     return console.log("Usuário não encontrado");
   }
+}
+
+export async function alterUser(req: any, res: any) {
+  const { id } = req.params;
+  const { login, tel, senha, end, avatar } = req.body;
+
+  const alterUser = await prisma.usuario.update({
+    where: { id: id },
+    data: {
+      login: login,
+      tel: tel,
+      senha: senha,
+      avatar: avatar,
+      Endereco: {
+        connectOrCreate: {
+          where: { cep: end.cep },
+          create: {
+            bairro: end.bairro,
+            endereco: end.logradouro,
+            cidade: end.localidade,
+            uf: end.uf,
+            cep: end.cep,
+          },
+        },
+      },
+    },
+  });
+
+  return res.json(alterUser);
 }

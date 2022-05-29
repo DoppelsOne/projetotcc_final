@@ -1,20 +1,22 @@
+import { Poppins_100Thin, Poppins_500Medium } from "@expo-google-fonts/poppins";
 import { StyleSheet } from "react-native";
 import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   background: {
     // width: '100%',
-    marginRight: 8,
+    justifyContent:"center",
+    alignItems:"center",
     borderRadius: 8,
+    margin: 8,
     // paddingRight: 50,
     // marginBottom: 10
   },
 
   container: {
     padding: 10,
-    marginBottom: 15,
     backgroundColor: theme.color.whiteHeading,
-    borderRadius: 10,
+    borderRadius: 8,
     shadowColor: theme.color.purpleDark,
     shadowOffset: {
       width: 0,
@@ -24,6 +26,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
     flexDirection: 'row',
+    height: 150,
+    width: `100%`,
   },    
   
   image: {
@@ -33,11 +37,12 @@ export const styles = StyleSheet.create({
   },
 
   information: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 5,
     alignItems: 'flex-start',
     justifyContent: 'center',
-    maxHeight: 130,
-    maxWidth: 180
+    height: 130,
+    width: 150,
+
   },
 
   contentText: {

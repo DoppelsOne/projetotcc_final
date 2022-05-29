@@ -10,12 +10,9 @@ import {
 
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
-import BicoPapagaio from "../../../assets/plants/bicoPapagaio.jpg";
-import EspadaSaoJorge from "../../../assets/plants/espadaSaoJorge.jpg";
-import Samambaia from "../../../assets/plants/samambaia.jpg";
-import Zamioculca from "../../../assets/plants/zamioculca.jpg";
-import { map } from "lodash";
-import { Button } from "../Button";
+// import { Input } from "../../components/Input/index";
+
+import InputEdit from "./../Edit/InputEdit";
 
 // const plants = [
 //   { id: 1, title: 'Espada de São jorge', category: 'Interior', status: 'Troca', price: '45.90', image: EspadaSaoJorge},
@@ -29,6 +26,7 @@ export function PlantCardSecundary({ posts, ...rest }) {
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [dato, setDados] = useState(posts);
   const dados = posts;
+  // console.log(dados)
 
   // console.log(dados3.map(d=>d.id))
 
@@ -39,19 +37,18 @@ export function PlantCardSecundary({ posts, ...rest }) {
       valor={item.valor}
       image={item.image}
       troca={item.troca}
-      // category={item.Planta.Categoria.map(d=>d)}
+      category={item.Categorias}
     />
   );
-
-  const Item = ({ id,title, valor, image, troca, category }: any) => (
+  const Item = ({ id, title, valor, image, troca, category }: any) => (
     <TouchableOpacity activeOpacity={0.7}>
       <View style={styles.background}>
         <View style={styles.container}>
           <Image source={{ uri: image }} style={styles.image} />
 
           <View style={styles.information}>
-            <Text style={styles.text}>teste{category}</Text>
             <Text style={styles.title}>{title}</Text>
+            <Text style={styles.text}>{category}</Text>
 
             <View style={styles.contentText}>
               <View>
@@ -60,6 +57,9 @@ export function PlantCardSecundary({ posts, ...rest }) {
               </View>
             </View>
           </View>
+          <View>
+            <InputEdit id={id}/>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -67,7 +67,7 @@ export function PlantCardSecundary({ posts, ...rest }) {
 
   return (
     <FlatList
-      style={{ paddingRight: 20 }}
+      
       showsHorizontalScrollIndicator={false}
       // contentContainerStyle={{ paddingRight: 30 }}
       onEndReachedThreshold={0.1}

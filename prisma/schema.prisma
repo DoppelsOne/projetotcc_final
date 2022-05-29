@@ -68,10 +68,10 @@ model Categorias {
 }
 
 model CategoriaController {
-  planta     Planta     @relation(fields: [plantaId], references: [id])
-  plantaId   Int
-  category   Categorias @relation(fields: [categoryId], references: [id])
-  categoryId Int
+  id         Int         @id @default(autoincrement())
+  planta     Planta?     @relation(fields: [plantaId], references: [id])
+  plantaId   Int?
+  category   Categorias? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
 
-  @@id([plantaId, categoryId])
 }

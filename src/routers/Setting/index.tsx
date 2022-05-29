@@ -69,16 +69,20 @@ export default function Setting({ route, navegation }) {
     }
   }, []);
 
+  function validacao(nsenha, rsenha) {}
+
+
+
+  function updateData(nome, tel, cep, image, nsenha) {
+
+    
+  }
+
   // setTel(user.tel);
   // setCep(user.cep);
   // setEnd(user.Endereco.endereco);
   // setBairro(user.Endereco.bairro);
   // setUf(user.Endereco.uf);
-
-  // console.log(nome);
-  // if(isEmpty(nome)){
-  //   console.log(nome)
-  // }
 
   return (
     <>
@@ -87,6 +91,7 @@ export default function Setting({ route, navegation }) {
           <Content>
             <TouchableOpacity
               activeOpacity={0.7}
+              onPress={() => {}}
               style={{
                 alignItems: "center",
                 marginBottom: 10,
@@ -102,68 +107,70 @@ export default function Setting({ route, navegation }) {
             </TouchableOpacity>
 
             <InputRegister
-              placeholder="Nome"
+              place={user.login}
+              onChangeText={(prop) => {
+                setNome(prop);
+              }}
             />
 
             <Wrap>
-              <View style={{ width:'57%' }}>
+              <View style={{ width: "57%" }}>
                 <InputRegister
-                  placeholder="Telefone"
-                  keyboardType='numeric'
+                  place={user.tel}
+                  keyboardType="numeric"
                   style={{
-                    width: '100%',
+                    width: "100%",
                     fontSize: 16,
                     fontFamily: theme.fonts.poppins_500,
                     color: theme.color.purpleDark,
-                    paddingLeft: 10
+                    paddingLeft: 10,
                   }}
                 />
               </View>
-              <View style={{ width:'40%', marginLeft: 10 }}>
+              <View style={{ width: "40%", marginLeft: 10 }}>
                 <InputRegister
-                  placeholder="CEP"
-                  keyboardType='numeric'
+                  place={user.Endereco.cep}
+                  keyboardType="numeric"
                   style={{
-                    width: '100%',
+                    width: "100%",
                     fontSize: 16,
                     fontFamily: theme.fonts.poppins_500,
                     color: theme.color.purpleDark,
-                    paddingLeft: 10
+                    paddingLeft: 10,
                   }}
                 />
               </View>
             </Wrap>
+            <InputRegister place={user.Endereco.endereco} editable={false} />
 
-            <InputRegister placeholder="Endereço" editable={false} />
-
-            <InputRegister placeholder="Bairro" editable={false}/>
+            <InputRegister place={user.Endereco.bairro} editable={false} />
 
             <Wrap>
-              <View style={{ width:'77%' }}>
+              <View style={{ width: "77%" }}>
                 <InputRegister
-                  placeholder="Cidade"
+                  place={user.Endereco.cidade}
                   editable={false}
                   style={{
-                    width: '100%',
+                    width: "100%",
                     fontSize: 16,
                     fontFamily: theme.fonts.poppins_500,
                     color: theme.color.purpleDark,
-                    paddingLeft: 10
-                }}
-              />
+                    paddingLeft: 10,
+                  }}
+                />
               </View>
-              <View style={{ width:'20%', marginLeft: 10 }}>
+              <View style={{ width: "20%", marginLeft: 10 }}>
                 <InputRegister
                   editable={false}
-                  placeholder="UF"
+                  place={user.Endereco.uf}
                   style={{
-                    width: '100%',
+                    width: "100%",
                     fontSize: 16,
                     fontFamily: theme.fonts.poppins_500,
                     color: theme.color.purpleDark,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    textAlign: 'center'
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
                   }}
                 />
               </View>
@@ -171,7 +178,9 @@ export default function Setting({ route, navegation }) {
 
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => {modalizeRef.current?.open()}}
+              onPress={() => {
+                modalizeRef.current?.open();
+              }}
               style={{
                 marginTop: 12,
                 backgroundColor: theme.color.overlay,
@@ -179,33 +188,32 @@ export default function Setting({ route, navegation }) {
                 borderRadius: 8,
                 borderColor: theme.color.purpleDark,
                 padding: 8,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
+                flexDirection: "row",
+                justifyContent: "space-between",
               }}
             >
               <Password>********</Password>
               <TextchangePassword>Alterar senha</TextchangePassword>
             </TouchableOpacity>
-            
-            <Button
-              title="Salvar alterações"
-              style={{ marginTop: 22 }}
-            />
+
+            <Button title="Salvar alterações" style={{ marginTop: 22 }} />
 
             <TouchableOpacity
-              onPress={() => {modalizeRefTwo.current?.open()}}
+              onPress={() => {
+                modalizeRefTwo.current?.open();
+              }}
               activeOpacity={0.7}
               style={{
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: 30,
                 borderColor: theme.color.whiteHeading,
-                flexDirection: 'row',
+                flexDirection: "row",
                 marginHorizontal: 80,
               }}
             >
               <Feather
-                name='log-out'
+                name="log-out"
                 size={22}
                 color={theme.color.whiteHeading}
                 style={{ marginRight: 5 }}
@@ -261,8 +269,8 @@ export default function Setting({ route, navegation }) {
               marginTop: 20,
             }}
           >
-            <TextInput 
-              placeholder='Senha'
+            <TextInput
+              placeholder="Senha"
               placeholderTextColor={theme.color.gray}
               style={{
                 width: "100%",
@@ -275,8 +283,8 @@ export default function Setting({ route, navegation }) {
                 padding: 10,
               }}
             />
-             <TextInput
-              placeholder='Confirmar senha'
+            <TextInput
+              placeholder="Confirmar senha"
               placeholderTextColor={theme.color.gray}
               style={{
                 width: "100%",
@@ -321,7 +329,7 @@ export default function Setting({ route, navegation }) {
             }}
           >
             <Button
-              onPress={() =>{ 
+              onPress={() => {
                 navigation.navigate("Login");
               }}
               title="Sair"
