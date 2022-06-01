@@ -27,8 +27,8 @@ router.get("/plant/", getPlants);
 router.get("/plant/:id", getPlant);
 
 // Posts
-router.get("/post/", getPosts);
-router.get("/post/:id", getPostsUser);
+router.get("/post/:name?", getPosts);
+router.get("/post/user/:id", getPostsUser);
 router.post("/post/create", createPost);
 router.delete("/post/delete/:id", deletePost);
 router.put("/post/alter/:id", alterPost);

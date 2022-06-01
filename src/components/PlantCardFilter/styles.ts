@@ -3,11 +3,9 @@ import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   container: {
-    marginRight: 20,
     // borderRadius: 16,
     // paddingVertical: 10,
     // paddingHorizontal: 20,
-    marginBottom: 15,
     // backgroundColor: theme.color.whiteHeading,
     // shadowColor: theme.color.purpleDark,
     // shadowOffset: {
@@ -19,7 +17,7 @@ export const styles = StyleSheet.create({
     // elevation: 5,
     // alignItems: 'center',
     // justifyContent: 'center',
-    marginLeft: 2
+    margin: 5,
   },
 
   text: {
@@ -29,11 +27,11 @@ export const styles = StyleSheet.create({
   },
 
   FocusedContainer: {
-    marginRight: 20,
+    // marginRight: 0,
     // borderRadius: 16,
     // paddingVertical: 10,
     // paddingHorizontal: 20,
-    marginBottom: 15,
+    // marginBottom: 2,
     // backgroundColor: theme.color.greenWeak,
     borderBottomWidth: 3,
     borderColor: theme.color.orangeMedium,
@@ -47,7 +45,7 @@ export const styles = StyleSheet.create({
     // elevation: 5,
     // alignItems: 'center',
     // justifyContent: 'center',
-    marginLeft: 2,
+    // marginLeft: 2,
   },
 
   FocusedText: {

@@ -2,27 +2,22 @@ import { Dimensions, StyleSheet } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { theme } from "../../global/theme";
 
-const screenWidth = Dimensions.get('window').width;
-
+const screenWidth = Dimensions.get("window").width;
 
 export const styles = StyleSheet.create({
   container: {
-    // paddingHorizontal: 30,
-    // width: `${screenWidth/1.2}px`
+    width: "100%",
+    // backgroundColor: "red",
+    justifyContent: "center",
   },
 
   header: {
-    width: '100%',
-    flexDirection: 'row',
-    marginTop: getStatusBarHeight() + 10,
-    marginVertical: 20,
+    flexDirection: "row",
   },
-
   content: {
     flex: 1,
     paddingTop: 20,
-    paddingBottom: 70,
-    paddingLeft: 30,
+    paddingHorizontal: 15,
     backgroundColor: theme.color.white,
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
@@ -31,10 +26,9 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     color: theme.color.purpleDark,
-    marginBottom: 8,
-    paddingLeft: 3,
-    fontFamily: theme.fonts.poppins_700bold
-  }, 
+    margin: 10,
+    fontFamily: theme.fonts.poppins_700bold,
+  },
 
   seeMore: {
     fontSize: 14,
@@ -42,7 +36,7 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
     paddingLeft: 3,
     fontFamily: theme.fonts.poppins_500,
-    marginRight: 35
+    marginRight: 35,
   },
 
   filterIcon: {
@@ -50,8 +44,8 @@ export const styles = StyleSheet.create({
     // backgroundColor: theme.color.orangeMedium,
     padding: 13,
     borderRadius: 16,
-    alignSelf: 'center', 
-    justifyContent: 'center',
+    alignSelf: "center",
+    justifyContent: "center",
     shadowColor: theme.color.purpleDark,
     shadowOffset: {
       width: 0,
@@ -59,6 +53,6 @@ export const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.5,
-    elevation: 5
-  }
-})
+    elevation: 5,
+  },
+});

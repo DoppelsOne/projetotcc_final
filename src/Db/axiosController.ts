@@ -5,8 +5,8 @@ import { json } from "express";
 import { TextLocalization } from "../routers/PlantDetails/styles";
 
 //url padrão
-// const url = "http://10.0.2.2:3333/";
-const url = "http://192.168.10.11:3333/";
+const url = "http://10.0.2.2:3333/";
+// const url = "http://192.168.10.11:3333/";
 
 let end = {};
 let error: boolean = false;
@@ -134,8 +134,8 @@ async function getPlant(id: number) {
 }
 
 // #############Postagem######################
-async function getPosts() {
-  const posts = await axios.get(url + "post/").then((resp) => {
+async function getPosts(name?:String) {
+  const posts = await axios.get(url + "post/" + name).then((resp) => {
     return resp.data;
   });
 
@@ -143,7 +143,7 @@ async function getPosts() {
 }
 
 async function getPostsUser(id: number) {
-  const postsUser = await axios.get(url + "post/" + id).then((resp) => {
+  const postsUser = await axios.get(url + "post/user/" + id).then((resp) => {
     return resp.data;
   });
 

@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   Keyboard,
@@ -17,28 +17,24 @@ import { Profile } from "../../components/Profile";
 import { getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
+
 export default function UserPlant({ route, navigation }) {
   const { orange, orangeDark } = theme.color;
   let data;
   const user = route.params.user;
-
 
   // const sassi = async () => {
   //   await getPostsUser(user.id).then(resp=>{setPosts(resp)})
   // };
   const [posts, setPosts] = useState();
 
-  useEffect(() => {
-    const updateData = setTimeout(() => {
+  useFocusEffect(
+    React.useCallback(() => {
       getPostsUser(user.id).then((resp) => {
         setPosts(resp);
       });
-    }, 1000);
-
-    return function myStopFunction() {
-      clearTimeout(updateData);
-    };
-  });
+    }, [])
+  );
 
   // const posts = route.params.posts;
 

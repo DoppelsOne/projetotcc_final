@@ -1,25 +1,25 @@
+import { rest } from "lodash";
 import { TextInput, View } from "react-native";
-import Feather from 'react-native-vector-icons/Feather'
+import Feather from "react-native-vector-icons/Feather";
 import { theme } from "../../global/theme";
 
 import { styles } from "./styles";
 
-export function SearchBar() {
+export function SearchBar({ setSe }) {
   return (
     <View style={styles.container}>
       <View style={styles.searchIcon}>
-        <Feather 
-          name='search'
-          size={22}
-          color={theme.color.whiteHeading}
-        />
+        <Feather name="search" size={22} color={theme.color.whiteHeading} />
       </View>
       <TextInput
         style={styles.textInput}
-        placeholder='Pesquisar planta'
+        placeholder="Pesquisar planta"
         selectionColor={theme.color.whiteHeading}
         placeholderTextColor={theme.color.white}
+        onChangeText={(props) => {
+          setSe(props);
+        }}
       />
     </View>
-  )
+  );
 }

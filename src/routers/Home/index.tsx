@@ -18,39 +18,53 @@ import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
-import { getUser } from "../../Db/axiosController";
-import { Avatar } from './../../components/Avatar/index';
+import { getPosts, getUser } from "../../Db/axiosController";
+import { Avatar } from "./../../components/Avatar/index";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function Home({ route, navigation }) {
   const { green, greenDark } = theme.color;
+
   let data;
   const user = route.params.user;
-  const log = user.login.charAt(0).toUpperCase() + user.login.slice(1)
-  if (user.avatar == null){
-    data = user.avatar = ''
-  }else{
-    data = user.avatar
+  const log = user.login.charAt(0).toUpperCase() + user.login.slice(1);
+  if (user.avatar == null) {
+    data = user.avatar = "";
+  } else {
+    data = user.avatar;
   }
+
+  const [search, setSearch] = useState("");
+  const [posts, setPosts] = useState();
+  // console.log(search);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getPosts(search).then((resp) => {
+        setPosts(resp);
+      });
+    }, [search])
+  );
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Background>
         <View style={styles.container}>
           <View style={{ paddingHorizontal: 30, paddingVertical: 15 }}>
             <View style={styles.header}>
-              <Profile
-                login={log}
-                avat={data}
-              />
+              <Profile login={log} avat={data} />
             </View>
 
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
               }}
             >
-              <SearchBar />
+              <SearchBar setSe={setSearch} />
+
               <TouchableOpacity activeOpacity={0.7}>
                 <LinearGradient
                   // style={styles.buttonRegister}
@@ -69,9 +83,9 @@ export default function Home({ route, navigation }) {
         </View>
         <View style={styles.content}>
           <PlantCardFilter horizontal />
-
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View
+            <PlantCardPrimary posts={posts} />
+            {/* <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -82,37 +96,7 @@ export default function Home({ route, navigation }) {
               <TouchableOpacity activeOpacity={0.7}>
                 <Text style={styles.seeMore}>Ver mais</Text>
               </TouchableOpacity>
-            </View>
-
-            <PlantCardPrimary />
-
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={styles.title}>Perto de você</Text>
-              <TouchableOpacity activeOpacity={0.7}>
-                <Text style={styles.seeMore}>Ver mais</Text>
-              </TouchableOpacity>
-            </View>
-            <PlantCardSecundary horizontal />
-
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Text style={styles.title}>Raras</Text>
-              <TouchableOpacity activeOpacity={0.7}>
-                <Text style={styles.seeMore}>Ver mais</Text>
-              </TouchableOpacity>
-            </View>
-            <PlantCardSecundary horizontal />
+            </View> */}
           </ScrollView>
         </View>
       </Background>

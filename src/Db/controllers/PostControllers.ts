@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import { includes } from "lodash";
 import { prisma } from "../../../prisma/prisma";
 
-export async function getPosts(req: any, res: any) {
+export async function getPosts(req: any, res?: any) {
+  const { name, cat } = req.params;
   try {
     const postMany = await prisma.postagem.findMany({
+      where: { title: { contains: name } },
       include: {
         Usuario: { include: { Endereco: {} } },
         Planta: {
@@ -16,7 +18,7 @@ export async function getPosts(req: any, res: any) {
         },
       },
     });
-    // console.log(postMany);
+
     return res.json(postMany);
   } catch (error) {}
 }
@@ -43,7 +45,7 @@ export async function getPostsUser(req: any, res: any) {
         ),
       };
     });
-    console.log(result);
+    // console.log(result);
     return res.json(result);
   } catch (error) {
     console.log(error);
