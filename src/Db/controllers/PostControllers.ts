@@ -2,9 +2,20 @@ import { Request, Response } from "express";
 import { includes } from "lodash";
 import { prisma } from "../../../prisma/prisma";
 
-export async function getPosts(req: any, res: any) {
+export async function getPosts(req: any, res?: any) {
+  const { name, cat } = req.params;
   try {
     const postMany = await prisma.postagem.findMany({
+      where: {
+        AND: {
+          title: { contains: name },
+          Planta: {
+            Categoria: {
+              some: { category: { categoria: { contains: cat } } },
+            },
+          },
+        },
+      },
       include: {
         Usuario: { include: { Endereco: {} } },
         Planta: {
@@ -16,19 +27,28 @@ export async function getPosts(req: any, res: any) {
         },
       },
     });
-    // console.log(postMany);
-    return res.json(postMany);
+
+    const result = postMany.map((post) => {
+      return {
+        ...post,
+        Categorias: post.Planta.Categoria.map(
+          (catt) => catt.category?.categoria
+        ),
+      };
+    });
+
+    // console.log(result);
+    return res.json(result);
   } catch (error) {}
 }
 
 export async function getPostsUser(req: any, res: any) {
-  const { id } = req.params;
+  const id = req.params.id;
+  console.log(id);
   try {
     const postMany = await prisma.postagem.findMany({
       where: {
-        Usuario: {
-          id: Number(id),
-        },
+        autorId: Number(id),
       },
       include: {
         Planta: { include: { Categoria: { include: { category: true } } } },
@@ -88,4 +108,35 @@ export async function alterPost(req: any, res: any) {
   });
 
   return res.json(alterPost);
+}
+
+export async function getPostId(req: any, res: any) {
+  const { id } = req.params;
+  try {
+    const postId = await prisma.postagem.findUnique({
+      where: { id: Number(id) },
+      include: {
+        Planta: {
+          include: {
+            Categoria: {
+              include: { category: { select: { categoria: true } } },
+            },
+          },
+        },
+        Usuario: { include: { Endereco: {} } },
+      },
+    });
+
+    // const result = postId?.Planta.Categoria.map((post) => {
+    //   return {
+    //     postId,
+    //     Categorias: post.category?.categoria,
+    //   };
+    // });
+
+    console.log(postId);
+    return res.json(postId);
+  } catch (error) {
+    console.log(error);
+  }
 }

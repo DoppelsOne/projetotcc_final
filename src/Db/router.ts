@@ -1,9 +1,11 @@
 import { Router } from "express";
+import { getCat } from "./controllers/CategoryControllers";
 import { getPlants, getPlant } from "./controllers/PlantControllers";
 import {
   alterPost,
   createPost,
   deletePost,
+  getPostId,
   getPosts,
   getPostsUser,
 } from "./controllers/PostControllers";
@@ -27,10 +29,15 @@ router.get("/plant/", getPlants);
 router.get("/plant/:id", getPlant);
 
 // Posts
-router.get("/post/", getPosts);
-router.get("/post/:id", getPostsUser);
+router.get("/post/user/:id", getPostsUser);
+router.put("/post/alter/:id", alterPost);
+router.get("/post/select/:id", getPostId);
+router.get("/post/:cat?/:name?", getPosts);
 router.post("/post/create", createPost);
 router.delete("/post/delete/:id", deletePost);
-router.put("/post/alter/:id", alterPost);
+
+
+//Categorias
+router.get("/cat/", getCat);
 
 export { router };

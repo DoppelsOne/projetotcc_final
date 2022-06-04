@@ -1,25 +1,16 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import { wrap } from "lodash";
 import { theme } from "./../../global/theme";
-import { deletePost } from "../../Db/axiosController";
+import { deletePost, getPostsUser } from "../../Db/axiosController";
+import { useFocusEffect } from "@react-navigation/native";
 
 const InputEdit = (id: any) => {
+  const [update, setUpdate] = useState("");
+
   return (
-    <View style={styles.content}>
-      <TouchableOpacity style={styles.edit} onPress={() => {}}>
-        <Feather name="edit" size={40} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.remove}
-        onPress={() => {
-          deletePost(id.id), console.log(id.id);
-        }}
-      >
-        <Feather name="x" size={40} />
-      </TouchableOpacity>
-    </View>
+    
   );
 };
 

@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Switch,
+<<<<<<< HEAD
   Pressable,
   Modal,
   Animated,
@@ -21,6 +22,11 @@ import { RectButton } from 'react-native-gesture-handler'
 import AntDesign from "react-native-vector-icons/AntDesign";
 import * as ImagePicker from "expo-image-picker";
 
+=======
+  StyleSheet,
+} from "react-native";
+import { Feather } from "@expo/vector-icons";
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
 import { theme } from "../../global/theme";
 import { 
   styles,
@@ -32,17 +38,25 @@ import {
 } from "./styles";
 import { Button } from "../Button";
 import InputEdit from "./../Edit/InputEdit";
+<<<<<<< HEAD
 import { deletePost, postPost } from "../../Db/axiosController";
 import { useNavigation } from "@react-navigation/native";
+=======
+import { deletePost } from "../../Db/axiosController";
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
 
 export function PlantCardSecundary({ id, posts, route, ...rest }: any) {
   // let plant = route.params.plant;
   // let user = route.params.user;
 
+<<<<<<< HEAD
+=======
+export function PlantCardSecundary({ posts, setDelete, ...rest }, navigation) {
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const [dato, setDados] = useState(posts);
   const dados = posts;
+<<<<<<< HEAD
 
   const modalizeRef = useRef<Modalize>(null)
   const [modalVisible, setModalVisible] = useState(false);
@@ -93,6 +107,8 @@ export function PlantCardSecundary({ id, posts, route, ...rest }: any) {
 
 
   // console.log(dados)
+=======
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
 
   // console.log(dados3.map(d=>d.id))
 
@@ -136,6 +152,7 @@ export function PlantCardSecundary({ id, posts, route, ...rest }: any) {
                 <Text style={styles.price}>R$ {valor}</Text>
               </View>
             </View>
+<<<<<<< HEAD
             <View>
               {/* <InputEdit id={id} /> */}
               <View style={styles.contentEditDelete}>
@@ -157,12 +174,31 @@ export function PlantCardSecundary({ id, posts, route, ...rest }: any) {
               </View>
             </View>
           </View>        
+=======
+          </View>
+          <View>
+            <View style={styles.content}>
+              <TouchableOpacity style={styles.edit} onPress={() => {}}>
+                <Feather name="edit" size={40} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.remove}
+                onPress={() => {
+                deletePost(id), setDelete("update");
+                }}
+              >
+                <Feather name="x" size={40} />
+              </TouchableOpacity>
+            </View>
+          </View>
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
         </View>
       </TouchableOpacity>        
     </>
   );
 
   return (
+<<<<<<< HEAD
     <>
       <FlatList      
         showsHorizontalScrollIndicator={false}
@@ -361,5 +397,17 @@ export function PlantCardSecundary({ id, posts, route, ...rest }: any) {
         </KeyboardAvoidingView>
       </Modalize>     
     </>
+=======
+    <FlatList
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      // contentContainerStyle={{ paddingRight: 30 }}
+      onEndReachedThreshold={0.1}
+      data={dados}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+      {...rest}
+    />
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
   );
 }

@@ -1,44 +1,64 @@
-import React from 'react'
-import { Image, ScrollView, TouchableOpacity, View } from 'react-native'
-import { StatusBar } from 'expo-status-bar'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import React, { useState } from "react";
+import { Image, ScrollView, TouchableOpacity, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-import { 
-  Container, 
+import {
+  Container,
   Content,
-  Text, 
-  About, 
-  Subtitle, 
-  Information, 
-  Title, 
-  TextLocalization
-} from './styles'
-import { CheckoutAndPrice } from '../../components/CheckoutAndPrice'
-import { theme } from '../../global/theme'
-import { useNavigation } from '@react-navigation/native'
+  Text,
+  About,
+  Subtitle,
+  Information,
+  Title,
+  TextLocalization,
+} from "./styles";
+import { CheckoutAndPrice } from "../../components/CheckoutAndPrice";
+import { theme } from "../../global/theme";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { getPostId } from "../../Db/axiosController";
+import { map } from "lodash";
 
-export default function PlantDetails() {
-  const navigation = useNavigation()
+export default function PlantDetails({ route, navigation }) {
+  const { id } = route.params;
 
   function handleGoBack() {
     navigation.goBack();
   }
 
+  const [dataPost, setDataPost] = useState({
+    image: "assets/Logotipo/LogotipoPlantific.png",
+    title: "",
+    Planta: { Categoria: [] },
+    Usuario: { Endereco: {} },
+    Categorias: {},
+  });
+  console.log();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getPostId(id).then((resp) => {
+        setDataPost(resp);
+      });
+    }, [])
+  );
+
   return (
     <Container>
       <View>
         <StatusBar backgroundColor="transparent" style="light" translucent />
-        <Image 
-          source={require('../../../assets/plants/samambaia.jpg')}
-          style={{width: '100%', height: 350}}
+        <Image
+          // imagem
+          source={{ uri: `${dataPost.image}` }}
+          style={{ width: "100%", height: 350 }}
         />
-        <TouchableOpacity 
+        <TouchableOpacity
           activeOpacity={0.7}
-          style={{position: 'absolute'}}
-          onPress={handleGoBack}       
+          style={{ position: "absolute" }}
+          onPress={handleGoBack}
         >
-          <MaterialIcons   
-            name='arrow-back-ios'
+          <MaterialIcons
+            name="arrow-back-ios"
             style={{
               marginHorizontal: 20,
               marginTop: 30,
@@ -46,7 +66,7 @@ export default function PlantDetails() {
               borderRadius: 8,
               paddingLeft: 10,
               paddingVertical: 5,
-              justifyContent: 'center',
+              justifyContent: "center",
             }}
             color={theme.color.purpleDark}
             size={25}
@@ -54,34 +74,57 @@ export default function PlantDetails() {
         </TouchableOpacity>
       </View>
       <Content>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-        >
+        <ScrollView showsVerticalScrollIndicator={false}>
           <Information>
-            <Title>Samambaia</Title>
-            <Subtitle>Interior</Subtitle>
+            <Title>{dataPost.title}</Title>
+            <Subtitle>
+              {dataPost.Planta.Categoria.map((cat) => {
+                return cat.category.categoria + " ";
+              })}
+            </Subtitle>
           </Information>
           <View>
             <About>Descrição</About>
-            <Text>As samambaias são vegetais vasculares membros do táxon das pteridófitas (que deixou de ter validade taxonômica e só é utilizado como uma denominação informal). Elas possuem tecidos vasculares (xilema e floema), folhas verdadeiras, se reproduzem através de esporos e não produzem sementes ou flores.</Text>
+            <Text>{}</Text>
           </View>
           <View>
             <About>Localização</About>
-            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <View>
                 <Subtitle>Cidade</Subtitle>
-                <TextLocalization>Rio de Janeiro</TextLocalization>
+                <TextLocalization>
+                  {dataPost.Usuario.Endereco.cidade}
+                </TextLocalization>
               </View>
-              <View style={{alignItems: 'center', justifyContent: 'space-between'}}>
-                <Subtitle>Estado</Subtitle>
-                <TextLocalization>RJ</TextLocalization>
+              <View>
+                <Subtitle>Bairro</Subtitle>
+                <TextLocalization>
+                  {dataPost.Usuario.Endereco.bairro}
+                </TextLocalization>
+              </View>
+              <View>
+                <Subtitle>UF</Subtitle>
+                <TextLocalization>
+                  {dataPost.Usuario.Endereco.uf}
+                </TextLocalization>
               </View>
             </View>
           </View>
         </ScrollView>
       </Content>
 
-      <CheckoutAndPrice />
+      <CheckoutAndPrice
+        value={dataPost.valor}
+        numero={dataPost.Usuario.tel}
+        planta={dataPost.title}
+        name={dataPost.Usuario.login}
+      />
     </Container>
-  )
+  );
 }

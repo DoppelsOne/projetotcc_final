@@ -34,6 +34,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Modalize } from "react-native-modalize";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { isEmpty } from "lodash";
+import { useFocusEffect } from "@react-navigation/native";
+// import  from '@react-navigation/native';
 
 export default function Login({ navigation }) {
   const { green, greenDark } = theme.color;
@@ -41,12 +43,20 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+<<<<<<< HEAD
   const [nsenha, setNSenha] = useState("");
   const [rsenha, setRSenha] = useState("");
 
   useEffect(() => {
     getData();
   }, []);
+=======
+  useFocusEffect(
+    React.useCallback(() => {
+      getData();
+    }, [])
+  );
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
 
   if (dados) {
     postLogin(dados.email, dados.senha).then((resp) => {
@@ -89,9 +99,10 @@ export default function Login({ navigation }) {
       .then((resp) => {
         if (resp) {
           storeData(resp.email, resp.senha);
+          setEmail("");
+          setSenha("");
+          setDados({ email: "", senha: "" });
           navigation.navigate("Home", { user: resp });
-          setEmail("")
-          setSenha("")
         } else {
           // storeData(resp);
           // navigation.navigate("Home", { user: resp });

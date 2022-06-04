@@ -39,8 +39,8 @@ export const TextSwap = styled.Text`
 export const styles = StyleSheet.create({
   background: {
     // width: '100%',
-    justifyContent:"center",
-    alignItems:"center",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 8,
     margin: 8,
     // paddingRight: 50,
@@ -59,11 +59,11 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.5,
     elevation: 5,
-    flexDirection: 'row',
+    flexDirection: "row",
     height: 150,
     width: `100%`,
-  },    
-  
+  },
+
   image: {
     width: 130,
     height: 130,
@@ -72,32 +72,41 @@ export const styles = StyleSheet.create({
 
   information: {
     paddingHorizontal: 5,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    alignItems: "flex-start",
+    justifyContent: "center",
     height: 130,
     width: 150,
-
   },
 
   contentText: {
+<<<<<<< HEAD
     flexDirection: 'column',
     justifyContent: 'space-between',
+=======
+    flexDirection: "row",
+    justifyContent: "space-between",
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
   },
 
   title: {
-    textAlign: 'left',
+    textAlign: "left",
     fontSize: 18,
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_700bold,
+<<<<<<< HEAD
     // marginBottom: -10,
     maxWidth: 150
+=======
+    marginBottom: -10,
+    maxWidth: 150,
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
   },
 
   text: {
     color: theme.color.gray,
     fontFamily: theme.fonts.poppins_400,
     paddingTop: 10,
-    marginBottom: -5
+    marginBottom: -5,
   },
 
   price: {
@@ -105,8 +114,12 @@ export const styles = StyleSheet.create({
     color: theme.color.green,
     fontFamily: theme.fonts.poppins_700bold,
   },
+<<<<<<< HEAD
 
   contentEditDelete: {
+=======
+  content: {
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
     flex: 1,
     flexWrap: "wrap",
     // backgroundColor: "orange",
@@ -115,20 +128,32 @@ export const styles = StyleSheet.create({
     height: `100%`,
     width: 50,
   },
+<<<<<<< HEAD
 
   edit: {
     // opacity: 0.7,
     flex: 1,
     backgroundColor: theme.color.green,
+=======
+  edit: {
+    opacity: 0.7,
+    flex: 1,
+    backgroundColor: "#09ffff",
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
     borderTopRightRadius: 16,
     width: 50,
     alignItems: "center",
     justifyContent: "center",
     height: `100%`,
   },
+<<<<<<< HEAD
   
   remove: {
     // opacity: 0.7,
+=======
+  remove: {
+    opacity: 0.7,
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
     flex: 1,
     backgroundColor: theme.color.orange,
     borderBottomRightRadius: 16,
@@ -137,6 +162,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     height: `100%`,
   },
+<<<<<<< HEAD
 
   centeredView: {
     flex: 1,
@@ -184,3 +210,6 @@ export const styles = StyleSheet.create({
     marginTop: 10
   }
 })
+=======
+});
+>>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c

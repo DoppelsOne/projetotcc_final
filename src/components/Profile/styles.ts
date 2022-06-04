@@ -1,11 +1,17 @@
 import { StyleSheet } from "react-native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
 import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: getStatusBarHeight() + 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    // backgroundColor:"blue",
+    width: `100%`,
+    margin: 5,
+    padding: 5,
   },
 
   greeting: {
