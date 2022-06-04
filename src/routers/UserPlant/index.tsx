@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
-=======
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
 import {
   Keyboard,
   Text,
@@ -18,11 +13,8 @@ import { Profile } from "../../components/Profile";
 import { deletePost, getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
-<<<<<<< HEAD
 import { Background } from "../../components/Background";
 
-=======
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
 
 export default function UserPlant({ route, navigation }) {
   const { orange, orangeDark } = theme.color;

@@ -43,20 +43,12 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-<<<<<<< HEAD
   const [nsenha, setNSenha] = useState("");
   const [rsenha, setRSenha] = useState("");
 
   useEffect(() => {
     getData();
   }, []);
-=======
-  useFocusEffect(
-    React.useCallback(() => {
-      getData();
-    }, [])
-  );
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
 
   if (dados) {
     postLogin(dados.email, dados.senha).then((resp) => {

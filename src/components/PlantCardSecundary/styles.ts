@@ -79,13 +79,8 @@ export const styles = StyleSheet.create({
   },
 
   contentText: {
-<<<<<<< HEAD
     flexDirection: 'column',
     justifyContent: 'space-between',
-=======
-    flexDirection: "row",
-    justifyContent: "space-between",
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
   },
 
   title: {
@@ -93,13 +88,8 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_700bold,
-<<<<<<< HEAD
     // marginBottom: -10,
     maxWidth: 150
-=======
-    marginBottom: -10,
-    maxWidth: 150,
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
   },
 
   text: {
@@ -114,12 +104,8 @@ export const styles = StyleSheet.create({
     color: theme.color.green,
     fontFamily: theme.fonts.poppins_700bold,
   },
-<<<<<<< HEAD
 
   contentEditDelete: {
-=======
-  content: {
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
     flex: 1,
     flexWrap: "wrap",
     // backgroundColor: "orange",
@@ -128,32 +114,20 @@ export const styles = StyleSheet.create({
     height: `100%`,
     width: 50,
   },
-<<<<<<< HEAD
 
   edit: {
     // opacity: 0.7,
     flex: 1,
     backgroundColor: theme.color.green,
-=======
-  edit: {
-    opacity: 0.7,
-    flex: 1,
-    backgroundColor: "#09ffff",
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
     borderTopRightRadius: 16,
     width: 50,
     alignItems: "center",
     justifyContent: "center",
     height: `100%`,
   },
-<<<<<<< HEAD
   
   remove: {
     // opacity: 0.7,
-=======
-  remove: {
-    opacity: 0.7,
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
     flex: 1,
     backgroundColor: theme.color.orange,
     borderBottomRightRadius: 16,
@@ -162,7 +136,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     height: `100%`,
   },
-<<<<<<< HEAD
 
   centeredView: {
     flex: 1,
@@ -210,6 +183,3 @@ export const styles = StyleSheet.create({
     marginTop: 10
   }
 })
-=======
-});
->>>>>>> fc72a75b4b2af6e213dd4c51da45252dcd7bf92c
