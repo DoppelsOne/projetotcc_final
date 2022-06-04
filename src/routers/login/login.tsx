@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Keyboard,
   StyleSheet,
@@ -7,6 +7,9 @@ import {
   View,
   Text,
   SafeAreaView,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
@@ -24,11 +27,12 @@ import {
   ButtonFooter,
   Or,
   Subtitle,
-  TextForgot,
 } from "./styles";
 import { theme } from "../../global/theme";
 import { postLogin, getUser, getPlant } from "../../Db/axiosController";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Modalize } from "react-native-modalize";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { isEmpty } from "lodash";
 import { useFocusEffect } from "@react-navigation/native";
 // import  from '@react-navigation/native';
@@ -39,11 +43,12 @@ export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  useFocusEffect(
-    React.useCallback(() => {
-      getData();
-    }, [])
-  );
+  const [nsenha, setNSenha] = useState("");
+  const [rsenha, setRSenha] = useState("");
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   if (dados) {
     postLogin(dados.email, dados.senha).then((resp) => {
@@ -100,89 +105,333 @@ export default function Login({ navigation }) {
       });
   }
 
+  const modalizeRef = useRef<Modalize>(null);
+  const modalizeRefTwo = useRef<Modalize>(null);
+
+  // validação de dados
+  let valid;
+  function validacao() {
+    if (!isEmpty(nsenha) || !isEmpty(rsenha)) {
+      if (nsenha == rsenha) {
+        console.table("Dados Conferem");
+        return (valid = true);
+      } else {
+        return (valid = false);
+      }
+    }
+  }
+  validacao();
+
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Container>
-        <StatusBar backgroundColor="transparent" style="light" translucent />
-        {/* <Wrapper> */}
-        <Image
-          source={require("../../../assets/Logotipo/LogotipoPlantific.png")}
-        />
-        <Title>Login</Title>
-        <Subtitle>Para entrar na sua conta!</Subtitle>
-        {/* </Wrapper> */}
-
-        <View style={styles.form_icon}>
-          <Input
-            iconName="mail"
-            placeholder="E-mail"
-            placeholderTextColor={theme.color.white}
-            onChangeText={(props) => {
-              setEmail(props);
-            }}
+    <>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <StatusBar backgroundColor="transparent" style="light" translucent />
+          {/* <Wrapper> */}
+          <Image
+            source={require("../../../assets/Logotipo/LogotipoPlantific.png")}
           />
-          <Input
-            iconName="lock"
-            placeholder="Senha"
-            placeholderTextColor={theme.color.white}
-            secureTextEntry
-            onChangeText={(props) => {
-              setSenha(props);
+          <Title>Login</Title>
+          <Subtitle>Para entrar na sua conta!</Subtitle>
+          {/* </Wrapper> */}
+
+          <View style={styles.form_icon}>
+            <Input
+              iconName="mail"
+              placeholder="E-mail"
+              placeholderTextColor={theme.color.white}
+              onChangeText={(props) => {
+                setEmail(props);
+              }}
+            />
+            <Input
+              iconName="lock"
+              placeholder="Senha"
+              placeholderTextColor={theme.color.white}
+              secureTextEntry
+              onChangeText={(props) => {
+                setSenha(props);
+              }}
+            />
+
+            <Button
+              title="Entrar"
+              onPress={() => {
+                if (email == "" || senha == "") {
+                  console.log("Dados Faltando");
+                } else {
+                  postLogin(email, senha).then((resp) => {
+                    if (resp) {
+                      verificar(resp);
+                    } else {
+                      console.log("Usuário não cadastrado");
+                    }
+                  });
+                }
+              }}
+              style={{ marginTop: 15 }}
+            />
+
+            <Or>Ou</Or>
+
+            <TouchableOpacity activeOpacity={0.7}>
+              <LinearGradient
+                style={styles.backgroundSocialIcon}
+                colors={[green, greenDark]}
+              >
+                <Icon style={styles.icones} name="social-facebook" />
+                <Text style={styles.textSocialIcon}>Entrar com Facebook</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+
+            <TouchableOpacity activeOpacity={0.7}>
+              <LinearGradient
+                style={styles.backgroundSocialIcon}
+                colors={[green, greenDark]}
+              >
+                <Icon style={styles.icones} name="social-google" />
+                <Text style={styles.textSocialIcon}>Entrar com Google</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+
+            <ContainerFooter>
+              <ButtonFooter onPress={() => navigation.navigate("Cadastrar")}>
+                <TextFooter>CADASTRE-SE</TextFooter>
+              </ButtonFooter>
+
+              <ButtonFooter onPress={() => modalizeRef.current?.open()}>
+                <TextFooter>Esqueci minha senha </TextFooter>
+              </ButtonFooter>
+            </ContainerFooter>
+          </View>
+        </Container>
+      </TouchableWithoutFeedback>
+
+      <Modalize
+        ref={modalizeRef}
+        withHandle={false}
+        modalHeight={600}
+      >
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={70}
+        >
+          <View
+            style={{
+              flex: 1,
+              padding: 14,
             }}
-          />
+          >
+            <View style={{ alignItems: "flex-end" }}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => {
+                  modalizeRef.current?.close();
+                }}
+              >
+                <AntDesign
+                  name="close"
+                  size={22}
+                  color={theme.color.purpleDark}
+                />
+              </TouchableOpacity>
+            </View>
 
-          <Button
-            title="Entrar"
-            onPress={() => {
-              if (email == "" || senha == "") {
-                console.log("Dados Faltando");
-              } else {
-                postLogin(email, senha).then((resp) => {
-                  if (resp) {
-                    verificar(resp);
-                  } else {
-                    console.log("Usuário não cadastrado");
-                  }
-                });
-              }
-            }}
-            style={{ marginTop: 15 }}
-          />
-
-          <Or>Ou</Or>
-
-          <TouchableOpacity activeOpacity={0.7}>
-            <LinearGradient
-              style={styles.backgroundSocialIcon}
-              colors={[green, greenDark]}
+            <Text
+              style={{
+                fontSize: 18,
+                fontFamily: theme.fonts.poppins_700bold,
+                color: theme.color.purpleDark,
+                textAlign: "center",
+              }}
             >
-              <Icon style={styles.icones} name="social-facebook" />
-              <Text style={styles.textSocialIcon}>Entrar com Facebook</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+              Digite seu e-mail
+            </Text>
 
-          <TouchableOpacity activeOpacity={0.7}>
-            <LinearGradient
-              style={styles.backgroundSocialIcon}
-              colors={[green, greenDark]}
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                marginTop: 20,
+              }}
             >
-              <Icon style={styles.icones} name="social-google" />
-              <Text style={styles.textSocialIcon}>Entrar com Google</Text>
-            </LinearGradient>
-          </TouchableOpacity>
+              <TextInput
+                placeholder="E-mail"
+                placeholderTextColor={theme.color.gray}
+                // onChangeText={(prop) => {
+                //   setNSenha(prop);
+                // }}
+                style={{
+                  width: "100%",
+                  fontSize: 16,
+                  fontFamily: theme.fonts.poppins_500,
+                  color: theme.color.purpleDark,
+                  backgroundColor: theme.color.white,
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  padding: 10,
+                }}
+              />   
+              <TextInput
+                placeholder="Telefone"
+                keyboardType='numeric'
+                placeholderTextColor={theme.color.gray}
+                // onChangeText={(prop) => {
+                //   setNSenha(prop);
+                // }}
+                style={{
+                  width: "100%",
+                  fontSize: 16,
+                  fontFamily: theme.fonts.poppins_500,
+                  color: theme.color.purpleDark,
+                  backgroundColor: theme.color.white,
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  padding: 10,
+                  marginTop: 10,
+                }}
+              />           
+            </View>
+            {/* {valid ? (
+              <Text
+                style={{
+                  color: theme.color.greenLight,
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  margin: 5,
+                }}
+              >
+                Dados Conferem!!!
+              </Text>
+            ) : (
+              <Text></Text>
+            )} */}
+            <Button
+              title="Recuperar senha"
+              style={{}}
+              onPress={() => {
+                modalizeRefTwo.current?.open()
+              }}
+            />
+          </View>
+        </KeyboardAvoidingView>
+      </Modalize>
 
-          <ContainerFooter>
-            <ButtonFooter onPress={() => navigation.navigate("Cadastrar")}>
-              <TextFooter>CADASTRE-SE</TextFooter>
-            </ButtonFooter>
+      <Modalize
+        ref={modalizeRefTwo}
+        withHandle={false}
+        // snapPoint={400}
+        modalHeight={600}
+      >
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={70}
+        >
+          <View
+            style={{
+              flex: 1,
+              padding: 14,
+            }}
+          >
+            <View style={{ alignItems: "flex-end" }}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => {
+                  modalizeRefTwo.current?.close();
+                }}
+              >
+                <AntDesign
+                  name="close"
+                  size={22}
+                  color={theme.color.purpleDark}
+                />
+              </TouchableOpacity>
+            </View>
 
-            <ButtonFooter onPress={() => navigation.navigate("Login")}>
-              <TextForgot>Esqueci minha senha </TextForgot>
-            </ButtonFooter>
-          </ContainerFooter>
-        </View>
-      </Container>
-    </TouchableWithoutFeedback>
+            <Text
+              style={{
+                fontSize: 18,
+                fontFamily: theme.fonts.poppins_700bold,
+                color: theme.color.purpleDark,
+                textAlign: "center",
+              }}
+            >
+              Digite uma nova senha
+            </Text>
+
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <TextInput
+                placeholder="Senha"
+                secureTextEntry={true}
+                placeholderTextColor={theme.color.gray}
+                onChangeText={(prop) => {
+                  setNSenha(prop);
+                }}
+                style={{
+                  width: "100%",
+                  fontSize: 16,
+                  fontFamily: theme.fonts.poppins_500,
+                  color: theme.color.purpleDark,
+                  backgroundColor: theme.color.white,
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  padding: 10,
+                }}
+              />
+              <TextInput
+                placeholder="Confirmar senha"
+                secureTextEntry={true}
+                onChangeText={(props) => {
+                  setRSenha(props);
+                }}
+                placeholderTextColor={theme.color.gray}
+                style={{
+                  width: "100%",
+                  fontSize: 16,
+                  fontFamily: theme.fonts.poppins_500,
+                  color: theme.color.purpleDark,
+                  backgroundColor: theme.color.white,
+                  borderWidth: 1,
+                  borderRadius: 8,
+                  padding: 10,
+                  marginTop: 10,
+                }}
+              />
+            </View>
+            {valid ? (
+              <Text
+                style={{
+                  color: theme.color.greenLight,
+                  fontFamily: theme.fonts.poppins_500,
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  margin: 8,
+                }}
+              >
+                Dados Conferem!!!
+              </Text>
+            ) : (
+              <Text></Text>
+            )}
+            <Button
+              title="Alterar senha"
+              style={{}}
+              onPress={() => {
+                modalizeRef.current?.close();
+              }}
+            />
+          </View>
+        </KeyboardAvoidingView>
+      </Modalize>
+    </>
   );
 }
 
@@ -190,8 +439,8 @@ const styles = StyleSheet.create({
   form_icon: {
     width: `100%`,
     flex: 1,
-    flexGrow: 3,
-    padding: 15,
+    flexGrow: 1,
+    paddingHorizontal: 15,
   },
 
   backgroundSocialIcon: {

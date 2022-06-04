@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
   buttonRegisterContainer: {
     position: "absolute",
     alignItems: "center",
-    bottom: 0,
+    bottom: 30,
   },
 
   buttonRegister: {

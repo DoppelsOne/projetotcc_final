@@ -314,7 +314,7 @@ export default function Setting({ route, navigation }) {
               padding: 14,
             }}
           >
-            {/* <View style={{ alignItems: "flex-end" }}>
+            <View style={{ alignItems: "flex-end" }}>
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => {
@@ -327,7 +327,7 @@ export default function Setting({ route, navigation }) {
                   color={theme.color.purpleDark}
                 />
               </TouchableOpacity>
-            </View> */}
+            </View>
 
             <Text
               style={{
@@ -389,10 +389,11 @@ export default function Setting({ route, navigation }) {
               <Text
                 style={{
                   color: theme.color.greenLight,
+                  fontFamily: theme.fonts.poppins_500,
                   fontSize: 16,
                   fontWeight: "bold",
                   textAlign: "center",
-                  margin: 5,
+                  margin: 8,
                 }}
               >
                 Dados Conferem!!!
@@ -401,7 +402,7 @@ export default function Setting({ route, navigation }) {
               <Text></Text>
             )}
             <Button
-              title="Atualizar"
+              title="Alterar senha"
               style={{}}
               onPress={() => {
                 modalizeRef.current?.close();
