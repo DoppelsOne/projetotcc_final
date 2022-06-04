@@ -1,22 +1,21 @@
-import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
+import React, { useState, useEffect } from "react";
 import {
   Keyboard,
   Text,
   TouchableWithoutFeedback,
   View,
-  ScrollView,
-  TouchableOpacity,
-  SafeAreaView,
 } from "react-native";
-import React, { useState, useEffect } from "react";
 import Entypo from "react-native-vector-icons/Entypo";
-import { Background } from "../../components/Background";
+import { LinearGradient } from "expo-linear-gradient";
+
 import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
 import { getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
+import { Background } from "../../components/Background";
+
+
 export default function UserPlant({ route, navigation }) {
   const { orange, orangeDark } = theme.color;
   let data;
@@ -55,7 +54,7 @@ export default function UserPlant({ route, navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Background>
-        <View style={{ paddingHorizontal: 30, paddingVertical: 15 }}>
+        <View style={{ paddingHorizontal: 30 }}>
           <View style={styles.header}>
             <Profile login={log} avat={data} />
           </View>

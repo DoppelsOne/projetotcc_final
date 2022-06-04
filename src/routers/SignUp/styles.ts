@@ -12,18 +12,11 @@ export const Container = styled(LinearGradient).attrs({
   end: { x: 1, y: 1 },
 })`
   flex: 1;
+  flex-wrap: wrap; 
   padding-top: ${30 + getStatusBarHeight(true)}px;
   justify-content: center;
   align-items: center;
-`;
-
-export const Wrapper = styled.View`
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding-top: 10px;
-  flex-grow: 1;
-  /* background-color: blue; */
+  padding-bottom: 40px;
 `;
 
 export const Image = styled.Image.attrs({
@@ -31,7 +24,14 @@ export const Image = styled.Image.attrs({
 })`
   width: 80%;
   height: 115px;
+`;
 
+export const Wrapper = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 10px;
 `;
 
 export const Title = styled.Text`
@@ -48,22 +48,11 @@ export const Subtitle = styled.Text`
 `;
 
 export const Content = styled.View`
-  /* flex: 1; */
-  flex-grow: 4;
+  flex: 2;
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
 `;
-
-// export const Button = styled.TouchableOpacity`
-//   background-color: ${theme.color.purpleDark};
-//   padding: 12px;
-//   border-radius: 8px;
-//   width: 100%;
-//   align-items: center;
-//   border-style: solid;
-//   margin-top: 16px;
-// `;
 
 export const TextForgot = styled.Text`
   font-size: 16px;
@@ -71,17 +60,10 @@ export const TextForgot = styled.Text`
   font-family: ${theme.fonts.poppins_400};  
 `;
 
-export const ContainerFooter = styled.View`
-  align-items: center;
-  width: 100%;
-  margin-top: 10px;
-  /* background-color: black; */
-`;
-
 export const TextFooter = styled.Text`
-width: 100%;
-margin: 10px;
-text-align: center;
+  width: 100%;
+  margin: 10px;
+  text-align: center;
   font-size: 16px;
   color: ${theme.color.whiteHeading};
   font-family: ${theme.fonts.poppins_500};  

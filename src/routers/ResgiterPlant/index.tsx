@@ -229,6 +229,7 @@ export default function RegisterPlant({ route, navigation:{goBack} }) {
                   onFocus={handleInputFocus}
                   placeholder="Valor sugerido"
                   placeholderTextColor={theme.color.gray}
+                  selectionColor={theme.color.greenLight}
                   // selectionColor={theme.color.greenLight}
                   value={price || value}
                   onChangeText={(prop) => setPrice(prop)}
@@ -258,7 +259,7 @@ export default function RegisterPlant({ route, navigation:{goBack} }) {
                 />
               </CheckBoxContainer>
               <Button
-                title="Cadastrar!"
+                title="Cadastrar"
                 style={{ marginTop: 20 }}
                 onPress={() => {
                   postData(

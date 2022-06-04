@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   Alert,
   Keyboard,
+  KeyboardAvoidingView,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -109,113 +110,96 @@ export default function SignUp() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
         <StatusBar backgroundColor="transparent" translucent />
-        {/* <TouchableOpacity
-            activeOpacity={0.7}
-            style={{ alignSelf: 'flex-start' }}
-            onPress={handleGoBack}       
-          >
-            <MaterialIcons   
-              name='arrow-back-ios'
-              style={{
-                marginHorizontal: 20,
-                marginBottom: 20,
-                // marginTop: -20,
-                justifyContent: 'center',
-                padding: 15
-              }}
-              color={theme.color.whiteHeading}
-              size={25}
-            />
-          </TouchableOpacity> */}
+        <TouchableOpacity 
+          onPress={handleGoBack}
+          style={{
+            position: 'absolute',              
+            borderWidth: 1,
+            borderRadius: 8,
+            borderColor: theme.color.whiteHeading,
+            backgroundColor: theme.color.overlay,
+            top: 20,
+            left: 20,
+            marginTop: 22
+          }}
+        >
+          <Feather
+            name='chevron-left'
+            size={28}
+            color={theme.color.whiteHeading}
+            style={{ padding: 3 }}
+          />
+        </TouchableOpacity>
+
         <Wrapper>
-          <TouchableOpacity 
-            onPress={() => navigation.navigate("Login")}
-            style={{
-              position: 'absolute',              
-              borderWidth: 1,
-              borderRadius: 8,
-              borderColor: theme.color.whiteHeading,
-              backgroundColor: theme.color.overlay,
-              top: 20,
-              left: 20
-            }}
-          >
-            <Feather
-              name='chevron-left'
-              size={28}
-              color={theme.color.whiteHeading}
-              style={{ padding: 3 }}
-            />
-            {/* <TextFooter>JÁ POSSUO UMA CONTA</TextFooter> */}
-          </TouchableOpacity>
           <Image source={require("../../../assets/Logotipo/LogotipoPlantific.png")} />
           <Title>Cadastro</Title>
           <Subtitle>Crie sua conta rápido e fácil!</Subtitle>
         </Wrapper>
 
-        <Content>
-          <Input
-            iconName="user"
-            placeholder="Usuário"
-            onChangeText={(prop) => {
-              userData.usuario = prop;
-            }}
-          />
+        <KeyboardAvoidingView style={{ flex: 2}} behavior='padding'>
+          <Content>
+            <Input
+              iconName="user"
+              placeholder="Usuário"
+              onChangeText={(prop) => {
+                userData.usuario = prop;
+              }}
+            />
 
-          <Input
-            iconName="mail"
-            placeholder="E-mail"
-            keyboardType="email-address"
-            onChangeText={(prop) => {
-              userData.email = prop;
-            }}
-          />
-          <Input
-            iconName="phone"
-            placeholder="Telefone"
-            keyboardType="numeric"
-            onChangeText={(prop) => {
-              userData.tel = prop;
-            }}
-          />
-          <Input
-            iconName="map"
-            placeholder="CEP"
-            keyboardType="numeric"
-            onChangeText={(prop) => {
-              userData.cep = prop;
-            }}
-          />
+            <Input
+              iconName="mail"
+              placeholder="E-mail"
+              keyboardType="email-address"
+              onChangeText={(prop) => {
+                userData.email = prop;
+              }}
+            />
+            <Input
+              iconName="phone"
+              placeholder="Telefone"
+              keyboardType="numeric"
+              onChangeText={(prop) => {
+                userData.tel = prop;
+              }}
+            />
+            <Input
+              iconName="map"
+              placeholder="CEP"
+              keyboardType="numeric"
+              onChangeText={(prop) => {
+                userData.cep = prop;
+              }}
+            />
 
-          <Input
-            iconName="lock"
-            placeholder="Senha"
-            secureTextEntry
-            onChangeText={(prop) => {
-              userData.senha = prop;
-            }}
-          />
+            <Input
+              iconName="lock"
+              placeholder="Senha"
+              secureTextEntry
+              onChangeText={(prop) => {
+                userData.senha = prop;
+              }}
+            />
 
-          <Input
-            iconName="lock"
-            placeholder="Confirmar Senha"
-            secureTextEntry
-            onChangeText={(prop) => {
-              setConfirmSenha(prop);
-            }}
-          />
+            <Input
+              iconName="lock"
+              placeholder="Confirmar Senha"
+              secureTextEntry
+              onChangeText={(prop) => {
+                setConfirmSenha(prop);
+              }}
+            />
 
-          {/* <Button>
-              <ButtonTitle>Cadastrar</ButtonTitle>
-            </Button> */}
-          <Button
-            title="Cadastrar"
-            style={{ marginTop: 15 }}
-            onPress={() => {
-              validarCampos(userData, confirm);
-            }}
-          />          
-        </Content>
+            <Button
+              title="Cadastrar"
+              style={{ marginTop: 15 }}
+              onPress={() => {
+                validarCampos(userData, confirm);
+              }}
+            />          
+          </Content>
+
+        </KeyboardAvoidingView>
       </Container>
     </TouchableWithoutFeedback>
   );
