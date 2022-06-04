@@ -86,10 +86,9 @@ async function postLogin(email: String, senha: String) {
 }
 
 async function getUser(id: number) {
-  const lista = await axios.get(url + "login/" + id).then((resp) => {
+  return await axios.get(url + "login/" + id).then((resp) => {
     return resp.data;
   });
-  return lista;
 }
 
 async function alterUser(
@@ -109,45 +108,38 @@ async function alterUser(
       return resp;
     }),
   };
-  const alterDataUser = await axios
-    .put(url + "user/alter/" + id, dados)
-    .then((resp) => {
-      return resp.data;
-    });
-  return alterDataUser;
+  return await axios.put(url + "user/alter/" + id, dados).then((resp) => {
+    return resp.data;
+  });
 }
 
 // #############Planta######################
 async function getPlants() {
-  const plants = await axios.get(url + "plant/").then((resp) => {
+  return await axios.get(url + "plant/").then((resp) => {
     return resp.data;
   });
-
-  return plants;
 }
 
 async function getPlant(id: number) {
-  const plant = await axios.get(url + "plant/" + id).then((resp) => {
+  return await axios.get(url + "plant/" + id).then((resp) => {
     return resp.data;
   });
-  return plant;
 }
 
 // #############Postagem######################
-async function getPosts(name?:String) {
-  const posts = await axios.get(url + "post/" + name).then((resp) => {
+async function getPosts(cat?: String, name?: String) {
+  if (cat == "Todas") {
+    cat = "?";
+  }
+  return await axios.get(url + "post/" + cat + "/" + name).then((resp) => {
     return resp.data;
   });
-
-  return posts;
 }
 
-async function getPostsUser(id: number) {
-  const postsUser = await axios.get(url + "post/user/" + id).then((resp) => {
+async function getPostsUser(id: Number) {
+  return await axios.get(url + "post/user/" + id).then((resp) => {
     return resp.data;
   });
-
-  return postsUser;
 }
 
 async function postPost(
@@ -167,7 +159,7 @@ async function postPost(
     troca: troca,
   };
 
-  const data = await axios
+  return await axios
     .post(url + "post/create", dados)
     .then((resp) => {
       return resp.data;
@@ -175,8 +167,6 @@ async function postPost(
     .catch((err) => {
       return err.message;
     });
-
-  return data;
 }
 
 async function deletePost(id: any) {
@@ -201,7 +191,27 @@ async function alterPost(
   await axios.put(url + "post/alter/" + idPost, dados);
 }
 
+async function getPostId(id: number) {
+  return await axios.get(url + "post/select/" + id).then((resp) => {
+    return resp.data;
+  });
+}
+
+//categorias
+
+async function getCat() {
+  return await axios.get(url + "cat/").then((resp) => {
+    return resp.data;
+  });
+}
+
+//Api ZAP
+
+
+
 export {
+  getPostId,
+  getCat,
   alterUser,
   alterPost,
   deletePost,

@@ -15,6 +15,7 @@ import EspadaSaoJorge from "../../../assets/plants/espadaSaoJorge.jpg";
 import Samambaia from "../../../assets/plants/samambaia.jpg";
 import Zamioculca from "../../../assets/plants/zamioculca.jpg";
 import { useNavigation } from "@react-navigation/native";
+import { map } from "lodash";
 
 export function PlantCardPrimary({ posts }) {
   const plants = posts;
@@ -27,36 +28,45 @@ export function PlantCardPrimary({ posts }) {
 
   const renderItem = ({ item }: any) => (
     <Item
+      id={item.id}
       title={item.title}
       price={item.valor}
       image={item.image}
       status={item.troca}
-      category={item.category}
+      categoria={item.Categorias}
     />
   );
 
-  const Item = ({ title, price, image, status, category }: any) => (
-    <TouchableOpacity
-      activeOpacity={0.7}
-      onPress={() => navigation.navigate("PlantDetails")}
-    >
-      <View
-        style={styles.background}
-        // colors={[purple, purpleDark]}
+  const Item = ({ id, title, price, image, status, categoria }: any) => (
+    // console.log(
+    //   ...categoria.map((asd) => {
+    //     if (asd) {
+    //       return asd + ",";
+    //     }
+    //   })
+    // ),
+    (
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => navigation.navigate("PlantDetails", { id: id })}
       >
-        <View style={styles.container}>
-          <Image source={{ uri: image }} style={styles.image} />
+        <View
+          style={styles.background}
+          // colors={[purple, purpleDark]}
+        >
+          <View style={styles.container}>
+            <Image source={{ uri: image }} style={styles.image} />
 
-          <View style={styles.information}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.text}>{category}</Text>
+            <View style={styles.information}>
+              <Text style={styles.title}>{title}</Text>
+              <Text style={styles.text}>{categoria + ""}</Text>
 
-            <View style={styles.contentText}>
-              <View>
-                <Text style={styles.text}>Valor</Text>
-                <Text style={styles.price}>R$ {price}</Text>
-              </View>
-              {/* <View style={{alignItems: 'center'}}>
+              <View style={styles.contentText}>
+                <View>
+                  <Text style={styles.text}>Valor</Text>
+                  <Text style={styles.price}>R$ {price}</Text>
+                </View>
+                {/* <View style={{alignItems: 'center'}}>
                 <Text style={styles.status}>{status}</Text>
                 <Switch
                   trackColor={{ false: "#767577", true: theme.color.green }}
@@ -66,11 +76,12 @@ export function PlantCardPrimary({ posts }) {
                   value={isEnabled}
                 />
               </View> */}
+              </View>
             </View>
           </View>
         </View>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    )
   );
 
   return (

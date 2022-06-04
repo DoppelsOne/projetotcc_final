@@ -52,7 +52,7 @@ export const TabRoutes = ({ route, navigation }) => {
       <Tab.Screen
         name="HomeLogin"
         component={Home}
-        initialParams={{ user: user, update:true}}
+        initialParams={{ user: user, update: true }}
         options={{
           headerShown: false,
           tabBarIcon: ({ size, focused }) =>
@@ -76,6 +76,9 @@ export const TabRoutes = ({ route, navigation }) => {
                     fontSize: 10,
                     fontFamily: theme.fonts.poppins_400,
                     color: theme.color.orangeMedium,
+                    width: `100%`,
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
                   Home
@@ -119,6 +122,9 @@ export const TabRoutes = ({ route, navigation }) => {
                     fontSize: 10,
                     fontFamily: theme.fonts.poppins_400,
                     color: theme.color.orangeMedium,
+                    width: `100%`,
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
                   Suas plantas
@@ -193,22 +199,24 @@ export const TabRoutes = ({ route, navigation }) => {
               >
                 <FontAwesome
                   name="user"
-                  size={24}
+                  size={22}
                   color={theme.color.orangeMedium}
                 />
                 <Text
                   style={{
-                    fontSize: 10,
+                    fontSize: 11,
                     fontFamily: theme.fonts.poppins_400,
                     color: theme.color.orangeMedium,
-                    maxWidth: 200,
+                    width: `100%`,
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
                   Perfil
                 </Text>
               </View>
             ) : (
-              <FontAwesome name="user-o" size={21} color={theme.color.gray} />
+              <FontAwesome name="user-o" size={20} color={theme.color.gray} />
             ),
         }}
       />

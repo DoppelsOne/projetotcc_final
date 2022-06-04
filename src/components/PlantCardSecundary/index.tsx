@@ -6,13 +6,15 @@ import {
   Image,
   TouchableOpacity,
   Switch,
+  StyleSheet,
 } from "react-native";
-
+import { Feather } from "@expo/vector-icons";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
 // import { Input } from "../../components/Input/index";
 
 import InputEdit from "./../Edit/InputEdit";
+import { deletePost } from "../../Db/axiosController";
 
 // const plants = [
 //   { id: 1, title: 'Espada de São jorge', category: 'Interior', status: 'Troca', price: '45.90', image: EspadaSaoJorge},
@@ -21,12 +23,10 @@ import InputEdit from "./../Edit/InputEdit";
 //   { id: 4, title: 'Bico de Papagaio', category: 'Exterior', status: 'Troca', price: '50.00', image: BicoPapagaio},
 // ]
 
-export function PlantCardSecundary({ posts, ...rest }) {
+export function PlantCardSecundary({ posts, setDelete, ...rest }, navigation) {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const [dato, setDados] = useState(posts);
   const dados = posts;
-  // console.log(dados)
 
   // console.log(dados3.map(d=>d.id))
 
@@ -58,7 +58,19 @@ export function PlantCardSecundary({ posts, ...rest }) {
             </View>
           </View>
           <View>
-            <InputEdit id={id}/>
+            <View style={styles.content}>
+              <TouchableOpacity style={styles.edit} onPress={() => {}}>
+                <Feather name="edit" size={40} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.remove}
+                onPress={() => {
+                deletePost(id), setDelete("update");
+                }}
+              >
+                <Feather name="x" size={40} />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -67,7 +79,6 @@ export function PlantCardSecundary({ posts, ...rest }) {
 
   return (
     <FlatList
-      
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       // contentContainerStyle={{ paddingRight: 30 }}

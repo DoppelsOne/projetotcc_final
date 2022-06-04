@@ -14,7 +14,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import { Background } from "../../components/Background";
 import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
-import { getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
+import { deletePost, getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
 
@@ -27,13 +27,15 @@ export default function UserPlant({ route, navigation }) {
   //   await getPostsUser(user.id).then(resp=>{setPosts(resp)})
   // };
   const [posts, setPosts] = useState();
+  const [update, setUpdate] = useState();
 
   useFocusEffect(
     React.useCallback(() => {
       getPostsUser(user.id).then((resp) => {
         setPosts(resp);
       });
-    }, [])
+      
+    }, [user,update])
   );
 
   // const posts = route.params.posts;
@@ -60,7 +62,7 @@ export default function UserPlant({ route, navigation }) {
         <View style={styles.content}>
           <Text style={styles.title}>Suas Plantas</Text>
           {/* <ScrollView showsVerticalScrollIndicator={false}> */}
-          <PlantCardSecundary posts={posts} />
+          <PlantCardSecundary posts={posts} setDelete={setUpdate}/>
           {/* </ScrollView> */}
         </View>
 

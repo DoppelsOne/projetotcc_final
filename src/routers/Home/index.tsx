@@ -18,7 +18,7 @@ import { Profile } from "../../components/Profile";
 import { SearchBar } from "../../components/SearchBar";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
-import { getPosts, getUser } from "../../Db/axiosController";
+import { getPosts, getUser, getCat } from "../../Db/axiosController";
 import { Avatar } from "./../../components/Avatar/index";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { useFocusEffect } from "@react-navigation/native";
@@ -37,14 +37,21 @@ export default function Home({ route, navigation }) {
 
   const [search, setSearch] = useState("");
   const [posts, setPosts] = useState();
-  // console.log(search);
+  const [category, setCate] = useState();
+  const [cat, setCat] = useState("Todas");
+ 
+  // console.log(cat);
 
   useFocusEffect(
     React.useCallback(() => {
-      getPosts(search).then((resp) => {
+      getPosts(cat, search).then((resp) => {
         setPosts(resp);
       });
-    }, [search])
+      getCat().then((resp) => {
+        setCate(resp);
+      });
+      
+    }, [search, cat])
   );
 
   return (
@@ -82,7 +89,7 @@ export default function Home({ route, navigation }) {
           </View>
         </View>
         <View style={styles.content}>
-          <PlantCardFilter horizontal />
+          <PlantCardFilter horizontal categorias={category} select={setCat} />
           <ScrollView showsVerticalScrollIndicator={false}>
             <PlantCardPrimary posts={posts} />
             {/* <View
