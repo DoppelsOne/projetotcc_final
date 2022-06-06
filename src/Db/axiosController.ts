@@ -128,10 +128,7 @@ async function getPlant(id: number) {
 
 // #############Postagem######################
 async function getPosts(cat?: String, name?: String) {
-  if (cat == "Todas") {
-    cat = "?";
-  }
-  return await axios.get(url + "post/" + cat + "/" + name).then((resp) => {
+  return await axios.get(url + "post/all/" + cat + "/" + name).then((resp) => {
     return resp.data;
   });
 }
@@ -206,8 +203,6 @@ async function getCat() {
 }
 
 //Api ZAP
-
-
 
 export {
   getPostId,

@@ -29,10 +29,10 @@ router.get("/plant/", getPlants);
 router.get("/plant/:id", getPlant);
 
 // Posts
+router.get("/post/all/:cat?/:name?", getPosts);
 router.get("/post/user/:id", getPostsUser);
 router.put("/post/alter/:id", alterPost);
 router.get("/post/select/:id", getPostId);
-router.get("/post/:cat?/:name?", getPosts);
 router.post("/post/create", createPost);
 router.delete("/post/delete/:id", deletePost);
 

@@ -40,7 +40,7 @@ export default function Home({ route, navigation }) {
   const [category, setCate] = useState();
   const [cat, setCat] = useState("Todas");
  
-  // console.log(cat);
+  // console.log(search);
 
   useFocusEffect(
     React.useCallback(() => {

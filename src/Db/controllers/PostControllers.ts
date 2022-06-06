@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { includes } from "lodash";
 import { prisma } from "../../../prisma/prisma";
 
-export async function getPosts(req: any, res?: any) {
+export async function getPosts(req: any, res: any) {
   const { name, cat } = req.params;
+
   try {
     const postMany = await prisma.postagem.findMany({
       where: {
@@ -11,7 +12,11 @@ export async function getPosts(req: any, res?: any) {
           title: { contains: name },
           Planta: {
             Categoria: {
-              some: { category: { categoria: { contains: cat } } },
+              some: {
+                category: {
+                  categoria: { contains: cat != "Todas" ? cat : "" },
+                },
+              },
             },
           },
         },
