@@ -27,19 +27,15 @@ export default function Home({ route, navigation }) {
   const { green, greenDark } = theme.color;
 
   let data;
-  const user = route.params.user;
-  const log = user.login.charAt(0).toUpperCase() + user.login.slice(1);
-  if (user.avatar == null) {
-    data = user.avatar = "";
-  } else {
-    data = user.avatar;
-  }
+  const id = route.params.user;
+
 
   const [search, setSearch] = useState("");
   const [posts, setPosts] = useState();
   const [category, setCate] = useState();
   const [cat, setCat] = useState("Todas");
- 
+  const [user, setUser] = useState({login:"", avatar:""});
+
   // console.log(search);
 
   useFocusEffect(
@@ -50,10 +46,16 @@ export default function Home({ route, navigation }) {
       getCat().then((resp) => {
         setCate(resp);
       });
-      
-    }, [search, cat])
+      getUser(id.id).then((resp) =>{setUser(resp)})
+    }, [search, cat,])
   );
 
+  const log = user.login.charAt(0).toUpperCase() + user.login.slice(1);
+  if (user.avatar == null) {
+    data = user.avatar = "";
+  } else {
+    data = user.avatar;
+  }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Background>
@@ -90,9 +92,9 @@ export default function Home({ route, navigation }) {
         </View>
         <View style={styles.content}>
           <PlantCardFilter horizontal categorias={category} select={setCat} />
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <PlantCardPrimary posts={posts} />
-            {/* <View
+
+          <PlantCardPrimary posts={posts} />
+          {/* <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -104,7 +106,6 @@ export default function Home({ route, navigation }) {
                 <Text style={styles.seeMore}>Ver mais</Text>
               </TouchableOpacity>
             </View> */}
-          </ScrollView>
         </View>
       </Background>
     </TouchableWithoutFeedback>

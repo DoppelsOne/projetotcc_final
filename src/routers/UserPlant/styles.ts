@@ -30,9 +30,11 @@ export const styles = StyleSheet.create({
   },
 
   buttonRegisterContainer: {
+    
     position: "absolute",
-    alignItems: "center",
+    alignItems: "flex-end",
     bottom: 30,
+    left: screenWidth/5,
   },
 
   buttonRegister: {

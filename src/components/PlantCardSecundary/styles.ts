@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { theme } from "../../global/theme";
 import { Dimensions, StyleSheet } from "react-native";
+import { wrap } from "lodash";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -60,8 +61,10 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.5,
     elevation: 5,
     flexDirection: "row",
+
     height: 150,
-    width: `100%`,
+    width: screenWidth / 1.1,
+    // margin: 10,
   },
 
   image: {
@@ -71,32 +74,38 @@ export const styles = StyleSheet.create({
   },
 
   information: {
-    paddingHorizontal: 5,
+    // paddingHorizontal: 5,
+    flex: 1,
     alignItems: "flex-start",
-    justifyContent: "center",
-    height: 130,
-    width: 150,
+    // justifyContent: "center",
+    justifyContent: "space-between",
+    // width: "auto",
+    height: "auto",
+    // backgroundColor:"red",
+    paddingLeft: 10,
   },
 
   contentText: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    flexDirection: "column",
+    justifyContent: "space-between",
+    // backgroundColor:"blue",
+    width: `100%`,
   },
 
   title: {
-    textAlign: "left",
     fontSize: 18,
+    flex: 1,
+    flexWrap: "wrap",
     color: theme.color.purpleDark,
     fontFamily: theme.fonts.poppins_700bold,
     // marginBottom: -10,
-    maxWidth: 150
   },
 
   text: {
     color: theme.color.gray,
     fontFamily: theme.fonts.poppins_400,
-    paddingTop: 10,
-    marginBottom: -5,
+    // paddingTop: 10,
+    // marginBottom: -5,
   },
 
   price: {
@@ -125,7 +134,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     height: `100%`,
   },
-  
+
   remove: {
     // opacity: 0.7,
     flex: 1,
@@ -153,33 +162,33 @@ export const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
 
   buttonPlant: {
-    flexDirection: 'row',
-    alignItems: 'center', 
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
     backgroundColor: theme.color.whiteHeading,
-    borderWidth: 1, 
+    borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 10,
     paddingVertical: 8,
     marginTop: 10,
   },
 
-  inputPrice: { 
+  inputPrice: {
     flexDirection: "row",
-    width: '100%',
+    width: "100%",
     backgroundColor: theme.color.whiteHeading,
-    borderWidth: 1, 
+    borderWidth: 1,
     borderRadius: 8,
     padding: 10,
-    marginTop: 10
-  }
-})
+    marginTop: 10,
+  },
+});

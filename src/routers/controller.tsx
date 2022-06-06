@@ -5,8 +5,11 @@ import UserPlant from './UserPlant/index'
 import PlantDetails from './PlantDetails/index'
 import RegisterPlant from './ResgiterPlant/index'
 import Setting from './Setting/index'
+import AlterPostUser from './AlterPost/AlterPostUser';
+
 
 export {    
+    AlterPostUser,
     Login,
     SignUp,
     Home,

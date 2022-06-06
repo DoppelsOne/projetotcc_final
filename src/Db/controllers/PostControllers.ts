@@ -93,12 +93,12 @@ export async function createPost(req: any, res: any) {
 export async function deletePost(req: any, res: any) {
   const { id } = req.params;
   console.log(id);
-  const user = await prisma.postagem.delete({ where: { id: Number(id) } });
-  res.json(user);
+  const post = await prisma.postagem.delete({ where: { id: Number(id) } });
+  res.json(post);
 }
 
 export async function alterPost(req: any, res: any) {
-  const { idPost } = req.params;
+  const idPost = req.params.id;
   const { plantId, plantName, image, valor, troca } = req.body;
 
   const alterPost = await prisma.postagem.update({

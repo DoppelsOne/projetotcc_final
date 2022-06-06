@@ -91,6 +91,21 @@ async function getUser(id: number) {
   });
 }
 
+async function getRecPass(email: String, tel: String) {
+  return await axios
+    .get(url + "user/recPass/" + email + "/" + tel)
+    .then((resp) => {
+      return resp.data;
+    });
+}
+
+async function alterUserPass(id: Number, senha: String) {
+  const dados = { senha: senha };
+  return await axios.put(url + "user/recPass2/" + id, dados).then((resp) => {
+    return resp.data;
+  });
+}
+
 async function alterUser(
   id: Number,
   login: String,
@@ -172,7 +187,7 @@ async function deletePost(id: any) {
 
 async function alterPost(
   idPost: any,
-  plantId: number,
+  plantId: any,
   plantName: string,
   image: string,
   valor: number,
@@ -202,9 +217,9 @@ async function getCat() {
   });
 }
 
-//Api ZAP
-
 export {
+  alterUserPass,
+  getRecPass,
   getPostId,
   getCat,
   alterUser,

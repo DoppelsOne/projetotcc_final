@@ -30,18 +30,27 @@ import {
   Button2,
   LayoutImage,
   ImagePlant,
-} from "./styles";
+} from "../ResgiterPlant/styles";
 import Feather from "react-native-vector-icons/Feather";
 import MaskInput, { Masks } from "react-native-mask-input";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { getPlants, alterPost } from "../../Db/axiosController";
 
-export default function RegisterPlant({ route, navigation: { goBack } }) {
-  let plant = route.params.plant;
-  let user = route.params.user;
-
-  console.log(plant);
+export default function AlterPostUser({ route }) {
+  const img = route.params.img;
+  const val = route.params.val;
+  const trd = route.params.trade;
+  const pltid = route.params.plantid;
+  const pltname = route.params.plantname;
+  const postid = route.params.postid;
 
   const [price, setPrice] = useState("");
   const [selectedPlant, setSelectPlant] = useState({});
+  const navigation = useNavigation();
+
+  function handlerGoback() {
+    navigation.goBack();
+  }
 
   function pushDataPlant(id: number) {
     getPlant(id)
@@ -62,10 +71,22 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
   //Dados Modal
   const [visible, setVisible] = useState(false);
   const [selectedId, setSelectedId] = useState("");
-  const DATA = plant;
   const [itemName, setItemName] = useState("");
+  const [DATA, setDATA] = useState([]);
 
-  // console.log(price);
+  useFocusEffect(
+    React.useCallback(() => {
+      setImage(img);
+      setPrice(JSON.stringify(val));
+      setIsEnabled(trd);
+      setSelectedId(pltid);
+      setItemName(pltname);
+      pushDataPlant(pltid);
+      getPlants().then((resp) => {
+        setDATA(resp);
+      });
+    }, [])
+  );
 
   const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <View style={[styles.item, backgroundColor]}>
@@ -116,10 +137,10 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
       setImage(result.uri);
     }
   };
-
+  //   alterPost(postid,selectedId,itemName,image, price, isEnabled );
   // Postdata
-  function postData(
-    idUser: number,
+  function alterData(
+    idPost: any,
     plantId: number,
     plantName: string,
     image: string,
@@ -134,9 +155,9 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
       Alert.alert("Imagem não selecionada");
     } else {
       const val = valor.toString().replace(",", ".");
-      console.log(idUser, plantId, plantName, image, valor, troca);
-      postPost(idUser, plantId, plantName, image, Number(val), troca);
-      goBack();
+      console.log(idPost, plantId, plantName, image, valor, troca);
+      alterPost(idPost, plantId, plantName, image, Number(val), troca);
+      handlerGoback();
     }
   }
 
@@ -160,7 +181,7 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
       <Container>
         <StatusBar backgroundColor="transparent" style="dark" translucent />
 
-        <Title>Cadastre {"\n"}sua planta!</Title>
+        <Title style={{ padding: 10 }}>Editar</Title>
         <Subtitle>Preenchendo os campos abaixo</Subtitle>
 
         <Content>
@@ -265,11 +286,11 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
                 />
               </CheckBoxContainer>
               <Button
-                title="Cadastrar"
+                title="Alterar"
                 style={{ marginTop: 20 }}
                 onPress={() => {
-                  postData(
-                    user.id,
+                  alterData(
+                    postid,
                     selectedId,
                     itemName,
                     image,

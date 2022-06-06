@@ -20,6 +20,7 @@ export const TabRoutes = ({ route, navigation }) => {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarHideOnKeyboard: "true",
         tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",

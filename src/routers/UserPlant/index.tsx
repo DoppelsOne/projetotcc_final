@@ -1,39 +1,44 @@
 import React, { useState, useEffect } from "react";
-import {
-  Keyboard,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { PlantCardSecundary } from "../../components/PlantCardSecundary";
 import { Profile } from "../../components/Profile";
-import { deletePost, getPlant, getPlants, getPostsUser } from "../../Db/axiosController";
+import {
+  deletePost,
+  getPlant,
+  getPlants,
+  getPostsUser,
+  getUser,
+} from "../../Db/axiosController";
 import { theme } from "../../global/theme";
 import { styles } from "./styles";
 import { Background } from "../../components/Background";
-
+import { useFocusEffect } from "@react-navigation/native";
 
 export default function UserPlant({ route, navigation }) {
   const { orange, orangeDark } = theme.color;
   let data;
-  const user = route.params.user;
+  const id = route.params.user;
 
   // const sassi = async () => {
   //   await getPostsUser(user.id).then(resp=>{setPosts(resp)})
   // };
   const [posts, setPosts] = useState();
   const [update, setUpdate] = useState();
+  const [registerButton, setRegisterButton] = useState(true);
+  const [user, setUser] = useState({ login: "", avatar: "" });
 
   useFocusEffect(
     React.useCallback(() => {
-      getPostsUser(user.id).then((resp) => {
+      getUser(id.id).then((resp) => {
+        setUser(resp);
+      });
+      getPostsUser(id.id).then((resp) => {
         setPosts(resp);
       });
-      
-    }, [user,update])
+    }, [update])
   );
 
   // const posts = route.params.posts;
@@ -60,30 +65,41 @@ export default function UserPlant({ route, navigation }) {
         <View style={styles.content}>
           <Text style={styles.title}>Suas Plantas</Text>
           {/* <ScrollView showsVerticalScrollIndicator={false}> */}
-          <PlantCardSecundary posts={posts} setDelete={setUpdate}/>
+          <PlantCardSecundary
+            posts={posts}
+            setDelete={setUpdate}
+            setReg={setRegisterButton}
+          />
           {/* </ScrollView> */}
         </View>
-
-        <View style={styles.buttonRegisterContainer}>
-          <TouchableWithoutFeedback
-            style={{}}
-            onPress={() => {
-              getPlants().then((resp) => {
-                navigation.navigate("RegisterPlant", {
-                  plant: resp,
-                  user: user,
+        {registerButton ? (
+          <View style={styles.buttonRegisterContainer}>
+            <TouchableWithoutFeedback
+              style={{}}
+              onPress={() => {
+                getPlants().then((resp) => {
+                  navigation.navigate("RegisterPlant", {
+                    plant: resp,
+                    user: user,
+                  });
                 });
-              });
-            }}
-          >
-            <LinearGradient
-              style={styles.buttonRegister}
-              colors={[orange, orangeDark]}
+              }}
             >
-              <Entypo name="plus" size={30} color={theme.color.whiteHeading} />
-            </LinearGradient>
-          </TouchableWithoutFeedback>
-        </View>
+              <LinearGradient
+                style={styles.buttonRegister}
+                colors={[orange, orangeDark]}
+              >
+                <Entypo
+                  name="plus"
+                  size={30}
+                  color={theme.color.whiteHeading}
+                />
+              </LinearGradient>
+            </TouchableWithoutFeedback>
+          </View>
+        ) : (
+          <></>
+        )}
       </Background>
     </TouchableWithoutFeedback>
   );

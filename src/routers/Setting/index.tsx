@@ -14,12 +14,12 @@ import {
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import { Modalize } from "react-native-modalize";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { Background } from "../../components/Background";
 import { InputRegister } from "../../components/InputRegister";
 import { Button } from "../../components/Button";
 import { theme } from "../../global/theme";
-
+import MaskInput, { Masks } from "react-native-mask-input";
 import { isEmpty } from "lodash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -37,10 +37,10 @@ import {
 } from "./styles";
 import { empty } from "@prisma/client/runtime";
 import * as ImagePicker from "expo-image-picker";
-import { alterUser, getCep } from "../../Db/axiosController";
+import { alterUser, getCep, getUser } from "../../Db/axiosController";
 
 export default function Setting({ route, navigation }) {
-  const user = route.params.user;
+  const id = route.params.user;
 
   const modalizeRef = useRef<Modalize>(null);
   const modalizeRefTwo = useRef<Modalize>(null);
@@ -54,8 +54,22 @@ export default function Setting({ route, navigation }) {
   const [cidade, setCidade] = useState(""); //localidade
   const [bairro, setBairro] = useState(""); //bairro
   const [uf, setUf] = useState(""); //uf
+  const [user, setUser] = useState({
+    login: "",
+    avatar: "",
+    tel: "",
+    Endereco: {},
+  });
+  const [update, setUpdate] = useState();
 
-  useEffect(() => {}, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getUser(id.id).then((resp) => {
+        setUser(resp);
+      });
+    }, [update])
+  );
 
   // Avatar
 
@@ -145,9 +159,7 @@ export default function Setting({ route, navigation }) {
                   source={
                     avatar == null
                       ? require("../../../assets/Avatar/avatarStandard.jpg")
-                      : user.avatar
-                      ? { uri: user.avatar }
-                      : { uri: avatar }
+                      : { uri: user.avatar }
                   }
                 />
               </AvatarView>
@@ -155,6 +167,7 @@ export default function Setting({ route, navigation }) {
             </TouchableOpacity>
 
             <InputRegister
+              value={nome}
               place={user.login}
               onChangeText={(prop) => {
                 setNome(prop);
@@ -164,10 +177,10 @@ export default function Setting({ route, navigation }) {
             <Wrap>
               <View style={{ width: "57%" }}>
                 <InputRegister
+                  value={tel}
                   place={user.tel}
-                  onChangeText={(props) => {
-                    setTel(props);
-                  }}
+                  mask={Masks.BRL_PHONE}
+                  setT={setTel}
                   keyboardType="numeric"
                   style={{
                     width: "100%",
@@ -180,6 +193,8 @@ export default function Setting({ route, navigation }) {
               </View>
               <View style={{ width: "40%", marginLeft: 10 }}>
                 <InputRegister
+                  value={cep}
+                  mask={Masks.ZIP_CODE}
                   place={user.Endereco.cep}
                   onChangeText={(props) => {
                     setCep(props);
@@ -266,9 +281,9 @@ export default function Setting({ route, navigation }) {
 
             <Button
               title="Salvar alterações"
-              style={{ marginTop: 22 }}
+              style={{ marginTop: 5 }}
               onPress={() => {
-                updateData(nome, tel, cep, avatar, nsenha);
+                updateData(nome, tel, cep, avatar, nsenha), setUpdate("Update");
               }}
             />
 
@@ -280,10 +295,9 @@ export default function Setting({ route, navigation }) {
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                marginTop: 30,
+                marginTop: 10,
                 borderColor: theme.color.whiteHeading,
                 flexDirection: "row",
-                marginHorizontal: 80,
               }}
             >
               <Feather
@@ -301,20 +315,39 @@ export default function Setting({ route, navigation }) {
       <Modalize
         ref={modalizeRef}
         withHandle={false}
-        // snapPoint={400}
+        snapPoint={400}
         modalHeight={600}
-      >
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={70}
-        >
+        HeaderComponent={
           <View
             style={{
-              flex: 1,
-              padding: 14,
+              flexDirection: "row",
+              // backgroundColor: "red",
+              justifyContent: "center",
             }}
           >
-            <View style={{ alignItems: "flex-end" }}>
+            <Text
+              style={{
+                margin: 10,
+                fontSize: 18,
+                fontFamily: theme.fonts.poppins_700bold,
+                color: theme.color.purpleDark,
+                textAlign: "center",
+              }}
+            >
+              Digite uma nova senha
+            </Text>
+
+            <View
+              style={{
+                position: "absolute",
+                width: `90%`,
+                padding: 5,
+                alignItems: "flex-end",
+                flex: 1,
+                // backgroundColor: "blue",
+                justifyContent: "center",
+              }}
+            >
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => {
@@ -328,18 +361,19 @@ export default function Setting({ route, navigation }) {
                 />
               </TouchableOpacity>
             </View>
-
-            <Text
-              style={{
-                fontSize: 18,
-                fontFamily: theme.fonts.poppins_700bold,
-                color: theme.color.purpleDark,
-                textAlign: "center",
-              }}
-            >
-              Digite uma nova senha
-            </Text>
-
+          </View>
+        }
+      >
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            enabled
+            keyboardVerticalOffset={50}
+            style={{
+              flex: 1,
+              padding: 14,
+            }}
+          >
             <View
               style={{
                 flex: 1,
@@ -408,8 +442,8 @@ export default function Setting({ route, navigation }) {
                 modalizeRef.current?.close();
               }}
             />
-          </View>
-        </KeyboardAvoidingView>
+          </KeyboardAvoidingView>
+        </ScrollView>
       </Modalize>
 
       <Modalize ref={modalizeRefTwo} snapPoint={200} withHandle={false}>

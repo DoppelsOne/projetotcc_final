@@ -3,10 +3,10 @@ import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   container: {
-    // borderRadius: 16,
+    borderRadius: 16,
     // paddingVertical: 10,
-    // paddingHorizontal: 20,
-    // backgroundColor: theme.color.whiteHeading,
+    paddingHorizontal: 5,
+    backgroundColor: theme.color.whiteHeading,
     // shadowColor: theme.color.purpleDark,
     // shadowOffset: {
     //   width: 0,
@@ -17,13 +17,13 @@ export const styles = StyleSheet.create({
     // elevation: 5,
     // alignItems: 'center',
     // justifyContent: 'center',
-    margin: 5,
+    margin: 3,
   },
 
   text: {
     color: theme.color.gray,
     fontFamily: theme.fonts.poppins_500,
-    paddingBottom: 5,
+    // paddingBottom: 5,
   },
 
   FocusedContainer: {

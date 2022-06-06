@@ -17,14 +17,8 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { theme } from "../../global/theme";
 import { postCadastro, getCep } from "../../Db/axiosController";
-import {
-  Container,
-  Content,
-  Title,
-  Image,
-  Subtitle,
-  Wrapper,
-} from "./styles";
+import { Container, Content, Title, Image, Subtitle, Wrapper } from "./styles";
+import MaskInput, { Masks } from "react-native-mask-input";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -38,7 +32,6 @@ export default function SignUp() {
   // const [tel, setTel] = useState("");
   // const [senha, setSenha] = useState("");
   const [confirm, setConfirmSenha] = useState("");
-
 
   const [userData, setUserData] = useState({
     usuario: "",
@@ -110,21 +103,21 @@ export default function SignUp() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
         <StatusBar backgroundColor="transparent" translucent />
-        <TouchableOpacity 
+        <TouchableOpacity
           onPress={handleGoBack}
           style={{
-            position: 'absolute',              
+            position: "absolute",
             borderWidth: 1,
             borderRadius: 8,
             borderColor: theme.color.whiteHeading,
             backgroundColor: theme.color.overlay,
             top: 20,
             left: 20,
-            marginTop: 22
+            marginTop: 22,
           }}
         >
           <Feather
-            name='chevron-left'
+            name="chevron-left"
             size={28}
             color={theme.color.whiteHeading}
             style={{ padding: 3 }}
@@ -132,12 +125,14 @@ export default function SignUp() {
         </TouchableOpacity>
 
         <Wrapper>
-          <Image source={require("../../../assets/Logotipo/LogotipoPlantific.png")} />
+          <Image
+            source={require("../../../assets/Logotipo/LogotipoPlantific.png")}
+          />
           <Title>Cadastro</Title>
           <Subtitle>Crie sua conta rápido e fácil!</Subtitle>
         </Wrapper>
 
-        <KeyboardAvoidingView style={{ flex: 2}} behavior='padding'>
+        <KeyboardAvoidingView style={{ flex: 2 }} behavior="padding">
           <Content>
             <Input
               iconName="user"
@@ -155,12 +150,14 @@ export default function SignUp() {
                 userData.email = prop;
               }}
             />
-            <Input
+            <MaskInput
               iconName="phone"
               placeholder="Telefone"
+              value={userData.tel}
+              mask={Masks.BRL_PHONE}
               keyboardType="numeric"
               onChangeText={(prop) => {
-                userData.tel = prop;
+                setUserData({ tel: prop });
               }}
             />
             <Input
@@ -196,9 +193,8 @@ export default function SignUp() {
               onPress={() => {
                 validarCampos(userData, confirm);
               }}
-            />          
+            />
           </Content>
-
         </KeyboardAvoidingView>
       </Container>
     </TouchableWithoutFeedback>

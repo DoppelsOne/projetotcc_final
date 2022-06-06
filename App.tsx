@@ -9,6 +9,7 @@ import {
   PlantDetails,
   SignUp,
   RegisterPlant,
+  AlterPostUser,
 } from "./src/routers/controller";
 
 import {
@@ -18,14 +19,9 @@ import {
 } from "@expo-google-fonts/poppins";
 import AppLoading from "expo-app-loading";
 
-
-
 const Stack = createNativeStackNavigator();
 
-export default function App () {
-
- 
-
+export default function App() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
@@ -36,10 +32,7 @@ export default function App () {
     return <AppLoading />;
   }
 
-
   return (
-    
-    
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
@@ -55,7 +48,7 @@ export default function App () {
         <Stack.Screen
           name="Home"
           component={TabRoutes}
-          options={{ headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="PlantDetails"
@@ -67,10 +60,12 @@ export default function App () {
           component={RegisterPlant}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="AlterPostUser"
+          component={AlterPostUser}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
-    
   );
-};
-
-
+}

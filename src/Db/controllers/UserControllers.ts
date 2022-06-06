@@ -108,20 +108,15 @@ export async function loginUser(req: any, res: Response) {
     id = userExists.id;
     console.log(id);
     return res.json(id);
-  }else{
+  } else {
     // console.log("Senha não encontrado");
     return res.sendStatus(400);
   }
-
 }
-
 
 export async function alterUser(req: any, res: any) {
   const { id } = req.params;
   const { login, tel, senha, end, avatar } = req.body;
-
-  console.log(id)
-  console.log(login, tel, senha, end, avatar);
 
   const alterUser = await prisma.usuario.update({
     where: { id: Number(id) },
@@ -146,4 +141,38 @@ export async function alterUser(req: any, res: any) {
   });
 
   return res.json(alterUser);
+}
+
+export async function alterUserPass(req: any, res: any) {
+  const { id } = req.params;
+  const {senha} = req.body;
+  try {
+    const alterUser = await prisma.usuario.update({
+      where: { id: Number(id) },
+      data: {
+        senha: senha,
+      },
+    });
+
+    return res.json(alterUser);
+  } catch (error) {
+    return res.json(false);
+  }
+}
+
+export async function findRec(req: any, res: any) {
+  const { email, tel } = req.params;
+  // console.log(email, tel)
+  try {
+    const userSearch = await prisma.usuario.findFirst({
+      where: {
+        email: { equals: email },
+        tel: { equals: tel },
+      },
+    });
+    console.log(userSearch);
+    return res.json(userSearch);
+  } catch (error) {
+    return res.json(false);
+  }
 }

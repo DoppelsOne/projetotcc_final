@@ -29,13 +29,20 @@ import {
   Subtitle,
 } from "./styles";
 import { theme } from "../../global/theme";
-import { postLogin, getUser, getPlant } from "../../Db/axiosController";
+import {
+  postLogin,
+  getUser,
+  getPlant,
+  getRecPass,
+  alterUserPass,
+} from "../../Db/axiosController";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Modalize } from "react-native-modalize";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { isEmpty } from "lodash";
 import { useFocusEffect } from "@react-navigation/native";
 // import  from '@react-navigation/native';
+import MaskInput, { Masks } from "react-native-mask-input";
 
 export default function Login({ navigation }) {
   const { green, greenDark } = theme.color;
@@ -108,15 +115,21 @@ export default function Login({ navigation }) {
   const modalizeRef = useRef<Modalize>(null);
   const modalizeRefTwo = useRef<Modalize>(null);
 
+  //Recuperar Senha
+
+  const [mail, setMail] = useState();
+  const [tel, setTel] = useState();
+  const [id, setId] = useState();
+
   // validação de dados
   let valid;
+
   function validacao() {
     if (!isEmpty(nsenha) || !isEmpty(rsenha)) {
       if (nsenha == rsenha) {
-        console.table("Dados Conferem");
         return (valid = true);
       } else {
-        return (valid = false);
+        return (valid = false), console.warn("Senha não podê ser alterada");
       }
     }
   }
@@ -138,6 +151,7 @@ export default function Login({ navigation }) {
           <View style={styles.form_icon}>
             <Input
               iconName="mail"
+              value={email}
               placeholder="E-mail"
               placeholderTextColor={theme.color.white}
               onChangeText={(props) => {
@@ -146,6 +160,7 @@ export default function Login({ navigation }) {
             />
             <Input
               iconName="lock"
+              value={senha}
               placeholder="Senha"
               placeholderTextColor={theme.color.white}
               secureTextEntry
@@ -207,11 +222,7 @@ export default function Login({ navigation }) {
         </Container>
       </TouchableWithoutFeedback>
 
-      <Modalize
-        ref={modalizeRef}
-        withHandle={false}
-        modalHeight={600}
-      >
+      <Modalize ref={modalizeRef} withHandle={false} modalHeight={600}>
         <KeyboardAvoidingView
           behavior={Platform.OS == "ios" ? "padding" : "height"}
           keyboardVerticalOffset={70}
@@ -258,9 +269,9 @@ export default function Login({ navigation }) {
               <TextInput
                 placeholder="E-mail"
                 placeholderTextColor={theme.color.gray}
-                // onChangeText={(prop) => {
-                //   setNSenha(prop);
-                // }}
+                onChangeText={(prop) => {
+                  setMail(prop);
+                }}
                 style={{
                   width: "100%",
                   fontSize: 16,
@@ -271,14 +282,16 @@ export default function Login({ navigation }) {
                   borderRadius: 8,
                   padding: 10,
                 }}
-              />   
-              <TextInput
+              />
+              <MaskInput
+                mask={Masks.BRL_PHONE}
+                value={tel}
                 placeholder="Telefone"
-                keyboardType='numeric'
+                keyboardType="numeric"
                 placeholderTextColor={theme.color.gray}
-                // onChangeText={(prop) => {
-                //   setNSenha(prop);
-                // }}
+                onChangeText={(prop) => {
+                  setTel(prop);
+                }}
                 style={{
                   width: "100%",
                   fontSize: 16,
@@ -290,7 +303,7 @@ export default function Login({ navigation }) {
                   padding: 10,
                   marginTop: 10,
                 }}
-              />           
+              />
             </View>
             {/* {valid ? (
               <Text
@@ -311,7 +324,18 @@ export default function Login({ navigation }) {
               title="Recuperar senha"
               style={{}}
               onPress={() => {
-                modalizeRefTwo.current?.open()
+                getRecPass(mail, tel).then((resp) => {
+                  setId(resp.id);
+                  if (resp) {
+                    return (
+                      modalizeRefTwo.current?.open(),
+                      modalizeRef.current?.close(),
+                      setTel("")
+                    );
+                  } else {
+                    return console.warn("Usuário não casdastrado");
+                  }
+                });
               }}
             />
           </View>
@@ -369,6 +393,7 @@ export default function Login({ navigation }) {
             >
               <TextInput
                 placeholder="Senha"
+                value={nsenha}
                 secureTextEntry={true}
                 placeholderTextColor={theme.color.gray}
                 onChangeText={(prop) => {
@@ -387,6 +412,7 @@ export default function Login({ navigation }) {
               />
               <TextInput
                 placeholder="Confirmar senha"
+                value={rsenha}
                 secureTextEntry={true}
                 onChangeText={(props) => {
                   setRSenha(props);
@@ -419,13 +445,28 @@ export default function Login({ navigation }) {
                 Dados Conferem!!!
               </Text>
             ) : (
-              <Text></Text>
+              <Text
+                style={{
+                  color: theme.color.orangeMedium,
+                  fontFamily: theme.fonts.poppins_500,
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  margin: 8,
+                }}
+              >
+                Dados Não Conferem!!!
+              </Text>
             )}
             <Button
               title="Alterar senha"
               style={{}}
               onPress={() => {
-                modalizeRef.current?.close();
+                if (valid) {
+                  alterUserPass(id, nsenha), modalizeRefTwo.current?.close();
+                  setNSenha("");
+                  setRSenha("");
+                }
               }}
             />
           </View>

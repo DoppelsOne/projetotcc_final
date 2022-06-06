@@ -8,5 +8,5 @@
     ],
     "cSpell.enabled": false,
     "editor.fontSize": 18,
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": true
 }
