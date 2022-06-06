@@ -32,7 +32,11 @@ export function PlantCardFilter({
   const renderItem = ({ item }: any) => <Item category={item.categoria} />;
 
   const Item = ({ category }: any) => (
-    <TouchableOpacity style={{}} activeOpacity={0.7} onPress={() => {select(category)}}>
+    <TouchableOpacity 
+      activeOpacity={0.7} 
+      onPress={() => {select(category)}} 
+      {...rest}
+    >
       <View style={[styles.container, active && styles.FocusedContainer]}>
         <Text style={[styles.text, active && styles.FocusedText]}>
           {category}

@@ -58,7 +58,8 @@ export default function SignUp() {
       isEmpty(props.cep) ||
       isEmpty(confirm)
     ) {
-      Alert.alert("Um ou mais campos sem preenchimento");
+      Alert.alert("Erro ao cadastrar",
+      "Verifique se os campos estão preenchidos corretamente.");
     } else if (props.senha != confirm) {
       Alert.alert("Senhas não coincidem");
     } else if (receba == true) {
@@ -150,16 +151,43 @@ export default function SignUp() {
                 userData.email = prop;
               }}
             />
-            <MaskInput
-              iconName="phone"
-              placeholder="Telefone"
-              value={userData.tel}
-              mask={Masks.BRL_PHONE}
-              keyboardType="numeric"
-              onChangeText={(prop) => {
-                setUserData({ tel: prop });
-              }}
-            />
+
+            <View
+              style={{
+                flexDirection: 'row',
+                borderWidth: 1,
+                alignItems:"center",
+                borderRadius: 16,
+                borderColor: theme.color.whiteHeading,
+                backgroundColor: theme.color.overlay,
+                padding: 10,
+                marginTop: 10,
+              }}            
+            >
+              <Feather
+                name='phone'
+                color={theme.color.whiteHeading}
+                size={22}
+              />
+              <MaskInput
+                placeholder="Telefone"
+                placeholderTextColor={theme.color.whiteHeading}
+                value={userData.tel}
+                mask={Masks.BRL_PHONE}
+                keyboardType="numeric"
+                onChangeText={(prop) => {
+                  setUserData({ tel: prop });
+                }}
+                style={{                
+                  fontFamily: theme.fonts.poppins_700bold,
+                  color: theme.color.purpleDark,
+                  fontSize: 16,
+                  width: '90%',
+                  paddingLeft: 25,
+                }}
+              />
+            </View>
+
             <Input
               iconName="map"
               placeholder="CEP"
@@ -167,6 +195,7 @@ export default function SignUp() {
               onChangeText={(prop) => {
                 userData.cep = prop;
               }}
+              maxLength={6}
             />
 
             <Input

@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
 
   textInput: {
     fontSize: 14,
-    width: 230,
+    width: '100%',
     paddingTop: 2,
     fontFamily: theme.fonts.poppins_400,
     color: theme.color.whiteHeading

@@ -176,13 +176,37 @@ export default function AlterPostUser({ route }) {
     setIsFocused(true);
   }
 
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <>
       <Container>
         <StatusBar backgroundColor="transparent" style="dark" translucent />
+        <TouchableOpacity
+          onPress={handleGoBack}
+          style={{
+            position: "absolute",
+            borderWidth: 1,
+            borderRadius: 8,
+            borderColor: theme.color.whiteHeading,
+            backgroundColor: theme.color.overlay,
+            top: 20,
+            left: 20,
+            marginTop: 22,
+          }}
+        >
+          <Feather
+            name="chevron-left"
+            size={28}
+            color={theme.color.whiteHeading}
+            style={{ padding: 3 }}
+          />
+        </TouchableOpacity>
 
         <Title style={{ padding: 10 }}>Editar</Title>
-        <Subtitle>Preenchendo os campos abaixo</Subtitle>
+        <Subtitle>Edite os campos abaixo</Subtitle>
 
         <Content>
           <ScrollView showsVerticalScrollIndicator={false}>

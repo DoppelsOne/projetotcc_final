@@ -22,7 +22,9 @@ export const Content = styled.View`
 
 export const Information = styled.View`
   margin-bottom: 15px;
-  
+  /* flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;   */
 `
 
 export const Title = styled.Text`

@@ -3,10 +3,10 @@ import { theme } from "../../global/theme";
 
 export const styles = StyleSheet.create({
   container: {
-    borderRadius: 16,
+    // borderRadius: 16,
     // paddingVertical: 10,
     paddingHorizontal: 5,
-    backgroundColor: theme.color.whiteHeading,
+    backgroundColor: theme.color.white,
     // shadowColor: theme.color.purpleDark,
     // shadowOffset: {
     //   width: 0,
@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
     // marginBottom: 2,
     // backgroundColor: theme.color.greenWeak,
     borderBottomWidth: 3,
-    borderColor: theme.color.orangeMedium,
+    borderColor: theme.color.green,
     // shadowColor: theme.color.purpleDark,
     // shadowOffset: {
     //   width: 0,

@@ -3,14 +3,13 @@ import { Text, TextInput, TextInputProps, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { theme } from "../../global/theme";
-import MaskInput, { Masks } from "react-native-mask-input";
-
-interface TextInput extends MaskInput {
+import { MaskInputProps, Masks } from "react-native-mask-input";
+interface InputProps extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>["name"];
   value?: string;
 }
 
-export function Input({ iconName, value, ...rest }: MaskInput) {
+export function Input({ iconName, value, ...rest }: InputProps) {
   // const [isFocused, setIsFocused] = useState(false);
   // const [isFilled, setIsFilled] = useState(false);
 

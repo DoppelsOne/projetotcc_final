@@ -29,7 +29,6 @@ export default function Home({ route, navigation }) {
   let data;
   const id = route.params.user;
 
-
   const [search, setSearch] = useState("");
   const [posts, setPosts] = useState();
   const [category, setCate] = useState();
@@ -67,14 +66,15 @@ export default function Home({ route, navigation }) {
 
             <View
               style={{
-                flexDirection: "row",
+                paddingHorizontal: 20,
+                paddingVertical: 10,
                 alignItems: "center",
                 justifyContent: "space-around",
               }}
             >
               <SearchBar setSe={setSearch} />
 
-              <TouchableOpacity activeOpacity={0.7}>
+              {/* <TouchableOpacity activeOpacity={0.7}>
                 <LinearGradient
                   // style={styles.buttonRegister}
                   style={styles.filterIcon}
@@ -86,12 +86,16 @@ export default function Home({ route, navigation }) {
                     color={theme.color.whiteHeading}
                   />
                 </LinearGradient>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
           </View>
         </View>
         <View style={styles.content}>
-          <PlantCardFilter horizontal categorias={category} select={setCat} />
+          <PlantCardFilter 
+            horizontal 
+            categorias={category} 
+            select={setCat}
+          />
 
           <PlantCardPrimary posts={posts} />
           {/* <View

@@ -13,8 +13,9 @@ export const styles = StyleSheet.create({
   header: {
     width: "100%",
     flexDirection: "row",
-    marginTop: getStatusBarHeight() + 10,
-    marginBottom: 20,
+    // marginTop: getStatusBarHeight() + 1,
+
+    marginVertical: 20,
   },
 
   content: {
@@ -32,9 +33,9 @@ export const styles = StyleSheet.create({
   buttonRegisterContainer: {
     
     position: "absolute",
-    alignItems: "flex-end",
+    alignItems: "center",
     bottom: 30,
-    left: screenWidth/5,
+    // left: screenWidth/5,
   },
 
   buttonRegister: {

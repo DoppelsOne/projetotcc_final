@@ -293,9 +293,10 @@ export default function Setting({ route, navigation }) {
               }}
               activeOpacity={0.7}
               style={{
+                // flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
-                marginTop: 10,
+                marginTop: 50,
                 borderColor: theme.color.whiteHeading,
                 flexDirection: "row",
               }}

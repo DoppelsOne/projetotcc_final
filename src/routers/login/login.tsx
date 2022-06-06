@@ -10,6 +10,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Icon from "react-native-vector-icons/SimpleLineIcons";
@@ -172,13 +173,19 @@ export default function Login({ navigation }) {
             <Button
               title="Entrar"
               onPress={() => {
-                if (email == "" || senha == "") {
+                if (email == "" && senha == "") {
+                  Alert.alert("Nenhum campo preenchido!", "Digite seu e-mail e senha para entrar")
                   console.log("Dados Faltando");
+                } else if (senha == ''){
+                  Alert.alert("Erro ao entrar", "Verifique sua senha")
+                } else if (email == "") {
+                  Alert.alert("Erro ao entrar", "Verifique seu e-mail ")
                 } else {
                   postLogin(email, senha).then((resp) => {
                     if (resp) {
                       verificar(resp);
                     } else {
+                      Alert.alert("Usuário não encontrado!", "E-mail ou senha inválido")
                       console.log("Usuário não cadastrado");
                     }
                   });

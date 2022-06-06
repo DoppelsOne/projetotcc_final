@@ -17,9 +17,11 @@ import { CheckoutAndPrice } from "../../components/CheckoutAndPrice";
 import { theme } from "../../global/theme";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { getPostId } from "../../Db/axiosController";
+import AntDesign from "react-native-vector-icons/AntDesign";
+
 import { map } from "lodash";
 
-export default function PlantDetails({ route, navigation }) {
+export default function PlantDetails({ route, navigation, troca }) {
   const { id } = route.params;
 
   function handleGoBack() {
@@ -29,9 +31,10 @@ export default function PlantDetails({ route, navigation }) {
   const [dataPost, setDataPost] = useState({
     image: "assets/Logotipo/LogotipoPlantific.png",
     title: "",
-    Planta: { Categoria: [] },
+    Planta: { Categoria: [], descricao: '' },
     Usuario: { Endereco: {} },
     Categorias: {},
+    Postagem: { troca: false }
   });
   console.log();
 
@@ -50,7 +53,7 @@ export default function PlantDetails({ route, navigation }) {
         <Image
           // imagem
           source={{ uri: `${dataPost.image}` }}
-          style={{ width: "100%", height: 350 }}
+          style={{ width: "100%", height: 400 }}
         />
         <TouchableOpacity
           activeOpacity={0.7}
@@ -76,16 +79,40 @@ export default function PlantDetails({ route, navigation }) {
       <Content>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Information>
-            <Title>{dataPost.title}</Title>
-            <Subtitle>
-              {dataPost.Planta.Categoria.map((cat) => {
-                return cat.category.categoria + " ";
-              })}
-            </Subtitle>
+            <View>
+              <Title>{dataPost.title}</Title>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <Subtitle>
+                  {dataPost.Planta.Categoria.map((cat) => {
+                    return cat.category.categoria + " ";
+                  })}
+                </Subtitle>
+                <View>
+                  <Text>
+                    Troca:{" "}
+                    {troca ? (
+                      <AntDesign
+                        name="checkcircle"
+                        size={16}
+                        color={theme.color.greenSheet}
+                      />
+                    ) : (
+                      <AntDesign
+                        name="closecircle"
+                        size={16}
+                        color={theme.color.orangeMedium}
+                      />
+                    )}
+                  </Text>
+                </View>
+
+              </View>
+            </View>
+            
           </Information>
           <View>
             <About>Descrição</About>
-            <Text>{}</Text>
+            <Text>{dataPost.Planta.descricao}</Text>
           </View>
           <View>
             <About>Localização</About>

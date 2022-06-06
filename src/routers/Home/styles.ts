@@ -14,12 +14,15 @@ export const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
   },
+  
   content: {
     flex: 1,
     padding: 15,
     backgroundColor: theme.color.white,
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
+    bottom: 40,
+    marginTop: 30,
   },
 
   title: {

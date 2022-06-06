@@ -32,7 +32,9 @@ import {
   ImagePlant,
 } from "./styles";
 import Feather from "react-native-vector-icons/Feather";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import MaskInput, { Masks } from "react-native-mask-input";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RegisterPlant({ route, navigation: { goBack } }) {
   let plant = route.params.plant;
@@ -67,7 +69,7 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
 
   // console.log(price);
 
-  const Item = ({ item, onPress, backgroundColor, textColor }) => (
+  const Item = ({ item, onPress, backgroundColor, textColor }) => (    
     <View style={[styles.item, backgroundColor]}>
       <Button2 onPress={onPress} style={textColor}>
         {item.name}
@@ -155,10 +157,36 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
     setIsFocused(true);
   }
 
+  const navigation = useNavigation();
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <>
       <Container>
         <StatusBar backgroundColor="transparent" style="dark" translucent />
+        <TouchableOpacity
+          onPress={handleGoBack}
+          style={{
+            position: "absolute",
+            borderWidth: 1,
+            borderRadius: 8,
+            borderColor: theme.color.whiteHeading,
+            backgroundColor: theme.color.overlay,
+            top: 20,
+            left: 20,
+            marginTop: 22,
+          }}
+        >
+          <Feather
+            name="chevron-left"
+            size={28}
+            color={theme.color.whiteHeading}
+            style={{ padding: 3 }}
+          />
+        </TouchableOpacity>
 
         <Title>Cadastre {"\n"}sua planta!</Title>
         <Subtitle>Preenchendo os campos abaixo</Subtitle>
@@ -282,11 +310,43 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
           </ScrollView>
         </Content>
       </Container>
-
+      
       <Modalize
+        withReactModal
         ref={modalizeRef}
-        snapPoint={600}
+        snapPoint={800}
         withHandle={false}
+        HeaderComponent={
+          <View
+            style={{
+              padding: 10,
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexDirection: 'row'
+            }}
+          > 
+            <Text
+              style={{
+                fontFamily: theme.fonts.poppins_700bold,
+                fontSize: 16,
+              }}
+            >
+              Escolha uma das planta abaixo:
+            </Text>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => {
+                modalizeRef.current?.close();
+              }}
+            >
+              <AntDesign
+                name="close"
+                size={22}
+                color={theme.color.purpleDark}
+              />
+            </TouchableOpacity>
+          </View>
+        }
         flatListProps={{
           data: DATA,
           renderItem: renderItem,
