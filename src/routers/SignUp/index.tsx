@@ -27,19 +27,13 @@ export default function SignUp() {
     navigation.goBack();
   }
 
-  // const [usuario, setUsuario] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [tel, setTel] = useState("");
-  // const [senha, setSenha] = useState("");
-  const [confirm, setConfirmSenha] = useState("");
+  const [usuario, setUsuario] = useState("");
+  const [email, setEmail] = useState("");
+  const [tel, setTel] = useState("");
+  const [cep, setCep] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const [userData, setUserData] = useState({
-    usuario: "",
-    email: "",
-    tel: "",
-    senha: "",
-    cep: "",
-  });
+  const [confirm, setConfirmSenha] = useState("");
 
   // if (isEmpty(userData.cep)) {
   //   console.log("é nulo");
@@ -49,45 +43,52 @@ export default function SignUp() {
   //Validando Campos
   async function validarCampos(props: any, confirm: string) {
     let receba = true;
-
+    cep.replace("-", "");
     if (
-      isEmpty(props.usuario) ||
-      isEmpty(props.email) ||
-      isEmpty(props.tel) ||
-      isEmpty(props.senha) ||
-      isEmpty(props.cep) ||
+      isEmpty(usuario) ||
+      isEmpty(email) ||
+      isEmpty(tel) ||
+      isEmpty(senha) ||
+      isEmpty(cep) ||
       isEmpty(confirm)
     ) {
-      Alert.alert("Erro ao cadastrar",
-      "Verifique se os campos estão preenchidos corretamente.");
-    } else if (props.senha != confirm) {
+      Alert.alert(
+        "Erro ao cadastrar",
+        "Verifique se os campos estão preenchidos corretamente."
+      );
+    } else if (senha != confirm) {
       Alert.alert("Senhas não coincidem");
     } else if (receba == true) {
-      let cep = false;
+      let cepV = false;
       //validar Cep
       await axios
-        .get("https://viacep.com.br/ws/" + props.cep + "/json/")
+        .get("https://viacep.com.br/ws/" + cep + "/json/")
         .then((resp) => {
           if (resp.status == 400 || resp.data.erro) {
-            cep = false;
+            cepV = false;
           } else {
-            cep = true;
+            cepV = true;
           }
         })
         .catch((err) => {
           err;
         });
 
-      if (!cep) {
+      if (!cepV) {
         Alert.alert("Cep não encontrado ou inválido");
       } else {
-        postCadastro(props);
+        const data = {
+          tel: tel,
+          usuario: usuario,
+          senha: senha,
+          email: email,
+          cep: cep,
+        };
+        postCadastro(data);
         handleGoBack();
       }
     }
     //Validando Senha
-
-    console.log(userData, confirm);
 
     // if (isEmpty(props.user)) {
     //   console.log("user vazio");
@@ -137,78 +138,102 @@ export default function SignUp() {
           <Content>
             <Input
               iconName="user"
+              value={usuario}
               placeholder="Usuário"
               onChangeText={(prop) => {
-                userData.usuario = prop;
+                setUsuario(prop);
               }}
             />
 
             <Input
               iconName="mail"
+              value={email}
               placeholder="E-mail"
               keyboardType="email-address"
               onChangeText={(prop) => {
-                userData.email = prop;
+                setEmail(prop);
               }}
             />
 
             <View
               style={{
-                flexDirection: 'row',
+                flexDirection: "row",
                 borderWidth: 1,
-                alignItems:"center",
+                alignItems: "center",
                 borderRadius: 16,
                 borderColor: theme.color.whiteHeading,
                 backgroundColor: theme.color.overlay,
                 padding: 10,
                 marginTop: 10,
-              }}            
+              }}
             >
               <Feather
-                name='phone'
+                name="phone"
                 color={theme.color.whiteHeading}
                 size={22}
               />
               <MaskInput
                 placeholder="Telefone"
                 placeholderTextColor={theme.color.whiteHeading}
-                value={userData.tel}
+                value={tel}
                 mask={Masks.BRL_PHONE}
                 keyboardType="numeric"
-                onChangeText={(prop) => {
-                  setUserData({ tel: prop });
+                onChangeText={(props) => {
+                  setTel(props);
                 }}
-                style={{                
+                style={{
                   fontFamily: theme.fonts.poppins_700bold,
                   color: theme.color.purpleDark,
                   fontSize: 16,
-                  width: '90%',
+                  width: "90%",
                   paddingLeft: 25,
                 }}
               />
             </View>
-
-            <Input
-              iconName="map"
-              placeholder="CEP"
-              keyboardType="numeric"
-              onChangeText={(prop) => {
-                userData.cep = prop;
+            <View
+              style={{
+                flexDirection: "row",
+                borderWidth: 1,
+                alignItems: "center",
+                borderRadius: 16,
+                borderColor: theme.color.whiteHeading,
+                backgroundColor: theme.color.overlay,
+                padding: 10,
+                marginTop: 10,
               }}
-              maxLength={6}
-            />
-
+            >
+              <Feather name="map" color={theme.color.whiteHeading} size={22} />
+              <MaskInput
+                placeholder="CEP"
+                placeholderTextColor={theme.color.whiteHeading}
+                value={cep}
+                mask={Masks.ZIP_CODE}
+                keyboardType="numeric"
+                onChangeText={(prop) => {
+                  setCep(prop);
+                }}
+                style={{
+                  fontFamily: theme.fonts.poppins_700bold,
+                  color: theme.color.purpleDark,
+                  fontSize: 16,
+                  width: "90%",
+                  paddingLeft: 25,
+                }}
+              />
+            </View>
             <Input
               iconName="lock"
+              value={senha}
               placeholder="Senha"
               secureTextEntry
               onChangeText={(prop) => {
-                userData.senha = prop;
+                setSenha(prop);
               }}
             />
 
             <Input
               iconName="lock"
+              value={confirm}
               placeholder="Confirmar Senha"
               secureTextEntry
               onChangeText={(prop) => {
@@ -220,7 +245,14 @@ export default function SignUp() {
               title="Cadastrar"
               style={{ marginTop: 15 }}
               onPress={() => {
-                validarCampos(userData, confirm);
+                const data = {
+                  tel: tel,
+                  usuario: usuario,
+                  senha: senha,
+                  email: email,
+                  cep: cep,
+                };
+                validarCampos(data, confirm);
               }}
             />
           </Content>

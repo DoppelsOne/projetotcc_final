@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     padding: 8,
     margin: 5,
     width: Dimensions.get("window").width / 2.3,
-    height: 240,
+    height: 260,
     backgroundColor: theme.color.whiteHeading,
     borderRadius: 10,
     shadowColor: theme.color.purpleDark,

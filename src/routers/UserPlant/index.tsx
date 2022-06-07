@@ -72,34 +72,27 @@ export default function UserPlant({ route, navigation }) {
           />
           {/* </ScrollView> */}
         </View>
-        {registerButton ? (
-          <View style={styles.buttonRegisterContainer}>
-            <TouchableWithoutFeedback
-              style={{}}
-              onPress={() => {
-                getPlants().then((resp) => {
-                  navigation.navigate("RegisterPlant", {
-                    plant: resp,
-                    user: user,
-                  });
+
+        <View style={styles.buttonRegisterContainer}>
+          <TouchableWithoutFeedback
+            style={{}}
+            onPress={() => {
+              getPlants().then((resp) => {
+                navigation.navigate("RegisterPlant", {
+                  plant: resp,
+                  user: user,
                 });
-              }}
+              });
+            }}
+          >
+            <LinearGradient
+              style={styles.buttonRegister}
+              colors={[orange, orangeDark]}
             >
-              <LinearGradient
-                style={styles.buttonRegister}
-                colors={[orange, orangeDark]}
-              >
-                <Entypo
-                  name="plus"
-                  size={30}
-                  color={theme.color.whiteHeading}
-                />
-              </LinearGradient>
-            </TouchableWithoutFeedback>
-          </View>
-        ) : (
-          <></>
-        )}
+              <Entypo name="plus" size={30} color={theme.color.whiteHeading} />
+            </LinearGradient>
+          </TouchableWithoutFeedback>
+        </View>
       </Background>
     </TouchableWithoutFeedback>
   );

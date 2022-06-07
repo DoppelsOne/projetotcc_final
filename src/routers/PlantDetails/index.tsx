@@ -21,7 +21,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 import { map } from "lodash";
 
-export default function PlantDetails({ route, navigation, troca }) {
+export default function PlantDetails({ route, navigation }) {
   const { id } = route.params;
 
   function handleGoBack() {
@@ -31,10 +31,10 @@ export default function PlantDetails({ route, navigation, troca }) {
   const [dataPost, setDataPost] = useState({
     image: "assets/Logotipo/LogotipoPlantific.png",
     title: "",
-    Planta: { Categoria: [], descricao: '' },
+    Planta: { Categoria: [], descricao: "" },
     Usuario: { Endereco: {} },
     Categorias: {},
-    Postagem: { troca: false }
+    Postagem: { troca: {} },
   });
   console.log();
 
@@ -81,7 +81,12 @@ export default function PlantDetails({ route, navigation, troca }) {
           <Information>
             <View>
               <Title>{dataPost.title}</Title>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
                 <Subtitle>
                   {dataPost.Planta.Categoria.map((cat) => {
                     return cat.category.categoria + " ";
@@ -90,7 +95,7 @@ export default function PlantDetails({ route, navigation, troca }) {
                 <View>
                   <Text>
                     Troca:{" "}
-                    {troca ? (
+                    {dataPost.troca ? (
                       <AntDesign
                         name="checkcircle"
                         size={16}
@@ -105,10 +110,8 @@ export default function PlantDetails({ route, navigation, troca }) {
                     )}
                   </Text>
                 </View>
-
               </View>
             </View>
-            
           </Information>
           <View>
             <About>Descrição</About>
