@@ -19,7 +19,11 @@ import {
   TextLocalization,
 } from "./styles";
 
+<<<<<<< HEAD
 export default function PlantDetails({ route, navigation, troca }: any) {
+=======
+export default function PlantDetails({ route, navigation }) {
+>>>>>>> 538d5acbe3efef2171e87b82b426859f8f29cae6
   const { id } = route.params;
 
   function handleGoBack() {
@@ -29,12 +33,16 @@ export default function PlantDetails({ route, navigation, troca }: any) {
   const [dataPost, setDataPost] = useState({
     image: "assets/Logotipo/LogotipoPlantific.png",
     title: "",
-    Planta: { Categoria: [], descricao: '' },
+    Planta: { Categoria: [], descricao: "" },
     Usuario: { Endereco: {} },
     Categorias: {},
+<<<<<<< HEAD
     Postagem: {
       troca: false,
     }
+=======
+    Postagem: { troca: {} },
+>>>>>>> 538d5acbe3efef2171e87b82b426859f8f29cae6
   });
   console.log();
 
@@ -81,7 +89,12 @@ export default function PlantDetails({ route, navigation, troca }: any) {
           <Information>
             <View>
               <Title>{dataPost.title}</Title>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
                 <Subtitle>
                   {dataPost.Planta.Categoria.map((cat) => {
                     return cat.category.categoria + " ";
@@ -90,7 +103,7 @@ export default function PlantDetails({ route, navigation, troca }: any) {
                 <View>
                   <Text>
                     Troca:{" "}
-                    {troca ? (
+                    {dataPost.troca ? (
                       <AntDesign
                         name="checkcircle"
                         size={16}
@@ -105,10 +118,8 @@ export default function PlantDetails({ route, navigation, troca }: any) {
                     )}
                   </Text>
                 </View>
-
               </View>
             </View>
-            
           </Information>
           <View>
             <About>Descrição</About>
