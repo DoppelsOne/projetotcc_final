@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import AntDesign from "react-native-vector-icons/AntDesign";
 
+import { CheckoutAndPrice } from "../../components/CheckoutAndPrice";
+import { theme } from "../../global/theme";
+import { getPostId } from "../../Db/axiosController";
 import {
   Container,
   Content,
@@ -13,15 +18,8 @@ import {
   Title,
   TextLocalization,
 } from "./styles";
-import { CheckoutAndPrice } from "../../components/CheckoutAndPrice";
-import { theme } from "../../global/theme";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { getPostId } from "../../Db/axiosController";
-import AntDesign from "react-native-vector-icons/AntDesign";
 
-import { map } from "lodash";
-
-export default function PlantDetails({ route, navigation, troca }) {
+export default function PlantDetails({ route, navigation, troca }: any) {
   const { id } = route.params;
 
   function handleGoBack() {
@@ -34,7 +32,9 @@ export default function PlantDetails({ route, navigation, troca }) {
     Planta: { Categoria: [], descricao: '' },
     Usuario: { Endereco: {} },
     Categorias: {},
-    Postagem: { troca: false }
+    Postagem: {
+      troca: false,
+    }
   });
   console.log();
 
