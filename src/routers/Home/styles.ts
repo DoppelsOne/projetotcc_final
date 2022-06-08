@@ -9,20 +9,21 @@ export const styles = StyleSheet.create({
     width: "100%",
     // backgroundColor: "red",
     justifyContent: "center",
+    // height: `100%`,
   },
 
   header: {
     flexDirection: "row",
   },
-  
+
   content: {
     flex: 1,
     padding: 15,
-    backgroundColor: theme.color.white,
+    backgroundColor: theme.color.white, //
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
-    bottom: 40,
-    marginTop: 30,
+    // marginTop: 10,
+    paddingBottom: 30,
   },
 
   title: {

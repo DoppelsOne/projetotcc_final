@@ -21,7 +21,7 @@ interface PlantCardFilterProps {
 // ];
 
 export function PlantCardFilter({
-  active = false,
+  active,
   categorias,
   select,
   ...rest
@@ -32,12 +32,14 @@ export function PlantCardFilter({
   const renderItem = ({ item }: any) => <Item category={item.categoria} />;
 
   const Item = ({ category }: any) => (
-    <TouchableOpacity 
-      activeOpacity={0.7} 
-      onPress={() => {select(category)}} 
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() => {
+        select(category), (active = true);
+      }}
       {...rest}
     >
-      <View style={[styles.container, active && styles.FocusedContainer]}>
+      <View style={active ? styles.FocusedContainer : styles.container}>
         <Text style={[styles.text, active && styles.FocusedText]}>
           {category}
         </Text>
@@ -47,7 +49,7 @@ export function PlantCardFilter({
 
   return (
     <FlatList
-      style={{ paddingRight: 0, flex:1, maxHeight:40}}
+      style={{ paddingRight: 0, flex: 1, maxHeight: 40 }}
       showsHorizontalScrollIndicator={false}
       onEndReachedThreshold={0.1}
       data={categorias}
