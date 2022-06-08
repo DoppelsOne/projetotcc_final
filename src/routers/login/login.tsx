@@ -174,18 +174,24 @@ export default function Login({ navigation }) {
               title="Entrar"
               onPress={() => {
                 if (email == "" && senha == "") {
-                  Alert.alert("Nenhum campo preenchido!", "Digite seu e-mail e senha para entrar")
+                  Alert.alert(
+                    "Nenhum campo preenchido!",
+                    "Digite seu e-mail e senha para entrar"
+                  );
                   console.log("Dados Faltando");
-                } else if (senha == ''){
-                  Alert.alert("Erro ao entrar", "Verifique sua senha")
+                } else if (senha == "") {
+                  Alert.alert("Erro ao entrar", "Verifique sua senha");
                 } else if (email == "") {
-                  Alert.alert("Erro ao entrar", "Verifique seu e-mail ")
+                  Alert.alert("Erro ao entrar", "Verifique seu e-mail ");
                 } else {
                   postLogin(email, senha).then((resp) => {
                     if (resp) {
                       verificar(resp);
                     } else {
-                      Alert.alert("Usuário não encontrado!", "E-mail ou senha inválido")
+                      Alert.alert(
+                        "Usuário não encontrado!",
+                        "E-mail ou senha inválido"
+                      );
                       console.log("Usuário não cadastrado");
                     }
                   });
@@ -263,7 +269,7 @@ export default function Login({ navigation }) {
                 textAlign: "center",
               }}
             >
-              Digite seu e-mail
+              Esqueci minha senha:
             </Text>
 
             <View

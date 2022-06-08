@@ -39,6 +39,7 @@ import {
 import { empty } from "@prisma/client/runtime";
 import * as ImagePicker from "expo-image-picker";
 import { alterUser, getCep, getUser } from "../../Db/axiosController";
+import { DevSettings } from "react-native";
 
 export default function Setting({ route, navigation }) {
   const id = route.params.user;
@@ -326,7 +327,7 @@ export default function Setting({ route, navigation }) {
       <Modalize
         ref={modalizeRef}
         withHandle={false}
-        snapPoint={400}
+        snapPoint={600}
         modalHeight={600}
         HeaderComponent={
           <View
@@ -495,7 +496,7 @@ export default function Setting({ route, navigation }) {
                   console.log("Usuário Desconectado");
                 };
                 removeValue();
-                navigation.navigate("Login");
+                DevSettings.reload()
               }}
               title="Sair"
               style={{ width: "45%", marginRight: 10 }}

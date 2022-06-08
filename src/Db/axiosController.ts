@@ -6,7 +6,7 @@ import { TextLocalization } from "../routers/PlantDetails/styles";
 
 //url padrão
 // const url = "http://10.0.2.2:3333/";
-const url = "http://192.168.1.2:3333/";
+const url = "http://192.168.10.11:3333/";
 
 let end = {};
 let error: boolean = false;
