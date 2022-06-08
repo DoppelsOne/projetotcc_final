@@ -74,9 +74,11 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
 
   const Item = ({ item, onPress, backgroundColor, textColor }) => (
     <View style={[styles.item, backgroundColor]}>
-      <Button2 onPress={onPress} style={textColor}>
-        {item.name}
-      </Button2>
+      <ScrollView>
+        <Button2 onPress={onPress} style={textColor}>
+          {item.name}
+        </Button2>
+      </ScrollView>
     </View>
   );
 
@@ -260,22 +262,58 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
                 >
                   R$
                 </Text> */}
-              <MaskInput
-                mask={Masks.BRL_CURRENCY}
-                onBlur={handleInputBlur}
-                onFocus={handleInputFocus}
-                placeholder="Valor sugerido"
-                placeholderTextColor={theme.color.gray}
-                selectionColor={theme.color.greenLight}
-                // selectionColor={theme.color.greenLight}
-                value={price || value}
-                onChangeText={(prop) => setPrice(prop)}
-                keyboardType="numeric"
-                style={{
-                  width: "100%",
-                  fontSize: 16,
-                  fontFamily: theme.fonts.poppins_500,
-                  color: theme.color.purpleDark,
+                <MaskInput
+                  mask={Masks.BRL_CURRENCY}
+                  onBlur={handleInputBlur}
+                  onFocus={handleInputFocus}
+                  placeholder="Valor sugerido"
+                  placeholderTextColor={theme.color.gray}
+                  selectionColor={theme.color.greenLight}
+                  // selectionColor={theme.color.greenLight}
+                  value={price || value}
+                  onChangeText={(prop) => setPrice(prop)}
+                  keyboardType="numeric"
+                  style={{
+                    width: "100%",
+                    fontSize: 16,
+                    fontFamily: theme.fonts.poppins_500,
+                    color: theme.color.purpleDark,
+                  }}
+                />
+              </View>
+
+              <CheckBoxContainer>
+                <TextSwap>Disponível para troca?</TextSwap>
+                <Switch
+                  trackColor={{
+                    false: "#767577",
+                    true: theme.color.greenLight,
+                  }}
+                  thumbColor={
+                    isEnabled ? theme.color.greenWeak : theme.color.greenWeak
+                  }
+                  ios_backgroundColor="#3e3e3e"
+                  onValueChange={toggleSwitch}
+                  value={isEnabled}
+                />
+              </CheckBoxContainer>
+              <Button
+                title="Cadastrar"
+                style={{ marginTop: 20 }}
+                onPress={ async () => {
+                  try {
+                    await postData(
+                      user.id,
+                      selectedId,
+                      itemName,
+                      image,
+                      price.replace("R$ ", ""),
+                      isEnabled
+                    );
+                    Alert.alert("Planta cadastrada!")
+                  } catch (error) {
+                    error.message
+                  }
                 }}
               />
             </View>

@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { Image, ScrollView, TouchableOpacity, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import moment from 'moment'
 
+import { CheckoutAndPrice } from "../../components/CheckoutAndPrice";
+import { theme } from "../../global/theme";
+import { getPostId } from "../../Db/axiosController";
 import {
   Container,
   Content,
@@ -13,13 +19,6 @@ import {
   Title,
   TextLocalization,
 } from "./styles";
-import { CheckoutAndPrice } from "../../components/CheckoutAndPrice";
-import { theme } from "../../global/theme";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { getPostId } from "../../Db/axiosController";
-import AntDesign from "react-native-vector-icons/AntDesign";
-
-import { map } from "lodash";
 
 export default function PlantDetails({ route, navigation }) {
   const { id } = route.params;
@@ -31,10 +30,10 @@ export default function PlantDetails({ route, navigation }) {
   const [dataPost, setDataPost] = useState({
     image: "assets/Logotipo/LogotipoPlantific.png",
     title: "",
-    Planta: { Categoria: [], descricao: "" },
-    Usuario: { Endereco: {} },
+    Planta: { Categoria: [], descricao: "", },
+    Usuario: { login: "", avatar: "", Endereco: {} },
     Categorias: {},
-    Postagem: { troca: {} },
+    Postagem: { troca: {}, createdAt: "", Usuario: "", },
   });
   console.log();
 
@@ -118,7 +117,7 @@ export default function PlantDetails({ route, navigation }) {
             <Text>{dataPost.Planta.descricao}</Text>
           </View>
           <View>
-            <About>Localização</About>
+            <About>Dados do Vendedor</About>
             <View
               style={{
                 flexDirection: "row",
@@ -142,6 +141,26 @@ export default function PlantDetails({ route, navigation }) {
                 <Subtitle>UF</Subtitle>
                 <TextLocalization>
                   {dataPost.Usuario.Endereco.uf}
+                </TextLocalization>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View>
+                <Subtitle>Vendedor</Subtitle>
+                <TextLocalization>
+                  {dataPost.Usuario.login}
+                </TextLocalization>
+              </View>          
+              <View>
+                <Subtitle>Data da postagem</Subtitle>
+                <TextLocalization>
+                  {moment(dataPost.createdAt).format('DD/MM/YYYY')}
                 </TextLocalization>
               </View>
             </View>

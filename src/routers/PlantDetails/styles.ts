@@ -55,6 +55,7 @@ export const Text = styled.Text`
   line-height: 29px;
   color: ${theme.color.grayDark};
   margin-bottom: 16px;
+  text-align: justify;
 `
 
 export const TextLocalization = styled.Text`
