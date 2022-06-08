@@ -85,7 +85,7 @@ export const ImagePlant = styled.Image.attrs({
 
 export const styles = StyleSheet.create({
   item: {
-    padding: 5,
+    padding: 10,
     margin: 2,
     borderRadius: 8
   },

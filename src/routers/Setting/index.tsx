@@ -10,6 +10,7 @@ import {
   Settings,
   KeyboardAvoidingView,
   Platform,
+  Alert,
 } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
@@ -283,7 +284,16 @@ export default function Setting({ route, navigation }) {
               title="Salvar alterações"
               style={{ marginTop: 5 }}
               onPress={() => {
-                updateData(nome, tel, cep, avatar, nsenha), setUpdate("Update");
+                const updateNewData = async () => {
+                  try {
+                    await updateData(nome, tel, cep, avatar, nsenha), setUpdate("Update");
+                  } catch (e) {
+                    // remove error
+                  }
+                  Alert.alert("Alteração Realizada!")
+                  console.log("Alteração Realizada");
+                };
+                updateNewData();
               }}
             />
 
@@ -479,6 +489,9 @@ export default function Setting({ route, navigation }) {
                   } catch (e) {
                     // remove error
                   }
+                  Alert.alert("Usuário desconectado!",
+                  "Realize o login novamente para entrar"
+                  )
                   console.log("Usuário Desconectado");
                 };
                 removeValue();

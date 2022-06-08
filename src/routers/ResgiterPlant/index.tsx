@@ -71,9 +71,11 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
 
   const Item = ({ item, onPress, backgroundColor, textColor }) => (    
     <View style={[styles.item, backgroundColor]}>
-      <Button2 onPress={onPress} style={textColor}>
-        {item.name}
-      </Button2>
+      <ScrollView>
+        <Button2 onPress={onPress} style={textColor}>
+          {item.name}
+        </Button2>
+      </ScrollView>
     </View>
   );
 
@@ -295,15 +297,20 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
               <Button
                 title="Cadastrar"
                 style={{ marginTop: 20 }}
-                onPress={() => {
-                  postData(
-                    user.id,
-                    selectedId,
-                    itemName,
-                    image,
-                    price.replace("R$ ", ""),
-                    isEnabled
-                  );
+                onPress={ async () => {
+                  try {
+                    await postData(
+                      user.id,
+                      selectedId,
+                      itemName,
+                      image,
+                      price.replace("R$ ", ""),
+                      isEnabled
+                    );
+                    Alert.alert("Planta cadastrada!")
+                  } catch (error) {
+                    error.message
+                  }
                 }}
               />
             </Wrapper>
@@ -355,6 +362,13 @@ export default function RegisterPlant({ route, navigation: { goBack } }) {
           showsVerticalScrollIndicator: false,
         }}
       />
+        {/* <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          extraData={selectedId}
+          // showsVerticalScrollIndicator={false}
+        /> */}
     </>
   );
 }

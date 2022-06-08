@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import moment from 'moment'
 
 import { CheckoutAndPrice } from "../../components/CheckoutAndPrice";
 import { theme } from "../../global/theme";
@@ -19,11 +20,7 @@ import {
   TextLocalization,
 } from "./styles";
 
-<<<<<<< HEAD
-export default function PlantDetails({ route, navigation, troca }: any) {
-=======
 export default function PlantDetails({ route, navigation }) {
->>>>>>> 538d5acbe3efef2171e87b82b426859f8f29cae6
   const { id } = route.params;
 
   function handleGoBack() {
@@ -33,16 +30,10 @@ export default function PlantDetails({ route, navigation }) {
   const [dataPost, setDataPost] = useState({
     image: "assets/Logotipo/LogotipoPlantific.png",
     title: "",
-    Planta: { Categoria: [], descricao: "" },
-    Usuario: { Endereco: {} },
+    Planta: { Categoria: [], descricao: "", },
+    Usuario: { login: "", avatar: "", Endereco: {} },
     Categorias: {},
-<<<<<<< HEAD
-    Postagem: {
-      troca: false,
-    }
-=======
-    Postagem: { troca: {} },
->>>>>>> 538d5acbe3efef2171e87b82b426859f8f29cae6
+    Postagem: { troca: {}, createdAt: "", Usuario: "", },
   });
   console.log();
 
@@ -126,7 +117,7 @@ export default function PlantDetails({ route, navigation }) {
             <Text>{dataPost.Planta.descricao}</Text>
           </View>
           <View>
-            <About>Localização</About>
+            <About>Dados do Vendedor</About>
             <View
               style={{
                 flexDirection: "row",
@@ -150,6 +141,26 @@ export default function PlantDetails({ route, navigation }) {
                 <Subtitle>UF</Subtitle>
                 <TextLocalization>
                   {dataPost.Usuario.Endereco.uf}
+                </TextLocalization>
+              </View>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <View>
+                <Subtitle>Vendedor</Subtitle>
+                <TextLocalization>
+                  {dataPost.Usuario.login}
+                </TextLocalization>
+              </View>          
+              <View>
+                <Subtitle>Data da postagem</Subtitle>
+                <TextLocalization>
+                  {moment(dataPost.createdAt).format('DD/MM/YYYY')}
                 </TextLocalization>
               </View>
             </View>
